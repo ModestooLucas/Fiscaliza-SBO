@@ -1,6 +1,7 @@
 import io
 import json
 import re
+import sys
 import time
 import unicodedata
 import zipfile
@@ -12,12 +13,16 @@ import pandas as pd
 import requests
 from bs4 import BeautifulSoup
 from pypdf import PdfReader
+from requests.adapters import HTTPAdapter
+from urllib3.util.retry import Retry
 
 BASE_SISCAM = "https://santabarbara.siscam.com.br"
 BASE_CONSULTA = "https://consulta.siscam.com.br/camarasantabarbara"
 
 HEADERS = {
-    "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) FiscalizaSBO/1.0"
+    "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/128.0.0.0 Safari/537.36",
+    "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
+    "Accept-Language": "pt-BR,pt;q=0.9,en;q=0.8",
 }
 
 APELIDOS_VEREADORES = {
@@ -41,6 +46,39 @@ APELIDOS_VEREADORES = {
     "Tikinho TK": ["tikinho tk", "tikinho"],
     "Wilson da Engenharia": ["wilson da engenharia"],
 }
+
+
+def criar_sessao_resiliente() -> requests.Session:
+    """Cria sessão HTTP com retentativas automáticas em caso de lentidão ou timeout do Siscam."""
+    session = requests.Session()
+    retry = Retry(
+        total=4,
+        connect=4,
+        read=4,
+        backoff_factor=2.5,
+        status_forcelist=[429, 500, 502, 503, 504],
+        allowed_methods=["GET"],
+    )
+    adapter = HTTPAdapter(max_retries=retry)
+    session.mount("https://", adapter)
+    session.mount("http://", adapter)
+    return session
+
+
+def get_com_retry(session: requests.Session, url: str, timeout: int = 90) -> requests.Response:
+    """Faz GET com retentativa manual extra caso ocorra ReadTimeout."""
+    ultimo_erro = None
+    for tentativa in range(1, 5):
+        try:
+            resp = session.get(url, headers=HEADERS, timeout=timeout)
+            resp.raise_for_status()
+            return resp
+        except Exception as e:
+            ultimo_erro = e
+            espera = tentativa * 5
+            print(f"   [Tentativa {tentativa}/4] Servidor lento em {url} ({type(e).__name__}). Aguardando {espera}s...")
+            time.sleep(espera)
+    raise ultimo_erro
 
 
 def normalizar(texto: str) -> str:
@@ -77,7 +115,7 @@ def classificar_proposta(tipo: str, ementa: str) -> str:
     return "outros"
 
 
-def coletar_todas_proposituras(session: requests.Session, ano: int = 2026, max_paginas: int = 120) -> list:
+def coletar_todas_proposituras(session: requests.Session, ano: int = 2026, max_paginas: int = 150) -> list:
     propostas = []
     ids_vistos = set()
 
@@ -87,11 +125,7 @@ def coletar_todas_proposituras(session: requests.Session, ano: int = 2026, max_p
             f"?Pesquisa=Avancada&id=74&pagina={pagina}&Modulo=8&Ano={ano}"
         )
         print(f"   Lendo página {pagina} de proposituras ({ano})...")
-        try:
-            resp = session.get(url, headers=HEADERS, timeout=30)
-        except Exception as e:
-            print(f"   [Aviso] Falha na página {pagina}: {e}")
-            break
+        resp = get_com_retry(session, url, timeout=90)
 
         soup = BeautifulSoup(resp.text, "html.parser")
         links_doc = soup.select("h4 a[href*='/Documentos/Documento/']")
@@ -145,13 +179,13 @@ def coletar_todas_proposituras(session: requests.Session, ano: int = 2026, max_p
 
         if novos_na_pagina == 0:
             break
-        time.sleep(0.35)
+        time.sleep(0.8)
 
     return propostas
 
 
 def extrair_texto_arquivo(session: requests.Session, url_arquivo: str) -> tuple[str, str]:
-    resp = session.get(url_arquivo, headers=HEADERS, timeout=45)
+    resp = get_com_retry(session, url_arquivo, timeout=90)
     conteudo = resp.content or b""
 
     if conteudo.startswith(b"PK\x03\x04"):
@@ -186,9 +220,9 @@ def coletar_sessoes_e_atas(session: requests.Session, ano: int = 2026) -> list:
     sessoes_extraidas = []
     urls_sessoes = []
 
-    for pagina in range(1, 10):
+    for pagina in range(1, 12):
         url_lista = f"{BASE_CONSULTA}/sessoes?pagina={pagina}" if pagina > 1 else f"{BASE_CONSULTA}/sessoes"
-        resp = session.get(url_lista, headers=HEADERS, timeout=30)
+        resp = get_com_retry(session, url_lista, timeout=90)
         soup = BeautifulSoup(resp.text, "html.parser")
         linhas = soup.select("table tbody tr")
         if not linhas:
@@ -212,16 +246,13 @@ def coletar_sessoes_e_atas(session: requests.Session, ano: int = 2026) -> list:
                     })
         if not achou_ano:
             break
+        time.sleep(0.8)
 
     print(f"   Encontradas {len(urls_sessoes)} sessões de {ano}. Lendo atas...")
 
     for item in urls_sessoes:
-        try:
-            s_resp = session.get(item["url_sessao"], headers=HEADERS, timeout=30)
-            s_soup = BeautifulSoup(s_resp.text, "html.parser")
-        except Exception as e:
-            print(f"   [Aviso] Erro ao abrir {item['sessao']}: {e}")
-            continue
+        s_resp = get_com_retry(session, item["url_sessao"], timeout=90)
+        s_soup = BeautifulSoup(s_resp.text, "html.parser")
 
         ata_link = None
         for a in s_soup.find_all("a", href=re.compile(r"/arquivo\?Id=\d+")):
@@ -271,43 +302,26 @@ def coletar_sessoes_e_atas(session: requests.Session, ano: int = 2026) -> list:
                     "ausentes_lista": identificar_vereadores(m_voto.group(4)) if m_voto.group(4) else [],
                 })
 
-            print(f"   OK: {item['sessao']} ({formato}) -> {len(registro['presentes'])} presentes identificados")
+            print(f"   OK: {item['sessao']} ({formato}) -> {len(registro['presentes'])} presentes")
         else:
             print(f"   Sem ata anexada ainda: {item['sessao']}")
 
         sessoes_extraidas.append(registro)
-        time.sleep(0.35)
+        time.sleep(0.8)
 
     return sessoes_extraidas
 
 
-def main():
-    pasta_script = Path(__file__).resolve().parent
-    caminho_saida = pasta_script / "dados_camara.json"
+def validar_coleta(novo: dict, caminho_atual: Path) -> tuple[bool, str]:
+    """Impede publicar dados vazios, corrompidos ou menores que a última versão boa."""
+    propostas = novo.get("propostas", [])
+    sessoes = novo.get("sessoes", [])
 
-    session = requests.Session()
+    if len(propostas) < 50:
+        return False, f"Poucas propostas coletadas ({len(propostas)} < 50)."
 
-    print("1. Coletando 100% das proposituras de 2026 no Siscam...")
-    propostas = coletar_todas_proposituras(session, ano=2026)
+    if len(sessoes) < 10:
+        return False, f"Poucas sessões coletadas ({len(sessoes)} < 10)."
 
-    print("2. Coletando sessões e atas de 2026 (DOCX e PDF)...")
-    sessoes = coletar_sessoes_e_atas(session, ano=2026)
-
-    saida = {
-        "gerado_em": pd.Timestamp.now().isoformat(),
-        "fonte_oficial": BASE_SISCAM,
-        "total_propostas": len(propostas),
-        "total_sessoes": len(sessoes),
-        "propostas": propostas,
-        "sessoes": sessoes,
-    }
-
-    with open(caminho_saida, "w", encoding="utf-8") as f:
-        json.dump(saida, f, ensure_ascii=False, indent=2)
-
-    print(f"\nConcluído! {len(propostas)} propostas e {len(sessoes)} sessões salvas em:")
-    print(caminho_saida)
-
-
-if __name__ == "__main__":
-    main()
+    vereadores_encontrados = {
+        p.get("vereador") for p in propostas if p.get("vereador") in APELIDOS
