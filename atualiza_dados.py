@@ -17,7 +17,6 @@ from requests.adapters import HTTPAdapter
 from urllib3.util.retry import Retry
 
 BASE_SISCAM = "https://santabarbara.siscam.com.br"
-BASE_CONSULTA = "https://consulta.siscam.com.br/camarasantabarbara"
 
 HEADERS = {
     "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/128.0.0.0 Safari/537.36",
@@ -49,7 +48,6 @@ APELIDOS_VEREADORES = {
 
 
 def criar_sessao_resiliente() -> requests.Session:
-    """Cria sessão HTTP com retentativas automáticas em caso de lentidão ou timeout do Siscam."""
     session = requests.Session()
     retry = Retry(
         total=4,
@@ -66,7 +64,6 @@ def criar_sessao_resiliente() -> requests.Session:
 
 
 def get_com_retry(session: requests.Session, url: str, timeout: int = 90) -> requests.Response:
-    """Faz GET com retentativa manual extra caso ocorra ReadTimeout."""
     ultimo_erro = None
     for tentativa in range(1, 5):
         try:
@@ -115,9 +112,10 @@ def classificar_proposta(tipo: str, ementa: str) -> str:
     return "outros"
 
 
-def coletar_todas_proposituras(session: requests.Session, ano: int = 2026, max_paginas: int = 150) -> list:
+def coletar_todas_proposituras(session: requests.Session, ano: int = 2026, max_paginas: int = 250) -> list:
     propostas = []
     ids_vistos = set()
+    paginas_sem_ano = 0
 
     for pagina in range(1, max_paginas + 1):
         url = (
@@ -134,6 +132,8 @@ def coletar_todas_proposituras(session: requests.Session, ano: int = 2026, max_p
             break
 
         novos_na_pagina = 0
+        encontrou_ano_na_pagina = False
+
         for a in links_doc:
             href = a.get("href", "")
             if href in ids_vistos:
@@ -163,6 +163,7 @@ def coletar_todas_proposituras(session: requests.Session, ano: int = 2026, max_p
             if str(ano) not in (campos["data"] + titulo):
                 continue
 
+            encontrou_ano_na_pagina = True
             vereadores = identificar_vereadores(campos["autoria"])
             for ver in vereadores:
                 propostas.append({
@@ -179,7 +180,16 @@ def coletar_todas_proposituras(session: requests.Session, ano: int = 2026, max_p
 
         if novos_na_pagina == 0:
             break
-        time.sleep(0.8)
+
+        if not encontrou_ano_na_pagina:
+            paginas_sem_ano += 1
+            if paginas_sem_ano >= 2:
+                print(f"   Encerrando paginação (sem novos registros de {ano}).")
+                break
+        else:
+            paginas_sem_ano = 0
+
+        time.sleep(0.5)
 
     return propostas
 
@@ -217,11 +227,12 @@ def extrair_texto_arquivo(session: requests.Session, url_arquivo: str) -> tuple[
 
 
 def coletar_sessoes_e_atas(session: requests.Session, ano: int = 2026) -> list:
+    """Usa sempre BASE_SISCAM (santabarbara.siscam.com.br) para evitar erro 400 de subdomínio."""
     sessoes_extraidas = []
     urls_sessoes = []
 
-    for pagina in range(1, 12):
-        url_lista = f"{BASE_CONSULTA}/sessoes?pagina={pagina}" if pagina > 1 else f"{BASE_CONSULTA}/sessoes"
+    for pagina in range(1, 15):
+        url_lista = f"{BASE_SISCAM}/sessoes?pagina={pagina}" if pagina > 1 else f"{BASE_SISCAM}/sessoes"
         resp = get_com_retry(session, url_lista, timeout=90)
         soup = BeautifulSoup(resp.text, "html.parser")
         linhas = soup.select("table tbody tr")
@@ -231,13 +242,13 @@ def coletar_sessoes_e_atas(session: requests.Session, ano: int = 2026) -> list:
         achou_ano = False
         for tr in linhas:
             cols = [td.get_text(" ", strip=True) for td in tr.find_all("td")]
-            link_tag = tr.find("a", href=re.compile(r"/Sessoes/Sessao/\d+"))
+            link_tag = tr.find("a", href=re.compile(r"/Sessoes/Sessao/\d+", re.I))
             if not link_tag:
                 continue
             texto_linha = " ".join(cols)
             if str(ano) in texto_linha:
                 achou_ano = True
-                url_abs = urljoin(BASE_CONSULTA + "/", link_tag["href"])
+                url_abs = urljoin(BASE_SISCAM, link_tag["href"])
                 if not any(u["url_sessao"] == url_abs for u in urls_sessoes):
                     urls_sessoes.append({
                         "sessao": cols[0],
@@ -246,7 +257,7 @@ def coletar_sessoes_e_atas(session: requests.Session, ano: int = 2026) -> list:
                     })
         if not achou_ano:
             break
-        time.sleep(0.8)
+        time.sleep(0.5)
 
     print(f"   Encontradas {len(urls_sessoes)} sessões de {ano}. Lendo atas...")
 
@@ -255,16 +266,16 @@ def coletar_sessoes_e_atas(session: requests.Session, ano: int = 2026) -> list:
         s_soup = BeautifulSoup(s_resp.text, "html.parser")
 
         ata_link = None
-        for a in s_soup.find_all("a", href=re.compile(r"/arquivo\?Id=\d+")):
+        for a in s_soup.find_all("a", href=re.compile(r"/arquivo\?Id=\d+", re.I)):
             rotulo = (a.get_text(" ", strip=True) + " " + (a.get("title") or "")).lower()
             if "ata" in rotulo:
-                ata_link = urljoin(item["url_sessao"], a["href"])
+                ata_link = urljoin(BASE_SISCAM, a["href"])
                 break
 
         if not ata_link:
-            primeiro_arq = s_soup.find("a", href=re.compile(r"/arquivo\?Id=\d+"))
+            primeiro_arq = s_soup.find("a", href=re.compile(r"/arquivo\?Id=\d+", re.I))
             if primeiro_arq:
-                ata_link = urljoin(item["url_sessao"], primeiro_arq["href"])
+                ata_link = urljoin(BASE_SISCAM, primeiro_arq["href"])
 
         registro = {
             "sessao": item["sessao"],
@@ -307,13 +318,12 @@ def coletar_sessoes_e_atas(session: requests.Session, ano: int = 2026) -> list:
             print(f"   Sem ata anexada ainda: {item['sessao']}")
 
         sessoes_extraidas.append(registro)
-        time.sleep(0.8)
+        time.sleep(0.5)
 
     return sessoes_extraidas
 
 
 def validar_coleta(novo: dict, caminho_atual: Path) -> tuple[bool, str]:
-    """Impede publicar dados vazios, corrompidos ou menores que a última versão boa."""
     propostas = novo.get("propostas", [])
     sessoes = novo.get("sessoes", [])
 
