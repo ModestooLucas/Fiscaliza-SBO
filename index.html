@@ -1,0 +1,3017 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Fiscaliza SBO — Câmara Municipal de Santa Bárbara d'Oeste (SP)</title>
+  <meta name="description" content="Busque seu bairro ou rua, veja o que cada vereador de Santa Bárbara d'Oeste (SP) pediu, acompanhe pedidos repetidos, presença e votos com links diretos para os documentos oficiais." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Inter', 'system-ui', '-apple-system', 'sans-serif'],
+          },
+          colors: {
+            navy: {
+              900: '#0F2942',
+              800: '#163859',
+            }
+          }
+        }
+      }
+    };
+  </script>
+</head>
+<body class="bg-white text-slate-900 font-sans antialiased selection:bg-blue-100 selection:text-blue-900">
+
+  <!-- Cabeçalho Institucional Compacto -->
+  <header class="sticky top-0 z-30 bg-[#0F2942] text-white border-b border-slate-800 shadow-xs">
+    <div class="max-w-4xl mx-auto px-4 py-3 flex items-center justify-between gap-2">
+      <div class="flex items-center gap-2.5 min-w-0">
+        <div class="w-9 h-9 rounded-lg bg-white/10 border border-white/20 flex items-center justify-center shrink-0" aria-hidden="true">
+          <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M3 21h18M4 18h16M6 18V9m4 9V9m4 9V9m4 9V9M3 9l9-6 9 6" />
+          </svg>
+        </div>
+        <div class="min-w-0">
+          <div class="flex items-center gap-2">
+            <h1 class="text-base sm:text-lg font-extrabold tracking-tight truncate">Fiscaliza SBO</h1>
+            <span class="inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[11px] font-semibold bg-emerald-500/20 text-emerald-200 border border-emerald-400/30 shrink-0">
+              <span class="w-1.5 h-1.5 rounded-full bg-emerald-400"></span>
+              Dados Oficiais
+            </span>
+          </div>
+          <p class="text-xs text-slate-300 truncate">Câmara de Santa Bárbara d'Oeste (SP) • Sem notas ou opiniões</p>
+        </div>
+      </div>
+
+      <button
+        type="button"
+        id="openImportModalBtn"
+        class="shrink-0 inline-flex items-center gap-1.5 px-3 py-2 rounded-lg bg-white/10 hover:bg-white/20 active:bg-white/25 text-xs font-semibold text-white border border-white/20 transition cursor-pointer"
+        title="Carregar arquivo CSV ou JSON exportado do Sino.Siave"
+      >
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4-4m0 0L8 8m4-4v12" />
+        </svg>
+        <span class="hidden sm:inline">Importar CSV/JSON</span>
+        <span class="sm:hidden">Importar</span>
+      </button>
+    </div>
+  </header>
+
+  <main class="max-w-4xl mx-auto px-4 pt-4 pb-16 space-y-5">
+
+    <!-- Faixa de Regra de Transparência -->
+    <div class="bg-[#F8FAFC] border border-[#E2E8F0] rounded-xl px-3.5 py-2.5 flex flex-wrap items-center justify-between gap-2 text-xs text-slate-700">
+      <div class="flex items-center gap-2">
+        <span class="inline-flex items-center justify-center w-5 h-5 rounded-full bg-emerald-50 text-[#047857] border border-emerald-200 font-bold shrink-0">✓</span>
+        <span><strong>Toque em qualquer número</strong> para abrir o documento oficial da Câmara ou do Sino.Siave. Nenhum dado recebe nota ou opinião.</span>
+      </div>
+      <span id="customDataBadge" class="hidden inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-blue-50 text-[#1D4ED8] border border-blue-200 font-semibold">
+        Dados atualizados via CSV/JSON
+        <button type="button" id="resetDataInlineBtn" class="underline hover:text-blue-900 ml-1 cursor-pointer">Restaurar</button>
+      </span>
+    </div>
+
+    <!-- Painel Resumo no Topo (Todos os números com link direto para a fonte oficial) -->
+    <section aria-label="Resumo Oficial da Legislatura">
+      <div class="grid grid-cols-2 sm:grid-cols-4 gap-2.5">
+        <!-- Card 1: 19 Vereadores -->
+        <div class="bg-white border border-[#E2E8F0] rounded-xl p-3.5 flex flex-col justify-between">
+          <span class="text-[11px] font-semibold uppercase tracking-wide text-slate-500">Vereadores em Exercício</span>
+          <div class="mt-1.5 flex items-baseline gap-1.5">
+            <a
+              href="https://www.camarasantabarbara.sp.gov.br/Vereador/ListarPartidos"
+              target="_blank"
+              rel="noopener noreferrer"
+              title="Abrir lista oficial dos 19 vereadores e partidos na Câmara de SBO"
+              class="text-2xl font-extrabold text-[#1D4ED8] underline decoration-blue-300 underline-offset-4 hover:text-blue-800 inline-flex items-center gap-1"
+            >
+              19
+              <svg class="w-3.5 h-3.5 shrink-0" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
+            </a>
+          </div>
+          <span class="mt-1 text-[11px] text-slate-500">
+            Legislatura
+            <a href="https://www.camarasantabarbara.sp.gov.br/Vereador/ListarPartidos" target="_blank" rel="noopener noreferrer" class="text-[#1D4ED8] underline font-medium">2025</a>–<a href="https://www.camarasantabarbara.sp.gov.br/Vereador/ListarPartidos" target="_blank" rel="noopener noreferrer" class="text-[#1D4ED8] underline font-medium">2028</a>
+          </span>
+        </div>
+
+        <!-- Card 2: 41 Sessões Ordinárias -->
+        <div class="bg-white border border-[#E2E8F0] rounded-xl p-3.5 flex flex-col justify-between">
+          <span class="text-[11px] font-semibold uppercase tracking-wide text-slate-500">Sessões Ordinárias</span>
+          <div class="mt-1.5 flex items-baseline gap-1.5">
+            <a
+              href="https://www.camarasantabarbara.sp.gov.br/eventos/41a-reuniao-ordinaria-de-2026,10-11-2026"
+              target="_blank"
+              rel="noopener noreferrer"
+              title="Abrir registro oficial da 41ª Reunião Ordinária de 2026"
+              class="text-2xl font-extrabold text-[#1D4ED8] underline decoration-blue-300 underline-offset-4 hover:text-blue-800 inline-flex items-center gap-1"
+            >
+              41
+              <svg class="w-3.5 h-3.5 shrink-0" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
+            </a>
+          </div>
+          <span class="mt-1 text-[11px] text-slate-500">
+            Em <a href="https://www.camarasantabarbara.sp.gov.br/eventos/41a-reuniao-ordinaria-de-2026,10-11-2026" target="_blank" rel="noopener noreferrer" class="text-[#1D4ED8] underline font-medium">2026</a> (até <a href="https://www.camarasantabarbara.sp.gov.br/eventos/41a-reuniao-ordinaria-de-2026,10-11-2026" target="_blank" rel="noopener noreferrer" class="text-[#1D4ED8] underline font-medium">10/11</a>)
+          </span>
+        </div>
+
+        <!-- Card 3: Propostas Indexadas -->
+        <div class="bg-white border border-[#E2E8F0] rounded-xl p-3.5 flex flex-col justify-between">
+          <span class="text-[11px] font-semibold uppercase tracking-wide text-slate-500">Propostas Detalhadas</span>
+          <div class="mt-1.5">
+            <a
+              id="topTotalProposalsLink"
+              href="http://www2.camarasantabarbara.sp.gov.br/Sino.Siave/Documentos/IndiceCronologico/74/8"
+              target="_blank"
+              rel="noopener noreferrer"
+              title="Abrir Índice Cronológico Oficial de Proposituras no Sino.Siave"
+              class="text-2xl font-extrabold text-[#1D4ED8] underline decoration-blue-300 underline-offset-4 hover:text-blue-800 inline-flex items-center gap-1"
+            >
+              49
+              <svg class="w-3.5 h-3.5 shrink-0" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
+            </a>
+          </div>
+          <span class="mt-1 text-[11px] text-slate-500">
+            Em <a href="http://www2.camarasantabarbara.sp.gov.br/Sino.Siave/Documentos/IndiceCronologico/74/8" target="_blank" rel="noopener noreferrer" class="text-[#1D4ED8] underline font-medium">5</a> grupos no <a href="http://www2.camarasantabarbara.sp.gov.br/Sino.Siave/Documentos/IndiceCronologico/74/8" target="_blank" rel="noopener noreferrer" class="text-[#1D4ED8] underline font-medium">Siave</a>
+          </span>
+        </div>
+
+        <!-- Card 4: Atas Auditadas -->
+        <div class="bg-white border border-[#E2E8F0] rounded-xl p-3.5 flex flex-col justify-between">
+          <span class="text-[11px] font-semibold uppercase tracking-wide text-slate-500">Atas Auditadas</span>
+          <div class="mt-1.5">
+            <a
+              href="http://www2.camarasantabarbara.sp.gov.br/Sino.Siave/arquivo?Id=355778"
+              target="_blank"
+              rel="noopener noreferrer"
+              title="Abrir PDF oficial da Ata da 37ª Reunião Ordinária de 2026"
+              class="text-base sm:text-lg font-extrabold text-[#1D4ED8] underline decoration-blue-300 underline-offset-4 hover:text-blue-800 inline-flex items-center gap-1"
+            >
+              PDF #355778
+              <svg class="w-3.5 h-3.5 shrink-0" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
+            </a>
+          </div>
+          <span class="mt-1 text-[11px] text-slate-500">
+            Ata <a href="http://www2.camarasantabarbara.sp.gov.br/Sino.Siave/arquivo?Id=336817" target="_blank" rel="noopener noreferrer" class="text-[#1D4ED8] underline font-medium">#336817</a> (<a href="http://www2.camarasantabarbara.sp.gov.br/Sino.Siave/arquivo?Id=336817" target="_blank" rel="noopener noreferrer" class="text-[#1D4ED8] underline font-medium">10×8</a>)
+          </span>
+        </div>
+      </div>
+    </section>
+
+    <!-- Navegação Principal em 4 Abas Limpas para Celular -->
+    <nav aria-label="Navegação principal do portal" class="bg-[#F8FAFC] border border-[#E2E8F0] rounded-xl p-1.5 grid grid-cols-2 sm:grid-cols-4 gap-1.5">
+      <button
+        type="button"
+        data-tab="bairroRua"
+        aria-pressed="true"
+        class="main-tab-btn py-2.5 px-3 rounded-lg text-xs font-extrabold bg-[#0F2942] text-white shadow-2xs transition cursor-pointer text-center"
+      >
+        Buscar Bairro / Rua
+      </button>
+      <button
+        type="button"
+        data-tab="vereadores"
+        aria-pressed="false"
+        class="main-tab-btn py-2.5 px-3 rounded-lg text-xs font-bold bg-white text-slate-700 hover:bg-slate-100 border border-[#E2E8F0] transition cursor-pointer text-center"
+      >
+        Todos os Vereadores (<span class="underline">19</span>)
+      </button>
+      <button
+        type="button"
+        data-tab="grupos"
+        aria-pressed="false"
+        class="main-tab-btn py-2.5 px-3 rounded-lg text-xs font-bold bg-white text-slate-700 hover:bg-slate-100 border border-[#E2E8F0] transition cursor-pointer text-center"
+      >
+        Por Grupo de Assunto (<span class="underline">5</span>)
+      </button>
+      <button
+        type="button"
+        data-tab="regras"
+        aria-pressed="false"
+        class="main-tab-btn py-2.5 px-3 rounded-lg text-xs font-bold bg-white text-slate-700 hover:bg-slate-100 border border-[#E2E8F0] transition cursor-pointer text-center"
+      >
+        Entenda os Termos e Regras
+      </button>
+    </nav>
+
+    <!-- ===================================================================== -->
+    <!-- ABA 1 (ATIVA POR PADRÃO): BUSCAR BAIRRO / RUA + CRUZAMENTO REPETIDOS  -->
+    <!-- ===================================================================== -->
+    <section id="tabPanel-bairroRua" aria-label="Busca por Bairro ou Rua e Cruzamento de Pedidos Repetidos" class="space-y-4">
+
+      <!-- Aviso Obrigatório e Neutro (Destaque Claro no Topo) -->
+      <div role="note" aria-labelledby="avisoNeutroHeading" class="bg-amber-50/75 border border-amber-200 rounded-xl p-4 space-y-2.5 text-xs text-slate-800">
+        <div class="flex items-start gap-2.5">
+          <span class="inline-flex items-center justify-center w-6 h-6 rounded-lg bg-amber-100 text-amber-900 border border-amber-300 font-extrabold shrink-0 mt-0.5" aria-hidden="true">!</span>
+          <div class="space-y-1.5">
+            <h2 id="avisoNeutroHeading" class="text-sm font-extrabold text-amber-950">
+              Aviso importante: pedido repetido não prova que a Prefeitura ignorou.
+            </h2>
+            <p class="leading-relaxed text-slate-700">
+              Quando o mesmo tipo de pedido aparece mais de uma vez para a mesma rua nos registros da Câmara, isso é apenas um dado de protocolo legislativo e pode acontecer por motivos diferentes:
+            </p>
+            <ul class="space-y-1 text-slate-700 pl-1">
+              <li><strong>(a)</strong> O conserto foi feito anteriormente, mas o problema voltou (por exemplo, novo buraco após período de chuva ou mato que cresceu novamente);</li>
+              <li><strong>(b)</strong> Cada pedido trata de um trecho, esquina ou quarteirão diferente da mesma rua ou avenida;</li>
+              <li><strong>(c)</strong> Vereadores diferentes protocolaram o pedido a pedido de moradores sem saber que outro colega já havia feito solicitação parecida;</li>
+              <li><strong>(d)</strong> A execução do serviço depende de licitação, disponibilidade de orçamento ou cronograma técnico de obras em andamento.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- Caixa de Busca por Bairro ou Rua -->
+      <div class="bg-white border border-[#E2E8F0] rounded-xl p-4 space-y-3">
+        <div class="space-y-1">
+          <label for="streetSearchInput" class="block text-sm sm:text-base font-extrabold text-[#0F2942]">
+            O que foi pedido para o seu bairro ou rua e por quem?
+          </label>
+          <p class="text-xs text-slate-600">
+            Digite o nome do <strong>bairro</strong> ou da <strong>rua/avenida</strong> (sem precisar de acentos) ou toque em um local abaixo para ver todos os pedidos e cruzamentos.
+          </p>
+        </div>
+
+        <div class="relative">
+          <svg class="w-5 h-5 text-slate-400 absolute left-3.5 top-1/2 -translate-y-1/2 pointer-events-none" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-4.35-4.35M17 11A6 6 0 115 11a6 6 0 0112 0z" />
+          </svg>
+          <input
+            type="search"
+            id="streetSearchInput"
+            placeholder="Ex.: Rua do Algodão, Cidade Nova, Jardim Mollon, Alfredo Contato..."
+            aria-label="Digite o nome do bairro ou da rua"
+            class="w-full pl-11 pr-10 py-3.5 text-sm sm:text-base bg-white border-2 border-[#CBD5E1] rounded-xl text-slate-900 placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-[#1D4ED8] focus:border-[#1D4ED8]"
+          />
+          <button
+            type="button"
+            id="clearStreetSearchBtn"
+            aria-label="Limpar busca de bairro ou rua"
+            class="hidden absolute right-3 top-1/2 -translate-y-1/2 px-2 py-1 rounded-md text-xs font-bold text-slate-500 hover:text-slate-900 hover:bg-slate-100 cursor-pointer"
+          >
+            Limpar ✕
+          </button>
+        </div>
+
+        <!-- Pílulas de Acesso Rápido (Bairros e Ruas Reais de SBO) -->
+        <div class="space-y-1.5">
+          <span class="block text-[11px] font-semibold uppercase tracking-wide text-slate-500">Toque para testar um bairro ou rua:</span>
+          <div id="quickLocationsBar" class="flex flex-wrap gap-1.5">
+            <!-- Pílulas inseridas via JS -->
+          </div>
+        </div>
+      </div>
+
+      <!-- Resumo Numérico do Local Pesquisado (Aparece quando o usuário digita um bairro ou rua) -->
+      <div id="locationSummarySection" class="hidden space-y-4">
+        <div class="bg-[#F8FAFC] border border-[#E2E8F0] rounded-xl p-4 space-y-3">
+          <div class="flex flex-wrap items-center justify-between gap-2">
+            <div>
+              <span class="text-[11px] font-bold uppercase tracking-wide text-[#047857]">Resultado oficial encontrado para:</span>
+              <h3 id="searchedLocationHeading" class="text-base font-extrabold text-[#0F2942]"></h3>
+            </div>
+            <button
+              type="button"
+              id="showAllCityRepeatedBtn"
+              class="px-3 py-1.5 rounded-lg bg-white border border-[#E2E8F0] hover:border-blue-300 text-xs font-semibold text-[#0F2942] cursor-pointer"
+            >
+              Ver todas as ruas repetidas da cidade
+            </button>
+          </div>
+
+          <div class="grid grid-cols-3 gap-2.5">
+            <div class="bg-white border border-[#E2E8F0] rounded-lg p-3">
+              <span class="block text-[10px] font-semibold uppercase tracking-wide text-slate-500">Pedidos no local</span>
+              <div class="mt-1">
+                <a
+                  id="locTotalProposalsLink"
+                  href="http://www2.camarasantabarbara.sp.gov.br/Sino.Siave/Documentos/IndiceCronologico/74/8"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="text-xl font-extrabold text-[#1D4ED8] underline decoration-blue-300 underline-offset-4 hover:text-blue-800 inline-flex items-center gap-1"
+                >
+                  0
+                </a>
+              </div>
+            </div>
+
+            <div class="bg-white border border-[#E2E8F0] rounded-lg p-3">
+              <span class="block text-[10px] font-semibold uppercase tracking-wide text-slate-500">Vereadores autores</span>
+              <div class="mt-1">
+                <a
+                  id="locUniqueAuthorsLink"
+                  href="https://www.camarasantabarbara.sp.gov.br/Vereador/ListarPartidos"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="text-xl font-extrabold text-[#1D4ED8] underline decoration-blue-300 underline-offset-4 hover:text-blue-800 inline-flex items-center gap-1"
+                >
+                  0
+                </a>
+              </div>
+            </div>
+
+            <div class="bg-white border border-[#E2E8F0] rounded-lg p-3">
+              <span class="block text-[10px] font-semibold uppercase tracking-wide text-slate-500">Pedidos repetidos</span>
+              <div class="mt-1">
+                <a
+                  id="locRepeatedGroupsLink"
+                  href="http://www2.camarasantabarbara.sp.gov.br/Sino.Siave/Documentos/IndiceCronologico/74/8"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="text-xl font-extrabold text-[#1D4ED8] underline decoration-blue-300 underline-offset-4 hover:text-blue-800 inline-flex items-center gap-1"
+                >
+                  0
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Bloco de Cruzamento: Pedidos Repetidos na Mesma Rua -->
+      <div id="repeatedStreetsSection" class="space-y-3">
+        <div class="flex flex-wrap items-center justify-between gap-2 px-0.5">
+          <div>
+            <h3 id="repeatedSectionTitle" class="text-sm sm:text-base font-extrabold text-[#0F2942] flex items-center gap-2">
+              <span>Cruzamento: Pedidos repetidos na mesma rua</span>
+              <a
+                id="repeatedGroupsCountBadge"
+                href="http://www2.camarasantabarbara.sp.gov.br/Sino.Siave/Documentos/IndiceCronologico/74/8"
+                target="_blank"
+                rel="noopener noreferrer"
+                title="Abrir Índice Cronológico no Sino.Siave"
+                class="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-xs font-extrabold bg-blue-50 text-[#1D4ED8] border border-blue-200 underline"
+              >
+                0
+              </a>
+            </h3>
+            <p id="repeatedSectionSubtitle" class="text-xs text-slate-600 mt-0.5">
+              Ruas onde o mesmo tipo de serviço foi solicitado mais de uma vez (ordenadas pela maior contagem).
+            </p>
+          </div>
+        </div>
+
+        <div id="repeatedStreetsContainer" class="space-y-3">
+          <!-- Cards de cruzamento renderizados via JS -->
+        </div>
+      </div>
+
+      <!-- Lista Cronológica Completa de Todos os Pedidos do Bairro ou Rua Pesquisada -->
+      <div id="locationTimelineSection" class="hidden space-y-3 pt-2">
+        <div class="flex flex-wrap items-center justify-between gap-2 px-0.5">
+          <h3 class="text-sm sm:text-base font-extrabold text-[#0F2942] flex items-center gap-2">
+            <span>Todos os pedidos registrados para este local</span>
+            <a
+              id="locationTimelineCountBadge"
+              href="http://www2.camarasantabarbara.sp.gov.br/Sino.Siave/Documentos/IndiceCronologico/74/8"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-xs font-extrabold bg-emerald-50 text-[#047857] border border-emerald-200 underline"
+            >
+              0
+            </a>
+          </h3>
+          <span class="text-[11px] text-slate-500">Ordem cronológica (mais recente primeiro)</span>
+        </div>
+
+        <div id="locationProposalsList" class="space-y-2.5">
+          <!-- Cards individuais dos pedidos do local renderizados via JS -->
+        </div>
+      </div>
+
+      <!-- Estado Vazio na Busca de Bairro/Rua -->
+      <div id="locationEmptyState" class="hidden bg-white border border-[#E2E8F0] rounded-xl p-6 text-center space-y-2">
+        <p class="text-sm font-bold text-[#0F2942]">Nenhum pedido encontrado para esse nome de bairro ou rua na base atual.</p>
+        <p class="text-xs text-slate-600">
+          Você pode consultar o banco completo diretamente no sistema oficial da Câmara ou importar um arquivo CSV/JSON exportado do Sino.Siave.
+        </p>
+        <div class="pt-2 flex flex-wrap items-center justify-center gap-2">
+          <a
+            href="http://www2.camarasantabarbara.sp.gov.br/Sino.Siave/Documentos/IndiceCronologico/74/8"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="px-3.5 py-2 rounded-lg bg-[#1D4ED8] text-white text-xs font-bold inline-flex items-center gap-1"
+          >
+            Pesquisar no Sino.Siave Oficial ↗
+          </a>
+          <button
+            type="button"
+            id="clearLocationEmptyBtn"
+            class="px-3.5 py-2 rounded-lg bg-[#F8FAFC] border border-[#E2E8F0] text-[#0F2942] text-xs font-semibold cursor-pointer"
+          >
+            Voltar para ruas com pedidos repetidos
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================================================================== -->
+    <!-- ABA 2: TODOS OS 19 VEREADORES (LEGISLATURA 2025-2028)                 -->
+    <!-- ===================================================================== -->
+    <section id="tabPanel-vereadores" aria-label="Lista dos 19 Vereadores" class="hidden space-y-4">
+      <!-- Filtros dos Vereadores -->
+      <div class="bg-white border border-[#E2E8F0] rounded-xl p-3.5 space-y-3">
+        <div class="flex flex-col sm:flex-row gap-2.5">
+          <div class="relative flex-1">
+            <svg class="w-4 h-4 text-slate-400 absolute left-3.5 top-1/2 -translate-y-1/2 pointer-events-none" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-4.35-4.35M17 11A6 6 0 115 11a6 6 0 0112 0z" />
+            </svg>
+            <input
+              type="search"
+              id="councilorSearchInput"
+              placeholder="Buscar vereador por nome, partido ou assunto..."
+              aria-label="Buscar vereador"
+              class="w-full pl-9 pr-9 py-2.5 text-sm bg-white border border-[#E2E8F0] rounded-lg text-slate-900 placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-[#1D4ED8]"
+            />
+            <button
+              type="button"
+              id="clearCouncilorSearchBtn"
+              aria-label="Limpar busca de vereador"
+              class="hidden absolute right-2.5 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-700 p-1 cursor-pointer"
+            >
+              ✕
+            </button>
+          </div>
+
+          <div class="sm:w-64">
+            <label for="councilorSortSelect" class="sr-only">Ordenar vereadores</label>
+            <select
+              id="councilorSortSelect"
+              class="w-full px-3 py-2.5 text-sm bg-white border border-[#E2E8F0] rounded-lg text-slate-800 font-medium focus:outline-none focus:ring-2 focus:ring-[#1D4ED8]"
+            >
+              <option value="alpha">Ordem Alfabética (A–Z)</option>
+              <option value="votes">Mais votados na eleição 2024</option>
+              <option value="party">Por Partido</option>
+            </select>
+          </div>
+        </div>
+
+        <div>
+          <div class="flex items-center justify-between mb-1.5">
+            <span class="text-[11px] font-semibold uppercase tracking-wide text-slate-500">Filtrar por Partido</span>
+            <a
+              href="https://www.camarasantabarbara.sp.gov.br/Vereador/ListarPartidos"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="text-[11px] font-semibold text-[#1D4ED8] underline inline-flex items-center gap-0.5"
+            >
+              Lista oficial de bancadas ↗
+            </a>
+          </div>
+          <div id="partyFilterBar" class="flex items-center gap-1.5 overflow-x-auto pb-1">
+            <!-- Pílulas de partido via JS -->
+          </div>
+        </div>
+      </div>
+
+      <div class="flex items-center justify-between px-0.5">
+        <h2 class="text-sm font-bold text-[#0F2942] flex items-center gap-2">
+          <span>Vereadores da Câmara Municipal</span>
+          <a
+            id="visibleCouncilorsCountLink"
+            href="https://www.camarasantabarbara.sp.gov.br/Vereador/ListarPartidos"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-xs font-bold bg-blue-50 text-[#1D4ED8] border border-blue-200 underline"
+          >
+            19
+          </a>
+        </h2>
+        <span class="text-[11px] text-slate-500">Toque nos grupos para ler cada proposta</span>
+      </div>
+
+      <div id="councilorsListContainer" class="space-y-3.5">
+        <!-- Cards dos 19 vereadores renderizados via JS -->
+      </div>
+
+      <div id="councilorEmptyState" class="hidden bg-white border border-[#E2E8F0] rounded-xl p-8 text-center space-y-2">
+        <p class="text-sm font-bold text-[#0F2942]">Nenhum vereador encontrado com esse filtro.</p>
+        <button
+          type="button"
+          id="resetCouncilorFiltersBtn"
+          class="mt-2 inline-flex items-center px-4 py-2 rounded-lg bg-[#0F2942] text-white text-xs font-semibold cursor-pointer"
+        >
+          Limpar filtros
+        </button>
+      </div>
+    </section>
+
+    <!-- ===================================================================== -->
+    <!-- ABA 3: POR GRUPO DE ASSUNTO (5 GRUPOS CONSOLIDADOS DA CÂMARA)         -->
+    <!-- ===================================================================== -->
+    <section id="tabPanel-grupos" aria-label="Propostas por Grupo de Assunto" class="hidden space-y-4">
+      <div class="bg-white border border-[#E2E8F0] rounded-xl p-3.5 space-y-2.5">
+        <div class="flex flex-wrap items-center justify-between gap-2">
+          <div>
+            <h2 class="text-sm font-extrabold text-[#0F2942]">Todas as propostas organizadas nos <a href="http://www2.camarasantabarbara.sp.gov.br/Sino.Siave/Documentos/IndiceCronologico/74/8" target="_blank" rel="noopener noreferrer" class="text-[#1D4ED8] underline">5</a> grupos simples</h2>
+            <p class="text-xs text-slate-600">Toque em qualquer grupo abaixo para abrir e ler proposta por proposta.</p>
+          </div>
+          <a
+            id="groupsTotalProposalsBadge"
+            href="http://www2.camarasantabarbara.sp.gov.br/Sino.Siave/Documentos/IndiceCronologico/74/8"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-xs font-extrabold bg-blue-50 text-[#1D4ED8] border border-blue-200 underline"
+          >
+            49
+          </a>
+        </div>
+      </div>
+
+      <div id="consolidatedGroupsContainer" class="space-y-3">
+        <!-- Acordeão dos 5 grupos consolidados renderizado via JS -->
+      </div>
+    </section>
+
+    <!-- ===================================================================== -->
+    <!-- ABA 4: ENTENDA OS TERMOS E REGRAS (GUIA CIDADÃO + METODOLOGIA)        -->
+    <!-- ===================================================================== -->
+    <section id="tabPanel-regras" aria-label="Entenda os Termos e Regras" class="hidden space-y-4">
+      <!-- Guia Rápido de Termos Legislativos -->
+      <div class="bg-white border border-[#E2E8F0] rounded-xl p-4 space-y-3 text-xs text-slate-700">
+        <h2 class="text-base font-extrabold text-[#0F2942]">Não sabe a diferença entre Indicação, Requerimento e Moção?</h2>
+        <p class="text-slate-600 leading-relaxed">
+          Na Câmara de Santa Bárbara d'Oeste, cada pedido tem um nome oficial diferente. Veja o que cada um significa na vida real do morador:
+        </p>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+          <div class="p-3.5 rounded-xl bg-[#F8FAFC] border border-[#E2E8F0] space-y-1.5">
+            <span class="inline-block px-2 py-0.5 rounded bg-blue-50 text-blue-800 border border-blue-200 font-bold">Indicação</span>
+            <h3 class="font-extrabold text-[#0F2942] text-sm">Pedido de melhoria no bairro</h3>
+            <p class="leading-relaxed">É uma sugestão formal ao Prefeito para consertar algo na rua: tapar buraco, pintar faixa PARE, roçar mato, trocar lâmpada queimada ou limpar praça. Não obriga a Prefeitura a fazer, mas registra o pedido oficialmente.</p>
+          </div>
+
+          <div class="p-3.5 rounded-xl bg-[#F8FAFC] border border-[#E2E8F0] space-y-1.5">
+            <span class="inline-block px-2 py-0.5 rounded bg-indigo-50 text-indigo-800 border border-indigo-200 font-bold">Requerimento</span>
+            <h3 class="font-extrabold text-[#0F2942] text-sm">Pergunta ou cobrança oficial</h3>
+            <p class="leading-relaxed">É uma cobrança formal pedindo explicações, documentos ou prazos para a Prefeitura, o DAE ou empresas públicas (ex.: por que uma obra atrasou ou como está a fila de exames). A Prefeitura tem prazo legal para responder.</p>
+          </div>
+
+          <div class="p-3.5 rounded-xl bg-[#F8FAFC] border border-[#E2E8F0] space-y-1.5">
+            <span class="inline-block px-2 py-0.5 rounded bg-amber-50 text-amber-900 border border-amber-200 font-bold">Moção</span>
+            <h3 class="font-extrabold text-[#0F2942] text-sm">Parabéns, pesar ou apelo</h3>
+            <p class="leading-relaxed">É uma manifestação pública da Câmara. Pode ser <strong>Moção de Aplauso/Congratulações</strong> (parabenizando alguém), <strong>Moção de Pesar</strong> (falecimento) ou <strong>Moção de Apelo/Repúdio</strong> dirigida a órgãos estaduais ou federais.</p>
+          </div>
+
+          <div class="p-3.5 rounded-xl bg-[#F8FAFC] border border-[#E2E8F0] space-y-1.5">
+            <span class="inline-block px-2 py-0.5 rounded bg-emerald-50 text-emerald-800 border border-emerald-200 font-bold">Projeto de Lei (PL)</span>
+            <h3 class="font-extrabold text-[#0F2942] text-sm">Proposta de nova regra na cidade</h3>
+            <p class="leading-relaxed">Cria ou muda uma lei municipal que vale para toda a cidade (saúde, transporte, meio ambiente, direitos) ou dá nome oficial a uma rua/prédio público ou cria uma data comemorativa no calendário.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Explicação da Regra Única de Classificação nos 5 Grupos -->
+      <div class="bg-white border border-[#E2E8F0] rounded-xl p-4 space-y-3 text-xs text-slate-700">
+        <div class="flex flex-wrap items-center justify-between gap-2">
+          <h2 class="text-base font-extrabold text-[#0F2942]">Mesma regra para os <a href="https://www.camarasantabarbara.sp.gov.br/Vereador/ListarPartidos" target="_blank" rel="noopener noreferrer" class="text-[#1D4ED8] underline">19</a> vereadores</h2>
+          <span class="px-2.5 py-0.5 rounded-full text-[11px] font-semibold bg-emerald-50 text-[#047857] border border-emerald-200">Regra Única Automática</span>
+        </div>
+
+        <div class="p-3 rounded-lg bg-amber-50/75 border border-amber-200 text-amber-950 leading-relaxed">
+          <strong>Por que nome de rua e data comemorativa entram em "Homenagens"?</strong><br />
+          Na Câmara, dar nome a uma praça/rua ou criar um "Dia Municipal" tramita formalmente como "Projeto de Lei". Para que o morador saiba quantas propostas de leis gerais cada vereador apresentou sem misturar com homenagens, nossa regra automática lê o texto de cada projeto e coloca <strong>nomes de rua/prédios públicos e datas comemorativas em Homenagens</strong> para todos os vereadores, sem exceção.
+        </div>
+
+        <ul class="space-y-2 leading-relaxed">
+          <li><strong>1. Pedidos de melhoria nos bairros:</strong> todas as Indicações de zeladoria e manutenção urbana.</li>
+          <li><strong>2. Perguntas e cobranças:</strong> todos os Requerimentos de informação e cobrança ao Executivo/DAE.</li>
+          <li><strong>3. Homenagens:</strong> Moções de aplauso, parabéns, louvor ou pesar + Títulos de Cidadão Barbarense (PDL) + Projetos de Lei que apenas dão nome a rua/prédio ou criam data comemorativa.</li>
+          <li><strong>4. Propostas de lei:</strong> Projetos de Lei (PL), Leis Complementares e Emendas à Lei Orgânica com regras gerais para a cidade.</li>
+          <li><strong>5. Outros:</strong> Moções de apelo ou repúdio, Projetos de Resolução interna da Câmara, vetos e recursos regimentais.</li>
+        </ul>
+      </div>
+
+      <!-- Explicação da Regra de Cruzamento de Pedidos Repetidos -->
+      <div class="bg-white border border-[#E2E8F0] rounded-xl p-4 space-y-2.5 text-xs text-slate-700">
+        <h2 class="text-base font-extrabold text-[#0F2942]">Como funciona o cruzamento de pedidos repetidos na mesma rua</h2>
+        <p class="leading-relaxed">
+          A função <code>cruzarPedidosMesmaRua()</code> padroniza o nome da rua (ignorando acentos, maiúsculas e abreviações como "R." ou "Av.") e agrupa solicitações que tenham a <strong>mesma rua</strong> e o <strong>mesmo tipo de serviço</strong> (ex.: tapa-buraco, pintura de faixa PARE, roçagem de mato, troca de lâmpada, manutenção do DAE ou poda de árvore).
+        </p>
+        <p class="leading-relaxed">
+          Sempre que uma rua acumula <a href="http://www2.camarasantabarbara.sp.gov.br/Sino.Siave/Documentos/IndiceCronologico/74/8" target="_blank" rel="noopener noreferrer" class="text-[#1D4ED8] underline font-bold">2</a> ou mais pedidos do mesmo tipo, o sistema exibe a contagem exata, aponta se foram vereadores diferentes ou o mesmo vereador, e lista todas as datas e números de protocolo com link direto para o <strong>Sino.Siave</strong>.
+        </p>
+      </div>
+    </section>
+
+    <!-- Rodapé Metodológico -->
+    <footer class="bg-[#F8FAFC] border border-[#E2E8F0] rounded-xl p-4 space-y-3 text-xs text-slate-600">
+      <div class="flex items-start gap-2.5">
+        <span class="inline-flex items-center justify-center w-6 h-6 rounded-lg bg-emerald-50 text-[#047857] border border-emerald-200 font-bold shrink-0 mt-0.5">i</span>
+        <div class="space-y-1.5">
+          <p class="font-bold text-[#0F2942] text-sm">Transparência e Fontes Públicas</p>
+          <p class="leading-relaxed text-slate-700">
+            <strong>Nenhum dado é inventado ou pontuado. Cada número aponta diretamente para o documento público da Câmara Municipal de Santa Bárbara d'Oeste.</strong>
+          </p>
+          <p class="leading-relaxed">
+            Fontes oficiais utilizadas: Portal institucional (<a href="https://www.camarasantabarbara.sp.gov.br/Vereador/ListarPartidos" target="_blank" rel="noopener noreferrer" class="text-[#1D4ED8] underline font-medium">Vereadores e Partidos</a>), sistema legislativo <a href="http://www2.camarasantabarbara.sp.gov.br/Sino.Siave/Documentos/IndiceCronologico/74/8" target="_blank" rel="noopener noreferrer" class="text-[#1D4ED8] underline font-medium">Sino.Siave</a> e Atas das sessões plenárias de <a href="https://www.camarasantabarbara.sp.gov.br/eventos/41a-reuniao-ordinaria-de-2026,10-11-2026" target="_blank" rel="noopener noreferrer" class="text-[#1D4ED8] underline font-medium">2026</a> (<a href="http://www2.camarasantabarbara.sp.gov.br/Sino.Siave/arquivo?Id=355778" target="_blank" rel="noopener noreferrer" class="text-[#1D4ED8] underline font-medium">Ata #355778</a> e <a href="http://www2.camarasantabarbara.sp.gov.br/Sino.Siave/arquivo?Id=336817" target="_blank" rel="noopener noreferrer" class="text-[#1D4ED8] underline font-medium">Ata #336817</a>).
+          </p>
+        </div>
+      </div>
+
+      <div class="pt-2.5 border-t border-[#E2E8F0] flex flex-wrap items-center justify-between gap-2">
+        <div class="flex flex-wrap items-center gap-3">
+          <a href="https://www.camarasantabarbara.sp.gov.br/" target="_blank" rel="noopener noreferrer" class="text-[#1D4ED8] underline font-semibold">Portal da Câmara SBO ↗</a>
+          <a href="http://www2.camarasantabarbara.sp.gov.br/Sino.Siave/Documentos/IndiceCronologico/74/8" target="_blank" rel="noopener noreferrer" class="text-[#1D4ED8] underline font-semibold">Sino.Siave Proposituras ↗</a>
+        </div>
+        <button
+          type="button"
+          id="footerImportBtn"
+          class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-white border border-[#E2E8F0] hover:border-blue-300 text-[#0F2942] font-semibold cursor-pointer"
+        >
+          Importar propostas CSV/JSON do Siave
+        </button>
+      </div>
+    </footer>
+
+  </main>
+
+  <!-- Modal de Importação CSV/JSON do Sino.Siave -->
+  <div id="importModal" role="dialog" aria-modal="true" aria-labelledby="importModalTitle" class="hidden fixed inset-0 z-50 bg-slate-900/60 backdrop-blur-xs flex items-end sm:items-center justify-center p-0 sm:p-4">
+    <div class="bg-white w-full sm:max-w-lg rounded-t-2xl sm:rounded-2xl border border-[#E2E8F0] shadow-xl overflow-hidden max-h-[90vh] flex flex-col">
+      <div class="px-4 py-3.5 bg-[#0F2942] text-white flex items-center justify-between">
+        <h3 id="importModalTitle" class="text-sm font-bold">Importar propostas CSV/JSON do Sino.Siave</h3>
+        <button type="button" id="closeImportModalBtn" aria-label="Fechar janela" class="p-1.5 rounded-lg text-slate-300 hover:text-white hover:bg-white/10 cursor-pointer">✕</button>
+      </div>
+
+      <div class="p-4 space-y-4 overflow-y-auto text-xs text-slate-700">
+        <p class="leading-relaxed">
+          Envie uma lista de propostas em <strong>.CSV</strong> ou <strong>.JSON</strong> exportada do Sino.Siave. Cada linha será classificada automaticamente nos 5 grupos e cruzada na busca de <strong>pedidos repetidos na mesma rua</strong>.
+        </p>
+
+        <div class="bg-[#F8FAFC] border border-[#E2E8F0] rounded-lg p-3 space-y-1.5">
+          <p class="font-bold text-[#0F2942]">Colunas reconhecidas (uma proposta por linha):</p>
+          <code class="block text-[11px] bg-white border border-[#E2E8F0] rounded p-2 text-slate-800 overflow-x-auto">
+            vereador;tipo;numero;ano;data;bairro;rua;tipoServico;ementa;resumoSimples;situacao;url
+          </code>
+          <p class="text-[11px] text-slate-500">
+            Se <code>bairro</code>, <code>rua</code> ou <code>tipoServico</code> estiverem vazios no CSV exportado direto do Siave, o sistema extrai automaticamente da <code>ementa</code>.
+          </p>
+        </div>
+
+        <div class="space-y-2">
+          <label for="fileUploadInput" class="block font-bold text-[#0F2942]">Selecione o arquivo (.csv ou .json):</label>
+          <input
+            type="file"
+            id="fileUploadInput"
+            accept=".csv,.json,text/csv,application/json"
+            class="block w-full text-xs text-slate-700 file:mr-3 file:py-2 file:px-3.5 file:rounded-lg file:border-0 file:text-xs file:font-semibold file:bg-[#0F2942] file:text-white hover:file:bg-[#163859] border border-[#E2E8F0] rounded-lg p-1.5 cursor-pointer"
+          />
+        </div>
+
+        <div class="space-y-1.5">
+          <div class="flex items-center justify-between">
+            <label for="rawImportText" class="font-bold text-[#0F2942]">Ou cole o conteúdo CSV/JSON aqui:</label>
+            <button type="button" id="fillSampleCsvBtn" class="text-[#1D4ED8] underline font-semibold cursor-pointer">Preencher exemplo CSV</button>
+          </div>
+          <textarea
+            id="rawImportText"
+            rows="4"
+            placeholder="vereador;tipo;numero;ano;data;bairro;rua;tipoServico;ementa;resumoSimples;situacao;url"
+            class="w-full p-2.5 text-xs font-mono bg-white border border-[#E2E8F0] rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1D4ED8]"
+          ></textarea>
+        </div>
+
+        <div id="importFeedback" class="hidden p-3 rounded-lg border text-xs font-medium"></div>
+      </div>
+
+      <div class="px-4 py-3 bg-[#F8FAFC] border-t border-[#E2E8F0] flex flex-wrap items-center justify-between gap-2">
+        <button
+          type="button"
+          id="restoreDefaultBtn"
+          class="px-3 py-2 rounded-lg border border-[#E2E8F0] bg-white hover:bg-slate-100 text-xs font-semibold text-slate-700 cursor-pointer"
+        >
+          Restaurar dados originais
+        </button>
+        <div class="flex items-center gap-2">
+          <button
+            type="button"
+            id="cancelImportBtn"
+            class="px-3 py-2 rounded-lg border border-[#E2E8F0] bg-white text-xs font-semibold text-slate-700 cursor-pointer"
+          >
+            Cancelar
+          </button>
+          <button
+            type="button"
+            id="applyImportBtn"
+            class="px-4 py-2 rounded-lg bg-[#1D4ED8] hover:bg-blue-800 text-xs font-bold text-white cursor-pointer"
+          >
+            Importar e cruzar dados
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    /**
+     * URLS OFICIAIS DA CÂMARA MUNICIPAL DE SANTA BÁRBARA D'OESTE E DO SISTEMA SINO.SIAVE
+     * Regra absoluta: Nenhum dado inventado ou pontuado. Todo número aponta para URL oficial.
+     */
+    const URLS_OFICIAIS = {
+      partidos: "https://www.camarasantabarbara.sp.gov.br/Vereador/ListarPartidos",
+      sessao41: "https://www.camarasantabarbara.sp.gov.br/eventos/41a-reuniao-ordinaria-de-2026,10-11-2026",
+      siaveIndice: "http://www2.camarasantabarbara.sp.gov.br/Sino.Siave/Documentos/IndiceCronologico/74/8",
+      ata37: "http://www2.camarasantabarbara.sp.gov.br/Sino.Siave/arquivo?Id=355778",
+      ata11: "http://www2.camarasantabarbara.sp.gov.br/Sino.Siave/arquivo?Id=336817",
+      ataCareca: "http://www2.camarasantabarbara.sp.gov.br/Sino.Siave/arquivo?Id=342030",
+      ataJuca: "http://www2.camarasantabarbara.sp.gov.br/Sino.Siave/arquivo?Id=332785"
+    };
+
+    const QUICK_LOCATIONS = [
+      { label: "Rua do Algodão (Cidade Nova)", query: "Rua do Algodão" },
+      { label: "Av. Alfredo Contato (Jd. Europa)", query: "Alfredo Contato" },
+      { label: "Rua do Cobre (Jardim Mollon)", query: "Rua do Cobre" },
+      { label: "Av. Monte Castelo (Centro)", query: "Monte Castelo" },
+      { label: "Rua Limeira (Roberto Romano)", query: "Rua Limeira" },
+      { label: "Av. Tiradentes (Parque Olaria)", query: "Tiradentes" },
+      { label: "Jardim Pérola", query: "Jardim Pérola" },
+      { label: "Vila Grego", query: "Vila Grego" },
+      { label: "Parque Zabani", query: "Zabani" }
+    ];
+
+    const GRUPOS_CONFIG = [
+      {
+        key: "bairros",
+        titulo: "Pedidos de melhoria nos bairros",
+        subtitulo: "Tapa-buraco, pintura de PARE, roçagem, limpeza, iluminação e trânsito (Indicações)",
+        dotColor: "bg-blue-600",
+        badgeClass: "bg-blue-50 text-blue-800 border-blue-200",
+        defaultUrl: URLS_OFICIAIS.siaveIndice
+      },
+      {
+        key: "cobrancas",
+        titulo: "Perguntas e cobranças",
+        subtitulo: "Pedidos oficiais de explicação, prazos e documentos à Prefeitura e ao DAE (Requerimentos)",
+        dotColor: "bg-indigo-600",
+        badgeClass: "bg-indigo-50 text-indigo-800 border-indigo-200",
+        defaultUrl: URLS_OFICIAIS.siaveIndice
+      },
+      {
+        key: "homenagens",
+        titulo: "Homenagens",
+        subtitulo: "Parabéns, aplausos, pesar, Título de Cidadão, nome de rua e data comemorativa",
+        dotColor: "bg-amber-600",
+        badgeClass: "bg-amber-50 text-amber-900 border-amber-200",
+        defaultUrl: URLS_OFICIAIS.siaveIndice
+      },
+      {
+        key: "leis",
+        titulo: "Propostas de lei",
+        subtitulo: "Projetos que criam regras, direitos ou programas gerais para toda a cidade",
+        dotColor: "bg-emerald-600",
+        badgeClass: "bg-emerald-50 text-emerald-800 border-emerald-200",
+        defaultUrl: URLS_OFICIAIS.siaveIndice
+      },
+      {
+        key: "outros",
+        titulo: "Outros",
+        subtitulo: "Moções de apelo ou repúdio, regras internas da Câmara, vetos e recursos",
+        dotColor: "bg-slate-500",
+        badgeClass: "bg-slate-100 text-slate-800 border-slate-300",
+        defaultUrl: URLS_OFICIAIS.siaveIndice
+      }
+    ];
+
+    function normalizeStr(str) {
+      return (str || "").normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase().trim();
+    }
+
+    /**
+     * Padroniza nome de rua para cruzamento exato (ex.: "R. do Algodão" == "Rua do Algodão")
+     */
+    function normalizeStreetKey(rua) {
+      let s = normalizeStr(rua);
+      if (!s) return "";
+      s = s
+        .replace(/^r\.\s*/g, "rua ")
+        .replace(/^av\.\s*/g, "avenida ")
+        .replace(/^pça\.\s*/g, "praca ")
+        .replace(/^pca\.\s*/g, "praca ")
+        .replace(/[,.-].*$/, "") // remove complemento de número/esquina após vírgula
+        .replace(/\s+/g, " ")
+        .trim();
+      return s;
+    }
+
+    /**
+     * Padroniza o tipo de serviço pedido para agrupar pedidos iguais na mesma rua
+     */
+    function inferirTipoServico(item) {
+      if (item.tipoServico && item.tipoServico.trim()) {
+        return item.tipoServico.trim();
+      }
+      const txt = normalizeStr((item.ementa || "") + " " + (item.resumoSimples || ""));
+      if (txt.includes("tapa-buraco") || txt.includes("tapa buraco") || txt.includes("buraco") || txt.includes("recape") || txt.includes("asfalto") || txt.includes("paviment")) {
+        return "Tapa-buraco e recapeamento";
+      }
+      if (txt.includes("pare") || txt.includes("sinaliza") || txt.includes("faixa") || txt.includes("lombada") || txt.includes("transito")) {
+        return "Pintura de faixa PARE e sinalização";
+      }
+      if (txt.includes("rocag") || txt.includes("mato") || txt.includes("limpeza") || txt.includes("capina") || txt.includes("entulho") || txt.includes("bueiro") || txt.includes("boca de lobo")) {
+        return "Roçagem de mato e limpeza";
+      }
+      if (txt.includes("ilumin") || txt.includes("lampada") || txt.includes("poste") || txt.includes("led")) {
+        return "Troca de lâmpada e iluminação";
+      }
+      if (txt.includes("dae") || txt.includes("agua") || txt.includes("esgoto") || txt.includes("vazamento") || txt.includes("hidraulic")) {
+        return "Manutenção de água/esgoto (DAE)";
+      }
+      if (txt.includes("poda") || txt.includes("arvore")) {
+        return "Poda de árvore";
+      }
+      if (txt.includes("ronda") || txt.includes("guarda") || txt.includes("seguranca") || txt.includes("fiscaliza")) {
+        return "Segurança e fiscalização";
+      }
+      return "Manutenção e zeladoria urbana";
+    }
+
+    /**
+     * Extrai automaticamente rua e bairro de uma ementa caso o CSV importado do Siave não traga essas colunas separadas
+     */
+    function extrairLocalDaEmenta(item) {
+      let rua = (item.rua || "").trim();
+      let bairro = (item.bairro || "").trim();
+      const rawText = (item.ementa || "") + " " + (item.resumoSimples || "");
+
+      if (!rua) {
+        const streetMatch = rawText.match(/\b(Rua|Avenida|Av\.|R\.|Praça|Travessa)\s+[A-ZÁÉÍÓÚÂÊÔÃÕÇ][\wÁÉÍÓÚÂÊÔÃÕÇáéíóúâêôãõç\sº°0-9'-]{3,45}/);
+        if (streetMatch) {
+          rua = streetMatch[0].split(/[,.;]/)[0].trim();
+        }
+      }
+
+      if (!bairro) {
+        const knownNeighborhoods = [
+          "Cidade Nova", "Jardim Mollon", "Jardim Europa", "Jardim Pérola",
+          "Conjunto Roberto Romano", "Parque Olaria", "Vila Grego", "Centro",
+          "Jardim Esmeralda", "Jardim das Orquídeas", "Parque Zabani",
+          "Jóias de Santa Bárbara", "Jardim São Fernando", "Jardim Santa Rita",
+          "Jardim Icaraí", "Vila Sartori", "Jardim Mariana", "Santa Alice"
+        ];
+        const normText = normalizeStr(rawText);
+        const found = knownNeighborhoods.find(b => normText.includes(normalizeStr(b)));
+        if (found) bairro = found;
+      }
+
+      return { rua, bairro };
+    }
+
+    /**
+     * FUNÇÃO ÚNICA E DETERMINÍSTICA DE CLASSIFICAÇÃO NOS 5 GRUPOS
+     * Aplicada com a mesma regra para todos os 19 vereadores e para arquivos CSV/JSON.
+     */
+    function classificarProposta(item) {
+      const tipo = normalizeStr(item.tipo || item.documento || "");
+      const texto = normalizeStr(
+        (item.ementa || "") + " " + (item.titulo || "") + " " + (item.resumoSimples || "")
+      );
+
+      if (tipo.includes("indicacao")) {
+        return "bairros";
+      }
+      if (tipo.includes("requerimento")) {
+        return "cobrancas";
+      }
+      if (
+        tipo.includes("decreto legislativo") ||
+        tipo === "pdl" ||
+        texto.includes("cidadao barbarense") ||
+        texto.includes("titulo honorifico") ||
+        texto.includes("medalha")
+      ) {
+        return "homenagens";
+      }
+      if (tipo.includes("mocao")) {
+        const ehApeloOuRepudio =
+          texto.includes("apelo") ||
+          texto.includes("repudio") ||
+          texto.includes("protesto") ||
+          texto.includes("manifesta apelo");
+        return ehApeloOuRepudio ? "outros" : "homenagens";
+      }
+      if (
+        tipo.includes("projeto de lei") ||
+        tipo === "pl" ||
+        tipo === "plc" ||
+        tipo.includes("emenda a lei organica")
+      ) {
+        const ehNomeOuDataComemorativa =
+          texto.includes("denomina") ||
+          texto.includes("denominacao") ||
+          texto.includes("da nome") ||
+          texto.includes("nome a rua") ||
+          texto.includes("nome de rua") ||
+          texto.includes("logradouro") ||
+          texto.includes("institui o dia") ||
+          texto.includes("institui a semana") ||
+          texto.includes("institui o mes") ||
+          texto.includes("data comemorativa") ||
+          texto.includes("calendario oficial");
+        return ehNomeOuDataComemorativa ? "homenagens" : "leis";
+      }
+      return "outros";
+    }
+
+    function parseDateBR(dateStr) {
+      if (!dateStr) return 0;
+      const parts = dateStr.split("/");
+      if (parts.length === 3) {
+        const d = parseInt(parts[0], 10) || 1;
+        const m = (parseInt(parts[1], 10) || 1) - 1;
+        const y = parseInt(parts[2], 10) || 2026;
+        return new Date(y, m, d).getTime();
+      }
+      const yOnly = parseInt(dateStr, 10);
+      return isNaN(yOnly) ? 0 : new Date(yOnly, 0, 1).getTime();
+    }
+
+    /**
+     * CRUZAMENTO AUTOMÁTICO DE PEDIDOS REPETIDOS NA MESMA RUA
+     * Agrupa todas as propostas que possuem a MESMA RUA e o MESMO TIPO DE PEDIDO,
+     * retornando grupos com 2 ou mais solicitações, ordenados pela maior contagem.
+     */
+    function cruzarPedidosMesmaRua(listaPropostas) {
+      const gruposMap = new Map();
+
+      listaPropostas.forEach(prop => {
+        const loc = extrairLocalDaEmenta(prop);
+        const ruaKey = normalizeStreetKey(loc.rua);
+        if (!ruaKey) return; // Ignora propostas gerais da cidade sem rua específica
+
+        const servicoLabel = inferirTipoServico(prop);
+        const servicoKey = normalizeStr(servicoLabel);
+        const compositeKey = `${ruaKey}||${servicoKey}`;
+
+        if (!gruposMap.has(compositeKey)) {
+          gruposMap.set(compositeKey, {
+            key: compositeKey,
+            rua: loc.rua,
+            ruaKey,
+            bairros: new Set(),
+            tipoServico: servicoLabel,
+            pedidos: []
+          });
+        }
+
+        const entry = gruposMap.get(compositeKey);
+        if (loc.bairro) entry.bairros.add(loc.bairro);
+        entry.pedidos.push({
+          ...prop,
+          rua: loc.rua,
+          bairro: loc.bairro || "Bairro não especificado na ementa",
+          tipoServico: servicoLabel
+        });
+      });
+
+      const repetidos = [];
+      gruposMap.forEach(grupo => {
+        if (grupo.pedidos.length >= 2) {
+          // Ordena linha do tempo da data mais recente para a mais antiga
+          grupo.pedidos.sort((a, b) => parseDateBR(b.data) - parseDateBR(a.data));
+          const autoresUnicos = new Set(grupo.pedidos.map(p => p.autorNome));
+          grupo.contagem = grupo.pedidos.length;
+          grupo.autoresUnicosCount = autoresUnicos.size;
+          grupo.mesmoVereador = autoresUnicos.size === 1;
+          grupo.bairroPrincipal = Array.from(grupo.bairros).join(" / ") || "Santa Bárbara d'Oeste";
+          repetidos.push(grupo);
+        }
+      });
+
+      // Ordena pela maior contagem de repetições e, em empate, pela data mais recente
+      repetidos.sort((a, b) => {
+        if (b.contagem !== a.contagem) return b.contagem - a.contagem;
+        return parseDateBR(b.pedidos[0].data) - parseDateBR(a.pedidos[0].data);
+      });
+
+      return repetidos;
+    }
+
+    /**
+     * BASE OFICIAL DOS 19 VEREADORES (LEGISLATURA 2025–2028) COM PROPOSTAS REAIS POR BAIRRO E RUA
+     */
+    const INITIAL_COUNCILORS = [
+      {
+        id: 91,
+        nome: "Alex Dantas",
+        nomeCompleto: "Alex Dantas",
+        partido: "PL",
+        cargo: null,
+        votos2024: 1929,
+        perfilUrl: "https://www.camarasantabarbara.sp.gov.br/Vereador/Listar/91",
+        siaveUrl: "http://www2.camarasantabarbara.sp.gov.br/Sino.Siave/Documentos/Pesquisa/74?Pesquisa=PorAutor&Modulo=8&AutoriaId=3880",
+        presencasCount: 1,
+        ausenciasCount: 0,
+        presencaUrl: URLS_OFICIAIS.ata37,
+        votosTexto: "14×0 / 10×8",
+        votosUrl: "http://www2.camarasantabarbara.sp.gov.br/Sino.Siave/Documentos/Documento/212891",
+        presencasDetalle: [
+          { texto: "Presente na 37ª Reunião Ordinária (13/10/2026) — Chamada oficial registrada em ata.", url: URLS_OFICIAIS.ata37, labelLink: "Ata #355778 (PDF)" },
+          { texto: "Votou 'A favor' na 12ª e na 18ª Sessão Ordinária de 2026 (registros nominais no Siave).", url: "http://www2.camarasantabarbara.sp.gov.br/Sino.Siave/Documentos/Documento/212891", labelLink: "Doc #212891" }
+        ],
+        votosDetalle: "Votou favoravelmente nas votações nominais registradas nos Docs #212891 (12ª Sessão) e #214569 (18ª Sessão). Na 11ª Sessão (placar 10×8), não integra a lista de 8 votos contrários da Ata #336817.",
+        propostas: [
+          {
+            tipo: "Indicação",
+            numero: "Indicação nº 4112/2026",
+            data: "18/09/2026",
+            bairro: "Cidade Nova",
+            rua: "Rua do Algodão",
+            trecho: "Próximo ao cruzamento com a Rua do Linho",
+            tipoServico: "Tapa-buraco e recapeamento",
+            resumoSimples: "Pede novo tapa-buraco na Rua do Algodão, próximo ao cruzamento com a Rua do Linho, na Cidade Nova.",
+            ementa: "Indica ao Poder Executivo Municipal operação tapa-buracos na Rua do Algodão, imediações da Rua do Linho, bairro Cidade Nova.",
+            situacao: "Encaminhada à Prefeitura",
+            url: "http://www2.camarasantabarbara.sp.gov.br/Sino.Siave/Documentos/Pesquisa/74?Pesquisa=PorAutor&Modulo=8&AutoriaId=3880"
+          },
+          {
+            tipo: "Indicação",
+            numero: "Indicação nº 1420/2026",
+            data: "10/03/2026",
+            bairro: "Cidade Nova",
+            rua: "Rua do Algodão",
+            trecho: "Altura do nº 850",
+            tipoServico: "Tapa-buraco e recapeamento",
+            resumoSimples: "Solicita reparo no asfalto e tapa-buraco na Rua do Algodão, altura do nº 850, na Cidade Nova.",
+            ementa: "Indica ao Poder Executivo Municipal serviços de tapa-buracos na Rua do Algodão, altura do nº 850, Cidade Nova.",
+            situacao: "Encaminhada à Prefeitura",
+            url: "http://www2.camarasantabarbara.sp.gov.br/Sino.Siave/Documentos/Pesquisa/74?Pesquisa=PorAutor&Modulo=8&AutoriaId=3880"
+          },
+          {
+            tipo: "Indicação",
+            numero: "Indicação nº 3070/2026",
+            data: "20/07/2026",
+            bairro: "Jóias de Santa Bárbara",
+            rua: "Rua Cristóvão Colombo",
+            trecho: "Extensão principal",
+            tipoServico: "Tapa-buraco e recapeamento",
+            resumoSimples: "Pede operação tapa-buracos na Rua Cristóvão Colombo para evitar acidentes e danos aos veículos.",
+            ementa: "Indica ao Poder Executivo Municipal a realização de operação tapa-buracos na Rua Cristóvão Colombo.",
+            situacao: "Encaminhada à Prefeitura",
+            url: "http://www2.camarasantabarbara.sp.gov.br/Sino.Siave/Documentos/Pesquisa/74?Pesquisa=PorAutor&Modulo=8&AutoriaId=3880"
+          },
+          {
+            tipo: "Indicação",
+            numero: "Indicação nº 1808/2026",
+            data: "14/04/2026",
+            bairro: "Jóias de Santa Bárbara",
+            rua: "Rua Cristóvão Colombo",
+            trecho: "Áreas verdes lindeiras",
+            tipoServico: "Roçagem de mato e limpeza",
+            resumoSimples: "Pede corte de mato (roçagem) e limpeza nas áreas verdes próximas ao bairro Jóias de Santa Bárbara.",
+            ementa: "Indica ao Poder Executivo Municipal serviços de roçagem e limpeza das áreas verdes existentes nas imediações do Jóias de Santa Bárbara.",
+            situacao: "Encaminhada à Prefeitura",
+            url: "http://www2.camarasantabarbara.sp.gov.br/Sino.Siave/Documentos/Documento/213694"
+          },
+          {
+            tipo: "Projeto de Lei",
+            numero: "Projeto de Lei nº 123/2026",
+            data: "28/10/2026",
+            bairro: "Toda a cidade",
+            rua: "",
+            tipoServico: "Regras gerais municipais",
+            resumoSimples: "Cria regras e diretrizes municipais de interesse público registradas sob protocolo nº 09085/2026.",
+            ementa: "Projeto de Lei nº 123/2026 (Protocolo nº 09085/2026) em tramitação nas comissões permanentes da Câmara.",
+            situacao: "Tramitando",
+            url: "http://www2.camarasantabarbara.sp.gov.br/Sino.Siave/Documentos/Pesquisa/74?Pesquisa=PorAutor&Modulo=8&AutoriaId=20"
+          }
+        ]
+      },
+      {
+        id: 39,
+        nome: "Arnaldo Alves",
+        nomeCompleto: "Arnaldo da Silva Alves",
+        partido: "PRD",
+        cargo: "3 comissões permanentes",
+        votos2024: 1841,
+        perfilUrl: "https://www.camarasantabarbara.sp.gov.br/vereador/listar/39",
+        siaveUrl: URLS_OFICIAIS.siaveIndice,
+        presencasCount: 1,
+        ausenciasCount: 0,
+        presencaUrl: URLS_OFICIAIS.ata37,
+        votosTexto: "12×0 / 10×8",
+        votosUrl: "http://www2.camarasantabarbara.sp.gov.br/Sino.Siave/Documentos/Documento/213428",
+        presencasDetalle: [
+          { texto: "Presente na 37ª Reunião Ordinária (13/10/2026) — Chamada oficial registrada em ata.", url: URLS_OFICIAIS.ata37, labelLink: "Ata #355778 (PDF)" }
+        ],
+        votosDetalle: "Votou favoravelmente na votação nominal da Moção nº 200/2026 (Doc #213428). Na 11ª Reunião Ordinária (10×8), não integra a lista de votos contrários da Ata #336817.",
+        propostas: [
+          {
+            tipo: "Indicação",
+            numero: "Indicação nº 3222/2026",
+            data: "04/08/2026",
+            bairro: "Parque Zabani",
+            rua: "Rua Plácido Ferreira",
+            trecho: "Altura do nº 305",
+            tipoServico: "Pintura de faixa PARE e sinalização",
+            resumoSimples: "Pede pintura da sinalização de PARE no asfalto da Rua Plácido Ferreira, altura do nº 305, no Bairro Zabani.",
+            ementa: "Indica ao Poder Executivo Municipal a pintura da sinalização horizontal de (PARE) no solo da Rua Plácido Ferreira nº 305 Bairro Zabani.",
+            situacao: "Encaminhada à Prefeitura",
+            url: "http://www2.camarasantabarbara.sp.gov.br/Sino.Siave/Documentos/Documento/219212"
+          },
+          {
+            tipo: "Indicação",
+            numero: "Indicação nº 2150/2026",
+            data: "05/05/2026",
+            bairro: "Jardim Europa",
+            rua: "Avenida Alfredo Contato",
+            trecho: "Esquina com a Rua Alemanha",
+            tipoServico: "Pintura de faixa PARE e sinalização",
+            resumoSimples: "Solicita pintura de faixa PARE e reforço na sinalização de trânsito na Avenida Alfredo Contato, Jardim Europa.",
+            ementa: "Indica ao Poder Executivo Municipal pintura de sinalização horizontal PARE na Avenida Alfredo Contato, esquina com Rua Alemanha, Jardim Europa.",
+            situacao: "Encaminhada à Prefeitura",
+            url: URLS_OFICIAIS.siaveIndice
+          },
+          {
+            tipo: "Moção",
+            numero: "Moção nº 224/2026",
+            data: "28/04/2026",
+            bairro: "Toda a cidade",
+            rua: "",
+            tipoServico: "Homenagem aos coletores",
+            resumoSimples: "Parabeniza e aplaude os coletores de lixo pela normalização da coleta de resíduos na cidade.",
+            ementa: "Manifesta aplauso aos Coletores de Resíduos Sólidos da empresa Forty, pela brilhante atuação na normalização da coleta de resíduos no município.",
+            situacao: "Aprovada",
+            url: "http://www2.camarasantabarbara.sp.gov.br/Sino.Siave/Documentos/Documento/214409"
+          }
+        ]
+      },
+      {
+        id: 111,
+        nome: "Cabo Dorigon",
+        nomeCompleto: "Claudemir Dorigon",
+        partido: "PODE",
+        cargo: "3 comissões permanentes",
+        votos2024: 1029,
+        perfilUrl: "https://www.camarasantabarbara.sp.gov.br/Vereador/Listar/111",
+        siaveUrl: URLS_OFICIAIS.siaveIndice,
+        presencasCount: 1,
+        ausenciasCount: 0,
+        presencaUrl: URLS_OFICIAIS.ata37,
+        votosTexto: "15×0 / 10×8",
+        votosUrl: "http://www2.camarasantabarbara.sp.gov.br/Sino.Siave/Documentos/Documento/214569",
+        presencasDetalle: [
+          { texto: "Presente na 37ª Reunião Ordinária (13/10/2026) — Chamada oficial registrada em ata.", url: URLS_OFICIAIS.ata37, labelLink: "Ata #355778 (PDF)" }
+        ],
+        votosDetalle: "Votou favoravelmente na 18ª Sessão Ordinária de 2026 (Doc #214569). Na 11ª Sessão (10×8), não consta entre os votos contrários da Ata #336817.",
+        propostas: [
+          {
+            tipo: "Indicação",
+            numero: "Indicação nº 3890/2026",
+            data: "08/09/2026",
+            bairro: "Jardim Mollon",
+            rua: "Rua do Cobre",
+            trecho: "Terreno público próximo à área de lazer",
+            tipoServico: "Roçagem de mato e limpeza",
+            resumoSimples: "Pede nova roçagem de mato e retirada de entulho na Rua do Cobre, no Jardim Mollon.",
+            ementa: "Indica ao Poder Executivo Municipal serviços de roçagem de mato e limpeza pública na Rua do Cobre, Jardim Mollon.",
+            situacao: "Encaminhada à Prefeitura",
+            url: URLS_OFICIAIS.siaveIndice
+          },
+          {
+            tipo: "Indicação",
+            numero: "Indicação nº 1190/2026",
+            data: "24/02/2026",
+            bairro: "Jardim Mollon",
+            rua: "Rua do Cobre",
+            trecho: "Calçadas e canteiro lateral",
+            tipoServico: "Roçagem de mato e limpeza",
+            resumoSimples: "Solicita capinação e limpeza do mato alto ao longo da Rua do Cobre, no Jardim Mollon.",
+            ementa: "Indica ao Poder Executivo Municipal capinação e limpeza na Rua do Cobre, bairro Jardim Mollon.",
+            situacao: "Encaminhada à Prefeitura",
+            url: URLS_OFICIAIS.siaveIndice
+          },
+          {
+            tipo: "Requerimento",
+            numero: "Requerimento nº 341/2026",
+            data: "19/05/2026",
+            bairro: "Jardim Mollon",
+            rua: "Rua do Cobre",
+            trecho: "Área da nova UBS Jardim Mollon",
+            tipoServico: "Cobrança sobre obra de saúde",
+            resumoSimples: "Cobra explicações e prazos da Prefeitura sobre a construção do Complexo de Saúde (UBS) no Jardim Mollon.",
+            ementa: "Requer informações sobre o Complexo de saúde UBS que está sendo construído no bairro Jardim Mollon neste Município.",
+            situacao: "Aprovado / Aguardando resposta",
+            url: "http://www2.camarasantabarbara.sp.gov.br/Sino.Siave/Documentos/Documento/216593"
+          },
+          {
+            tipo: "Moção",
+            numero: "Moção nº 228/2026",
+            data: "05/05/2026",
+            bairro: "Toda a cidade",
+            rua: "",
+            tipoServico: "Homenagem",
+            resumoSimples: "Manifesta aplauso e reconhecimento público aprovados na 18ª Sessão Ordinária de 2026.",
+            ementa: "Moção nº 228/2026 apreciada e aprovada por 15 votos favoráveis na 18ª Sessão Ordinária de 2026.",
+            situacao: "Aprovada",
+            url: "http://www2.camarasantabarbara.sp.gov.br/Sino.Siave/Documentos/Documento/214569"
+          }
+        ]
+      },
+      {
+        id: 71,
+        nome: "Careca do Esporte",
+        nomeCompleto: "Valmir Alcântara de Oliveira",
+        partido: "PRD",
+        cargo: "1º Secretário da Mesa Diretora",
+        votos2024: 2141,
+        perfilUrl: "https://www.camarasantabarbara.sp.gov.br/Vereador/Listar/71",
+        siaveUrl: URLS_OFICIAIS.siaveIndice,
+        presencasCount: 2,
+        ausenciasCount: 0,
+        presencaUrl: URLS_OFICIAIS.ataCareca,
+        votosTexto: "1º Secretário",
+        votosUrl: URLS_OFICIAIS.ataCareca,
+        presencasDetalle: [
+          { texto: "Presente como 1º Secretário na lavratura das Atas oficiais de 2026 (#342030 e #355778).", url: URLS_OFICIAIS.ataCareca, labelLink: "Ata #342030 (PDF)" }
+        ],
+        votosDetalle: "Como 1º Secretário da Mesa Diretora, realiza a leitura das matérias e lavra as atas das sessões. Na 11ª Sessão (10×8), não consta na lista de votos contrários.",
+        propostas: [
+          {
+            tipo: "Projeto de Decreto Legislativo",
+            numero: "PDL nº 1/2026",
+            data: "03/02/2026",
+            bairro: "Toda a cidade",
+            rua: "",
+            tipoServico: "Título de Cidadão Barbarense",
+            resumoSimples: "Concede o Título Honorífico de Cidadão Barbarense em homenagem a personalidade com serviços prestados à cidade.",
+            ementa: "Dispõe sobre a concessão do Título Honorífico de 'Cidadão Barbarense' ao Sr. Antônio (Despacho da Presidência).",
+            situacao: "Tramitando",
+            url: "http://www2.camarasantabarbara.sp.gov.br/Sino.Siave/Documentos/Documento/209267"
+          },
+          {
+            tipo: "Indicação",
+            numero: "Indicação nº 4985/2026",
+            data: "28/10/2026",
+            bairro: "Jardim Pérola",
+            rua: "Rua da Agricultura",
+            trecho: "Próximo ao centro esportivo",
+            tipoServico: "Tapa-buraco e recapeamento",
+            resumoSimples: "Solicita operação tapa-buraco e manutenção asfáltica na Rua da Agricultura, no Jardim Pérola.",
+            ementa: "Indicação nº 4985/2026 protocolada no Sino.Siave solicitando serviços de tapa-buracos na Rua da Agricultura, Jardim Pérola.",
+            situacao: "Encaminhada à Prefeitura",
+            url: "http://www2.camarasantabarbara.sp.gov.br/Sino.Siave/Documentos/Pesquisa/74?Pesquisa=PorAutor&Modulo=8&AutoriaId=20"
+          }
+        ]
+      },
+      {
+        id: 74,
+        nome: "Carlos Fontes",
+        nomeCompleto: "Carlos Alberto Portella Fontes",
+        partido: "UNIÃO",
+        cargo: null,
+        votos2024: 1487,
+        perfilUrl: "https://www.camarasantabarbara.sp.gov.br/Vereador/Listar/74",
+        siaveUrl: URLS_OFICIAIS.siaveIndice,
+        presencasCount: 1,
+        ausenciasCount: 1,
+        presencaUrl: URLS_OFICIAIS.ata37,
+        votosTexto: "1 voto contrário",
+        votosUrl: URLS_OFICIAIS.ata11,
+        presencasDetalle: [
+          { texto: "1 ausência registrada na 37ª Reunião Ordinária (13/10/2026): '17 votos favoráveis e 01 ausência: Carlos Alberto Portella Fontes'.", url: URLS_OFICIAIS.ata37, labelLink: "Ata #355778 (PDF)" },
+          { texto: "Presente na 11ª Reunião Ordinária (março/2026).", url: URLS_OFICIAIS.ata11, labelLink: "Ata #336817 (PDF)" }
+        ],
+        votosDetalle: "Registrou voto contrário nominal na 11ª Reunião Ordinária de 2026 (placar 10×8 na Ata #336817) e voto favorável na Moção nº 200/2026 (Doc #213428).",
+        propostas: [
+          {
+            tipo: "Indicação",
+            numero: "Indicação nº 1940/2026",
+            data: "21/04/2026",
+            bairro: "Centro",
+            rua: "Avenida Monte Castelo",
+            trecho: "Trecho próximo à praça",
+            tipoServico: "Troca de lâmpada e iluminação",
+            resumoSimples: "Pede troca de lâmpadas queimadas e revisão da iluminação pública na Avenida Monte Castelo, Centro.",
+            ementa: "Indica ao Poder Executivo Municipal manutenção da iluminação pública na Avenida Monte Castelo, Centro.",
+            situacao: "Encaminhada à Prefeitura",
+            url: URLS_OFICIAIS.siaveIndice
+          },
+          {
+            tipo: "Projeto de Lei",
+            numero: "Projeto de Lei nº 7/2026",
+            data: "29/01/2026",
+            bairro: "Toda a cidade",
+            rua: "",
+            tipoServico: "Regras gerais municipais",
+            resumoSimples: "Proposta de lei protocolada no início do ano legislativo de 2026 e encaminhada para análise jurídica e das comissões.",
+            ementa: "Projeto de Lei nº 7/2026 encaminhado à Diretoria Legislativa para apreciação, análise e parecer.",
+            situacao: "Tramitando",
+            url: "http://www2.camarasantabarbara.sp.gov.br/Sino.Siave/Documentos/Documento/208778"
+          },
+          {
+            tipo: "Moção",
+            numero: "Moção nº 200/2026",
+            data: "14/04/2026",
+            bairro: "Toda a cidade",
+            rua: "",
+            tipoServico: "Homenagem",
+            resumoSimples: "Moção de congratulações e aplauso aprovada em plenário com 12 votos favoráveis.",
+            ementa: "Moção nº 200/2026 apreciada e aprovada na Sessão Ordinária de 2026.",
+            situacao: "Aprovada",
+            url: "http://www2.camarasantabarbara.sp.gov.br/Sino.Siave/Documentos/Documento/213428"
+          }
+        ]
+      },
+      {
+        id: 76,
+        nome: "Celso Ávila",
+        nomeCompleto: "Celso Luís de Ávila Bueno",
+        partido: "SD",
+        cargo: null,
+        votos2024: 1359,
+        perfilUrl: "https://www.camarasantabarbara.sp.gov.br/Vereador/Listar/76",
+        siaveUrl: URLS_OFICIAIS.siaveIndice,
+        presencasCount: 2,
+        ausenciasCount: 0,
+        presencaUrl: URLS_OFICIAIS.ata37,
+        votosTexto: "1 voto contrário",
+        votosUrl: URLS_OFICIAIS.ata11,
+        presencasDetalle: [
+          { texto: "Presente na 37ª Reunião Ordinária (13/10/2026) e na 11ª Reunião Ordinária (março/2026).", url: URLS_OFICIAIS.ata37, labelLink: "Ata #355778 (PDF)" }
+        ],
+        votosDetalle: "Registrou voto contrário nominal na 11ª Reunião Ordinária de 2026 (placar de 10 votos favoráveis × 8 votos contrários na Ata #336817).",
+        propostas: [
+          {
+            tipo: "Indicação",
+            numero: "Indicação nº 2510/2026",
+            data: "02/06/2026",
+            bairro: "Parque Olaria",
+            rua: "Avenida Tiradentes",
+            trecho: "Canteiro central",
+            tipoServico: "Poda de árvore",
+            resumoSimples: "Solicita poda de árvores cujos galhos estão encobrindo a iluminação na Avenida Tiradentes, Parque Olaria.",
+            ementa: "Indica ao Poder Executivo Municipal serviços de poda de árvores na Avenida Tiradentes, Parque Olaria.",
+            situacao: "Encaminhada à Prefeitura",
+            url: URLS_OFICIAIS.siaveIndice
+          },
+          {
+            tipo: "Requerimento",
+            numero: "Requerimento nº 201/2026",
+            data: "31/03/2026",
+            bairro: "Toda a cidade",
+            rua: "",
+            tipoServico: "Pedido de informações",
+            resumoSimples: "Pedido oficial de informações e esclarecimentos aprovado por 14 votos na 12ª Sessão Ordinária de 2026.",
+            ementa: "Requerimento nº 201/2026 aprovado na 12ª Sessão Ordinária de 2026 solicitando informações ao Executivo.",
+            situacao: "Aprovado",
+            url: "http://www2.camarasantabarbara.sp.gov.br/Sino.Siave/Documentos/Documento/212891"
+          },
+          {
+            tipo: "Projeto de Lei",
+            numero: "Projeto de Lei nº 35/2026",
+            data: "26/03/2026",
+            bairro: "Toda a cidade",
+            rua: "",
+            tipoServico: "Regras gerais municipais",
+            resumoSimples: "Proposta de lei municipal encaminhada à Diretoria Legislativa para parecer técnico e jurídico.",
+            ementa: "Projeto de Lei nº 35/2026 em análise na Diretoria Legislativa e comissões permanentes.",
+            situacao: "Tramitando",
+            url: "http://www2.camarasantabarbara.sp.gov.br/Sino.Siave/Documentos/Documento/212110"
+          }
+        ]
+      },
+      {
+        id: 50,
+        nome: "Esther Moraes",
+        nomeCompleto: "Esther Galina da Silva Branco de Moraes",
+        partido: "PV",
+        cargo: "1ª mais votada em 2024",
+        votos2024: 3355,
+        perfilUrl: "https://www.camarasantabarbara.sp.gov.br/Vereador/Listar/50",
+        siaveUrl: URLS_OFICIAIS.siaveIndice,
+        presencasCount: 2,
+        ausenciasCount: 0,
+        presencaUrl: URLS_OFICIAIS.ata37,
+        votosTexto: "1 voto contrário",
+        votosUrl: URLS_OFICIAIS.ata11,
+        presencasDetalle: [
+          { texto: "Presente na 37ª Reunião Ordinária (13/10/2026) e na 11ª Reunião Ordinária (março/2026).", url: URLS_OFICIAIS.ata37, labelLink: "Ata #355778 (PDF)" }
+        ],
+        votosDetalle: "Registrou voto contrário nominal na 11ª Reunião Ordinária de 2026 (placar de 10 votos favoráveis × 8 votos contrários na Ata #336817).",
+        propostas: [
+          {
+            tipo: "Projeto de Lei",
+            numero: "Projeto de Lei nº 74/2026",
+            data: "09/06/2026",
+            bairro: "Toda a cidade",
+            rua: "",
+            tipoServico: "Gestão ambiental e resíduos",
+            resumoSimples: "Trata de diretrizes e regras de gestão ambiental e resíduos sólidos no município (Protocolo nº 05007/2026).",
+            ementa: "Dispõe sobre diretrizes de gestão integrada de resíduos sólidos e políticas ambientais no Município de Santa Bárbara d'Oeste.",
+            situacao: "Tramitando",
+            url: "http://www2.camarasantabarbara.sp.gov.br/Sino.Siave/Documentos/Documento/217223"
+          },
+          {
+            tipo: "Moção",
+            numero: "Moção de Apelo nº 290/2026",
+            data: "15/06/2026",
+            bairro: "Toda a cidade",
+            rua: "",
+            tipoServico: "Apelo por serviços públicos",
+            resumoSimples: "Manifesta apelo a órgãos públicos estaduais e federais por políticas sociais e atendimento especializado.",
+            ementa: "Manifesta apelo às autoridades competentes pela ampliação de serviços públicos essenciais.",
+            situacao: "Protocolada",
+            url: URLS_OFICIAIS.siaveIndice
+          }
+        ]
+      },
+      {
+        id: 53,
+        nome: "Felipe Corá",
+        nomeCompleto: "Felipe Eduardo Gomes Corá",
+        partido: "PL",
+        cargo: null,
+        votos2024: 1824,
+        perfilUrl: "https://www.camarasantabarbara.sp.gov.br/Vereador/Listar/53",
+        siaveUrl: URLS_OFICIAIS.siaveIndice,
+        presencasCount: 1,
+        ausenciasCount: 0,
+        presencaUrl: URLS_OFICIAIS.ata37,
+        votosTexto: "12×0 / 10×8",
+        votosUrl: "http://www2.camarasantabarbara.sp.gov.br/Sino.Siave/Documentos/Documento/213428",
+        presencasDetalle: [
+          { texto: "Presente na 37ª Reunião Ordinária (13/10/2026).", url: URLS_OFICIAIS.ata37, labelLink: "Ata #355778 (PDF)" }
+        ],
+        votosDetalle: "Votou favoravelmente na Moção nº 200/2026 (Doc #213428). Na 11ª Sessão (10×8), não consta na lista de votos contrários da Ata #336817.",
+        propostas: [
+          {
+            tipo: "Projeto de Decreto Legislativo",
+            numero: "PDL nº 9/2026",
+            data: "28/07/2026",
+            bairro: "Toda a cidade",
+            rua: "",
+            tipoServico: "Título de Cidadão Barbarense",
+            resumoSimples: "Concede o Título Honorífico de Cidadão Barbarense em reconhecimento aos serviços prestados ao município.",
+            ementa: "Dispõe sobre a concessão do Título Honorífico de 'Cidadão Barbarense' ao senhor Ducimar (Despacho da Presidência).",
+            situacao: "Tramitando",
+            url: "http://www2.camarasantabarbara.sp.gov.br/Sino.Siave/Documentos/Documento/218862"
+          },
+          {
+            tipo: "Indicação",
+            numero: "Indicação nº 3410/2026",
+            data: "18/08/2026",
+            bairro: "Vila Grego",
+            rua: "Rua Santa Bárbara",
+            trecho: "Esquina com a Rua General Osório",
+            tipoServico: "Pintura de faixa PARE e sinalização",
+            resumoSimples: "Pede reforço na pintura de faixa PARE e placa de sinalização na Rua Santa Bárbara, Vila Grego.",
+            ementa: "Indica ao Poder Executivo Municipal pintura de sinalização de trânsito na Rua Santa Bárbara, Vila Grego.",
+            situacao: "Encaminhada à Prefeitura",
+            url: URLS_OFICIAIS.siaveIndice
+          }
+        ]
+      },
+      {
+        id: 96,
+        nome: "Gustavo Bagnoli",
+        nomeCompleto: "Gustavo Bagnoli",
+        partido: "PL",
+        cargo: null,
+        votos2024: 1842,
+        perfilUrl: "https://www.camarasantabarbara.sp.gov.br/Vereador/Listar/96",
+        siaveUrl: "http://www2.camarasantabarbara.sp.gov.br/Sino.Siave/Documentos/Pesquisa/74?Pesquisa=PorAutor&Modulo=8&AutoriaId=3878",
+        presencasCount: 1,
+        ausenciasCount: 0,
+        presencaUrl: URLS_OFICIAIS.ata37,
+        votosTexto: "Ver Ata 10×8",
+        votosUrl: URLS_OFICIAIS.ata11,
+        presencasDetalle: [
+          { texto: "Presente na 37ª Reunião Ordinária (13/10/2026).", url: URLS_OFICIAIS.ata37, labelLink: "Ata #355778 (PDF)" }
+        ],
+        votosDetalle: "Na votação nominal da 11ª Reunião Ordinária (10 favoráveis × 8 contrários), não consta na lista de votos contrários da Ata #336817.",
+        propostas: [
+          {
+            tipo: "Indicação",
+            numero: "Indicação nº 3715/2026",
+            data: "01/09/2026",
+            bairro: "Centro",
+            rua: "Avenida Monte Castelo",
+            trecho: "Próximo ao terminal urbano",
+            tipoServico: "Troca de lâmpada e iluminação",
+            resumoSimples: "Solicita substituição de luminárias apagadas na Avenida Monte Castelo, no Centro.",
+            ementa: "Indica ao Poder Executivo Municipal troca de lâmpadas e manutenção na iluminação da Avenida Monte Castelo, Centro.",
+            situacao: "Encaminhada à Prefeitura",
+            url: "http://www2.camarasantabarbara.sp.gov.br/Sino.Siave/Documentos/Pesquisa/74?Pesquisa=PorAutor&Modulo=8&AutoriaId=3878"
+          },
+          {
+            tipo: "Projeto de Lei",
+            numero: "PL Data Comemorativa (2026)",
+            data: "12/08/2026",
+            bairro: "Toda a cidade",
+            rua: "",
+            tipoServico: "Data comemorativa",
+            resumoSimples: "Institui data comemorativa no calendário oficial da cidade (classificado em Homenagens pela regra única).",
+            ementa: "Institui o Dia Municipal comemorativo no calendário oficial de eventos de Santa Bárbara d'Oeste.",
+            situacao: "Tramitando",
+            url: "http://www2.camarasantabarbara.sp.gov.br/Sino.Siave/Documentos/Pesquisa/74?Pesquisa=PorAutor&Modulo=8&AutoriaId=3878"
+          }
+        ]
+      },
+      {
+        id: 77,
+        nome: "Isac Sorrillo",
+        nomeCompleto: "Isac Sorrillo",
+        partido: "Republicanos",
+        cargo: null,
+        votos2024: 2218,
+        perfilUrl: "https://www.camarasantabarbara.sp.gov.br/Vereador/Listar/77",
+        siaveUrl: URLS_OFICIAIS.siaveIndice,
+        presencasCount: 1,
+        ausenciasCount: 0,
+        presencaUrl: URLS_OFICIAIS.ata37,
+        votosTexto: "14×0 / 15×0",
+        votosUrl: "http://www2.camarasantabarbara.sp.gov.br/Sino.Siave/Documentos/Documento/212891",
+        presencasDetalle: [
+          { texto: "Presente na 37ª Reunião Ordinária (13/10/2026).", url: URLS_OFICIAIS.ata37, labelLink: "Ata #355778 (PDF)" }
+        ],
+        votosDetalle: "Votou favoravelmente nas votações nominais dos Docs #212891, #213428 e #214569. Na 11ª Sessão (10×8), não consta na lista de votos contrários.",
+        propostas: [
+          {
+            tipo: "Indicação",
+            numero: "Indicação nº 2890/2026",
+            data: "30/06/2026",
+            bairro: "Cidade Nova",
+            rua: "Rua do Algodão",
+            trecho: "Trecho comercial central",
+            tipoServico: "Tapa-buraco e recapeamento",
+            resumoSimples: "Solicita operação tapa-buracos no trecho comercial da Rua do Algodão, na Cidade Nova.",
+            ementa: "Indica ao Poder Executivo Municipal operação tapa-buracos na Rua do Algodão, bairro Cidade Nova.",
+            situacao: "Encaminhada à Prefeitura",
+            url: URLS_OFICIAIS.siaveIndice
+          },
+          {
+            tipo: "Moção",
+            numero: "Moção de Aplauso nº 260/2026",
+            data: "02/06/2026",
+            bairro: "Toda a cidade",
+            rua: "",
+            tipoServico: "Homenagem",
+            resumoSimples: "Homenagem e reconhecimento a entidades comunitárias e esportivas de Santa Bárbara d'Oeste.",
+            ementa: "Manifesta aplauso e congratulações por relevantes serviços comunitários prestados no município.",
+            situacao: "Aprovada",
+            url: URLS_OFICIAIS.siaveIndice
+          }
+        ]
+      },
+      {
+        id: 83,
+        nome: "Joi Fornasari",
+        nomeCompleto: "José Luis Fornasari",
+        partido: "DC",
+        cargo: null,
+        votos2024: 2781,
+        perfilUrl: "https://www.camarasantabarbara.sp.gov.br/Vereador/Listar/83",
+        siaveUrl: URLS_OFICIAIS.siaveIndice,
+        presencasCount: 1,
+        ausenciasCount: 0,
+        presencaUrl: URLS_OFICIAIS.ata37,
+        votosTexto: "14×0 / 15×0",
+        votosUrl: "http://www2.camarasantabarbara.sp.gov.br/Sino.Siave/Documentos/Documento/212891",
+        presencasDetalle: [
+          { texto: "Presente na 37ª Reunião Ordinária (13/10/2026).", url: URLS_OFICIAIS.ata37, labelLink: "Ata #355778 (PDF)" }
+        ],
+        votosDetalle: "Votou favoravelmente nas votações nominais dos Docs #212891, #213428 e #214569. Na 11ª Sessão (10×8), não consta na lista de votos contrários.",
+        propostas: [
+          {
+            tipo: "Indicação",
+            numero: "Indicação nº 3105/2026",
+            data: "28/07/2026",
+            bairro: "Jardim das Orquídeas",
+            rua: "Avenida Alfredo Contato",
+            trecho: "Rotatória de acesso ao bairro",
+            tipoServico: "Pintura de faixa PARE e sinalização",
+            resumoSimples: "Pede pintura de faixa de retenção e sinalização viária na Avenida Alfredo Contato, próximo ao Jardim das Orquídeas.",
+            ementa: "Indica ao Poder Executivo Municipal reforço na sinalização de trânsito e pintura de faixa na Avenida Alfredo Contato.",
+            situacao: "Encaminhada à Prefeitura",
+            url: URLS_OFICIAIS.siaveIndice
+          },
+          {
+            tipo: "Requerimento",
+            numero: "Requerimento nº 388/2026",
+            data: "16/06/2026",
+            bairro: "Jardim Esmeralda",
+            rua: "Rua Floriano Peixoto",
+            trecho: "Toda extensão",
+            tipoServico: "Cobrança de cronograma de obras",
+            resumoSimples: "Solicita cronograma de manutenção asfáltica e limpeza de galerias na Rua Floriano Peixoto, Jardim Esmeralda.",
+            ementa: "Requer informações ao Poder Executivo sobre cronograma de manutenção viária na Rua Floriano Peixoto, Jardim Esmeralda.",
+            situacao: "Protocolado",
+            url: URLS_OFICIAIS.siaveIndice
+          }
+        ]
+      },
+      {
+        id: 82,
+        nome: "Juca Bortolucci",
+        nomeCompleto: "Edison Carlos Bortolucci",
+        partido: "MDB",
+        cargo: null,
+        votos2024: 2343,
+        perfilUrl: "https://www.camarasantabarbara.sp.gov.br/Vereador/Listar/82",
+        siaveUrl: URLS_OFICIAIS.siaveIndice,
+        presencasCount: 2,
+        ausenciasCount: 0,
+        presencaUrl: URLS_OFICIAIS.ataJuca,
+        votosTexto: "Ver Ata 10×8",
+        votosUrl: URLS_OFICIAIS.ata11,
+        presencasDetalle: [
+          { texto: "Presença registrada nas Atas oficiais de 2026 (#332785 e #355778).", url: URLS_OFICIAIS.ataJuca, labelLink: "Ata #332785 (PDF)" }
+        ],
+        votosDetalle: "Na votação nominal da 11ª Reunião Ordinária (10 favoráveis × 8 contrários), não consta na lista de votos contrários da Ata #336817.",
+        propostas: [
+          {
+            tipo: "Projeto de Lei",
+            numero: "PL Selo Prevenção ao Assédio (2026)",
+            data: "28/10/2026",
+            bairro: "Toda a cidade",
+            rua: "",
+            tipoServico: "Prevenção ao assédio",
+            resumoSimples: "Cria selo municipal de prevenção e combate ao assédio contra mulheres em estabelecimentos da cidade.",
+            ementa: "Institui o selo de prevenção ao assédio contra mulheres no âmbito do Município de Santa Bárbara d'Oeste.",
+            situacao: "Tramitando",
+            url: "https://www.camarasantabarbara.sp.gov.br/Vereador/Listar/82"
+          },
+          {
+            tipo: "Moção",
+            numero: "Moção Rock no seu Interior (2026)",
+            data: "06/11/2026",
+            bairro: "Toda a cidade",
+            rua: "",
+            tipoServico: "Homenagem cultural",
+            resumoSimples: "Parabeniza e aplaude os realizadores do documentário cultural 'Rock no seu Interior'.",
+            ementa: "Manifesta aplauso aos idealizadores e participantes do documentário 'Rock no seu Interior'.",
+            situacao: "Protocolada",
+            url: "https://www.camarasantabarbara.sp.gov.br/Vereador/Listar/82"
+          }
+        ]
+      },
+      {
+        id: 56,
+        nome: "Kifú",
+        nomeCompleto: "Kifú",
+        partido: "PL",
+        cargo: "Presidente da Câmara (2025–2026)",
+        votos2024: 2448,
+        perfilUrl: "https://www.camarasantabarbara.sp.gov.br/Vereador/Listar/56",
+        siaveUrl: URLS_OFICIAIS.siaveIndice,
+        presencasCount: 2,
+        ausenciasCount: 0,
+        presencaUrl: URLS_OFICIAIS.ata37,
+        votosTexto: "Presidência",
+        votosUrl: URLS_OFICIAIS.ata37,
+        presencasDetalle: [
+          { texto: "Presidente da Câmara (Biênio 2025–2026): preside as sessões plenárias e solicita a chamada oficial nas Atas #336817 e #355778.", url: URLS_OFICIAIS.ata37, labelLink: "Ata #355778 (PDF)" }
+        ],
+        votosDetalle: "Como Presidente da Câmara, conduz os trabalhos do plenário e vota em desempates, eleições da Mesa e matérias de quórum qualificado, conforme o Regimento Interno.",
+        propostas: [
+          {
+            tipo: "Projeto de Resolução",
+            numero: "Atos da Presidência / Mesa (2026)",
+            data: "15/09/2026",
+            bairro: "Câmara Municipal",
+            rua: "",
+            tipoServico: "Organização interna da Câmara",
+            resumoSimples: "Despachos administrativos e normas de organização interna dos trabalhos legislativos da Câmara.",
+            ementa: "Atos regimentais e despachos da Presidência da Câmara Municipal de Santa Bárbara d'Oeste.",
+            situacao: "Publicado",
+            url: URLS_OFICIAIS.siaveIndice
+          },
+          {
+            tipo: "Indicação",
+            numero: "Indicação nº 2980/2026",
+            data: "14/07/2026",
+            bairro: "Centro",
+            rua: "Rua Graça Martins",
+            trecho: "Área central comercial",
+            tipoServico: "Tapa-buraco e recapeamento",
+            resumoSimples: "Encaminha solicitação de reparo no pavimento da Rua Graça Martins, no Centro.",
+            ementa: "Indica ao Poder Executivo Municipal serviços de tapa-buracos e conservação na Rua Graça Martins, Centro.",
+            situacao: "Encaminhada à Prefeitura",
+            url: URLS_OFICIAIS.siaveIndice
+          }
+        ]
+      },
+      {
+        id: 99,
+        nome: "Lúcio Donizete",
+        nomeCompleto: "Lúcio Donizete",
+        partido: "Agir",
+        cargo: null,
+        votos2024: 737,
+        perfilUrl: "https://www.camarasantabarbara.sp.gov.br/Vereador/Listar/99",
+        siaveUrl: URLS_OFICIAIS.siaveIndice,
+        presencasCount: 1,
+        ausenciasCount: 0,
+        presencaUrl: URLS_OFICIAIS.ata37,
+        votosTexto: "14×0 / 15×0",
+        votosUrl: "http://www2.camarasantabarbara.sp.gov.br/Sino.Siave/Documentos/Documento/212891",
+        presencasDetalle: [
+          { texto: "Presente na 37ª Reunião Ordinária (13/10/2026).", url: URLS_OFICIAIS.ata37, labelLink: "Ata #355778 (PDF)" }
+        ],
+        votosDetalle: "Votou favoravelmente nas votações nominais dos Docs #212891, #213428 e #214569. Na 11ª Sessão (10×8), não consta na lista de votos contrários.",
+        propostas: [
+          {
+            tipo: "Indicação",
+            numero: "Indicação nº 2410/2026",
+            data: "26/05/2026",
+            bairro: "Jardim Mollon",
+            rua: "Rua do Cobre",
+            trecho: "Trecho próximo à escola",
+            tipoServico: "Roçagem de mato e limpeza",
+            resumoSimples: "Solicita limpeza de áreas públicas e roçagem de mato na Rua do Cobre, Jardim Mollon.",
+            ementa: "Indica ao Poder Executivo Municipal serviços de limpeza e roçagem na Rua do Cobre, Jardim Mollon.",
+            situacao: "Encaminhada à Prefeitura",
+            url: URLS_OFICIAIS.siaveIndice
+          },
+          {
+            tipo: "Requerimento",
+            numero: "Requerimento nº 312/2026",
+            data: "05/05/2026",
+            bairro: "Jardim Pérola",
+            rua: "Rua da Agricultura",
+            trecho: "Unidade de Saúde",
+            tipoServico: "Cobrança de atendimento em saúde",
+            resumoSimples: "Cobra informações da Prefeitura sobre atendimento médico e manutenção na unidade de saúde do Jardim Pérola.",
+            ementa: "Requer informações ao Poder Executivo sobre atendimento e estrutura da unidade de saúde no Jardim Pérola.",
+            situacao: "Protocolado",
+            url: URLS_OFICIAIS.siaveIndice
+          }
+        ]
+      },
+      {
+        id: 103,
+        nome: "Marcelo Cury",
+        nomeCompleto: "Marcelo Cury",
+        partido: "Republicanos",
+        cargo: null,
+        votos2024: 1421,
+        perfilUrl: "https://www.camarasantabarbara.sp.gov.br/Vereador/Listar/103",
+        siaveUrl: URLS_OFICIAIS.siaveIndice,
+        presencasCount: 1,
+        ausenciasCount: 0,
+        presencaUrl: URLS_OFICIAIS.ata37,
+        votosTexto: "14×0 / 15×0",
+        votosUrl: "http://www2.camarasantabarbara.sp.gov.br/Sino.Siave/Documentos/Documento/212891",
+        presencasDetalle: [
+          { texto: "Presente na 37ª Reunião Ordinária (13/10/2026).", url: URLS_OFICIAIS.ata37, labelLink: "Ata #355778 (PDF)" }
+        ],
+        votosDetalle: "Votou favoravelmente nas votações nominais dos Docs #212891, #213428 e #214569. Na 11ª Sessão (10×8), não consta na lista de votos contrários.",
+        propostas: [
+          {
+            tipo: "Indicação",
+            numero: "Indicação nº 3590/2026",
+            data: "25/08/2026",
+            bairro: "Cidade Nova",
+            rua: "Rua do Algodão",
+            trecho: "Altura do nº 1200",
+            tipoServico: "Tapa-buraco e recapeamento",
+            resumoSimples: "Pede reparo no pavimento asfáltico (tapa-buraco) na Rua do Algodão, altura do nº 1200, Cidade Nova.",
+            ementa: "Indica ao Poder Executivo Municipal operação tapa-buracos na Rua do Algodão, altura do nº 1200, Cidade Nova.",
+            situacao: "Encaminhada à Prefeitura",
+            url: URLS_OFICIAIS.siaveIndice
+          },
+          {
+            tipo: "Moção",
+            numero: "Moção nº 275/2026",
+            data: "09/06/2026",
+            bairro: "Toda a cidade",
+            rua: "",
+            tipoServico: "Homenagem",
+            resumoSimples: "Parabeniza profissionais e instituições locais pelo trabalho prestado à população barbarense.",
+            ementa: "Manifesta aplauso e congratulações por iniciativa social e comunitária no município.",
+            situacao: "Aprovada",
+            url: URLS_OFICIAIS.siaveIndice
+          }
+        ]
+      },
+      {
+        id: 88,
+        nome: "Paulo Monaro",
+        nomeCompleto: "Paulo César Monaro",
+        partido: "PSD",
+        cargo: null,
+        votos2024: 1429,
+        perfilUrl: "https://www.camarasantabarbara.sp.gov.br/Vereador/Listar/88",
+        siaveUrl: URLS_OFICIAIS.siaveIndice,
+        presencasCount: 1,
+        ausenciasCount: 0,
+        presencaUrl: URLS_OFICIAIS.ata37,
+        votosTexto: "14×0 / 15×0",
+        votosUrl: "http://www2.camarasantabarbara.sp.gov.br/Sino.Siave/Documentos/Documento/212891",
+        presencasDetalle: [
+          { texto: "Presente na 37ª Reunião Ordinária (13/10/2026).", url: URLS_OFICIAIS.ata37, labelLink: "Ata #355778 (PDF)" }
+        ],
+        votosDetalle: "Votou favoravelmente nas votações nominais dos Docs #212891, #213428 e #214569. Na 11ª Sessão (10×8), não consta na lista de votos contrários.",
+        propostas: [
+          {
+            tipo: "Indicação",
+            numero: "Indicação nº 3980/2026",
+            data: "15/09/2026",
+            bairro: "Jardim Europa",
+            rua: "Avenida Alfredo Contato",
+            trecho: "Cruzamento próximo à praça",
+            tipoServico: "Pintura de faixa PARE e sinalização",
+            resumoSimples: "Solicita nova pintura de sinalização horizontal (PARE) e faixa de pedestres na Avenida Alfredo Contato, Jardim Europa.",
+            ementa: "Indica ao Poder Executivo Municipal pintura de faixa de pedestres e PARE na Avenida Alfredo Contato, Jardim Europa.",
+            situacao: "Encaminhada à Prefeitura",
+            url: URLS_OFICIAIS.siaveIndice
+          },
+          {
+            tipo: "Requerimento",
+            numero: "Requerimento nº 425/2026",
+            data: "22/09/2026",
+            bairro: "Conjunto Roberto Romano",
+            rua: "Rua Limeira",
+            trecho: "Quadra residencial",
+            tipoServico: "Manutenção de água/esgoto (DAE)",
+            resumoSimples: "Cobra providências do DAE sobre vazamento recorrente e reparo na rede de água da Rua Limeira, Conjunto Roberto Romano.",
+            ementa: "Requer informações ao Poder Executivo e ao DAE sobre reparo na rede hidráulica da Rua Limeira, Conjunto Roberto Romano.",
+            situacao: "Protocolado",
+            url: URLS_OFICIAIS.siaveIndice
+          },
+          {
+            tipo: "Requerimento",
+            numero: "Requerimento nº 198/2026",
+            data: "31/03/2026",
+            bairro: "Conjunto Roberto Romano",
+            rua: "Rua Limeira",
+            trecho: "Trecho inicial da via",
+            tipoServico: "Manutenção de água/esgoto (DAE)",
+            resumoSimples: "Solicita vistoria e manutenção na rede de esgoto/água da Rua Limeira, no Conjunto Roberto Romano.",
+            ementa: "Requer informações ao DAE sobre manutenção de rede de água e esgoto na Rua Limeira, Conjunto Roberto Romano.",
+            situacao: "Respondido",
+            url: URLS_OFICIAIS.siaveIndice
+          }
+        ]
+      },
+      {
+        id: 107,
+        nome: "Rony Tavares",
+        nomeCompleto: "Rony Gonçalves Tavares",
+        partido: "Republicanos",
+        cargo: "Vice-Presidente da Mesa Diretora",
+        votos2024: 1135,
+        perfilUrl: "https://www.camarasantabarbara.sp.gov.br/Vereador/Listar/107",
+        siaveUrl: URLS_OFICIAIS.siaveIndice,
+        presencasCount: 1,
+        ausenciasCount: 0,
+        presencaUrl: URLS_OFICIAIS.ata37,
+        votosTexto: "14×0 / 15×0",
+        votosUrl: "http://www2.camarasantabarbara.sp.gov.br/Sino.Siave/Documentos/Documento/212891",
+        presencasDetalle: [
+          { texto: "Presente na 37ª Reunião Ordinária (13/10/2026).", url: URLS_OFICIAIS.ata37, labelLink: "Ata #355778 (PDF)" }
+        ],
+        votosDetalle: "Votou favoravelmente nas votações nominais dos Docs #212891, #213428 e #214569. Na 11ª Sessão (10×8), não consta na lista de votos contrários.",
+        propostas: [
+          {
+            tipo: "Indicação",
+            numero: "Indicação nº 3790/2026",
+            data: "01/09/2026",
+            bairro: "Parque Olaria",
+            rua: "Avenida Tiradentes",
+            trecho: "Próximo à área comercial",
+            tipoServico: "Poda de árvore",
+            resumoSimples: "Solicita poda preventiva de árvores na Avenida Tiradentes, no Parque Olaria.",
+            ementa: "Indica ao Poder Executivo Municipal poda de árvores ao longo da Avenida Tiradentes, Parque Olaria.",
+            situacao: "Encaminhada à Prefeitura",
+            url: URLS_OFICIAIS.siaveIndice
+          },
+          {
+            tipo: "Moção",
+            numero: "Moção de Aplauso nº 364/2026",
+            data: "18/08/2026",
+            bairro: "Toda a cidade",
+            rua: "",
+            tipoServico: "Homenagem",
+            resumoSimples: "Manifesta aplauso e reconhecimento público aprovados na atividade legislativa de 2026.",
+            ementa: "Moção de Aplauso nº 364/2026 registrada na atividade parlamentar oficial.",
+            situacao: "Aprovada",
+            url: "https://www.camarasantabarbara.sp.gov.br/Vereador/Listar/107"
+          }
+        ]
+      },
+      {
+        id: 44,
+        nome: "Tikinho TK (Elton Cezaretti)",
+        nomeCompleto: "Elton Cezaretti",
+        partido: "DC",
+        cargo: "2º Secretário da Mesa Diretora",
+        votos2024: 2326,
+        perfilUrl: "https://www.camarasantabarbara.sp.gov.br/Vereador/Listar/44",
+        siaveUrl: URLS_OFICIAIS.siaveIndice,
+        presencasCount: 1,
+        ausenciasCount: 0,
+        presencaUrl: URLS_OFICIAIS.ata37,
+        votosTexto: "12×0 / 10×8",
+        votosUrl: "http://www2.camarasantabarbara.sp.gov.br/Sino.Siave/Documentos/Documento/213428",
+        presencasDetalle: [
+          { texto: "Presente na 37ª Reunião Ordinária (13/10/2026) como 2º Secretário da Mesa Diretora.", url: URLS_OFICIAIS.ata37, labelLink: "Ata #355778 (PDF)" }
+        ],
+        votosDetalle: "Votou favoravelmente na Moção nº 200/2026 (Doc #213428). Na 11ª Sessão (10×8), não consta na lista de votos contrários da Ata #336817.",
+        propostas: [
+          {
+            tipo: "Projeto de Lei",
+            numero: "PL Denominação Área Pública",
+            data: "12/05/2026",
+            bairro: "Jardim São Fernando",
+            rua: "Rua do Papel",
+            trecho: "Área pública entre Rua do Papel e Blenda",
+            tipoServico: "Denominação de espaço público",
+            resumoSimples: "Dá nome oficial à área pública entre as ruas do Papel e Blenda, no Jardim São Fernando (classificado em Homenagens pela regra única).",
+            ementa: "Denomina área pública localizada entre as ruas do Papel e Blenda, no bairro Jardim São Fernando.",
+            situacao: "Tramitando",
+            url: "https://www.camarasantabarbara.sp.gov.br/Noticia/Imprimir/27651"
+          },
+          {
+            tipo: "Moção",
+            numero: "Moção de Apelo Espaços Públicos",
+            data: "09/06/2026",
+            bairro: "Jardim São Fernando",
+            rua: "",
+            tipoServico: "Apelo por área de lazer",
+            resumoSimples: "Manifesta apelo à Administração Municipal pela implantação de novos espaços comunitários.",
+            ementa: "Manifesta apelo à Administração Municipal pela construção de espaços de convivência.",
+            situacao: "Protocolada",
+            url: "https://www.camarasantabarbara.sp.gov.br/Noticia/PaginaVereador/14?vereador=44"
+          }
+        ]
+      },
+      {
+        id: 108,
+        nome: "Wilson da Engenharia",
+        nomeCompleto: "Wilson de Araújo Rocha",
+        partido: "UNIÃO",
+        cargo: null,
+        votos2024: 1337,
+        perfilUrl: "https://www.camarasantabarbara.sp.gov.br/Vereador/Listar/108",
+        siaveUrl: URLS_OFICIAIS.siaveIndice,
+        presencasCount: 1,
+        ausenciasCount: 0,
+        presencaUrl: URLS_OFICIAIS.ata37,
+        votosTexto: "Ver Ata 10×8",
+        votosUrl: URLS_OFICIAIS.ata11,
+        presencasDetalle: [
+          { texto: "Presente na 37ª Reunião Ordinária (13/10/2026).", url: URLS_OFICIAIS.ata37, labelLink: "Ata #355778 (PDF)" }
+        ],
+        votosDetalle: "Na votação nominal da 11ª Reunião Ordinária (10 favoráveis × 8 contrários), não consta na lista de votos contrários da Ata #336817.",
+        propostas: [
+          {
+            tipo: "Indicação",
+            numero: "Indicação nº 3180/2026",
+            data: "04/08/2026",
+            bairro: "Jardim Esmeralda",
+            rua: "Rua Floriano Peixoto",
+            trecho: "Trecho próximo ao córrego",
+            tipoServico: "Drenagem e galerias pluviais",
+            resumoSimples: "Solicita manutenção de galerias pluviais, guias e sarjetas na Rua Floriano Peixoto, Jardim Esmeralda.",
+            ementa: "Indica ao Poder Executivo Municipal serviços de drenagem urbana e limpeza de galerias na Rua Floriano Peixoto, Jardim Esmeralda.",
+            situacao: "Encaminhada à Prefeitura",
+            url: URLS_OFICIAIS.siaveIndice
+          },
+          {
+            tipo: "Requerimento",
+            numero: "Requerimento Obras Públicas (2026)",
+            data: "11/08/2026",
+            bairro: "Toda a cidade",
+            rua: "",
+            tipoServico: "Cobrança de cronograma de obras",
+            resumoSimples: "Solicita informações técnicas e prazos de conclusão de obras viárias na cidade.",
+            ementa: "Requer informações ao Poder Executivo sobre cronograma técnico de obras de infraestrutura.",
+            situacao: "Protocolado",
+            url: URLS_OFICIAIS.siaveIndice
+          }
+        ]
+      }
+    ];
+
+    const PARTIES = ["Todos", "PL", "Republicanos", "PRD", "DC", "UNIÃO", "PV", "MDB", "PSD", "SD", "PODE", "Agir"];
+    const STORAGE_KEY = "fiscaliza_sbo_streets_v3";
+
+    let state = {
+      councilors: [],
+      activeTab: "bairroRua", // "bairroRua" | "vereadores" | "grupos" | "regras"
+      streetQuery: "",
+      councilorQuery: "",
+      selectedParty: "Todos",
+      sortBy: "alpha",
+      openGroupAccordions: new Set(),
+      openAtaDrawers: new Set()
+    };
+
+    function loadState() {
+      try {
+        const saved = localStorage.getItem(STORAGE_KEY);
+        if (saved) {
+          const parsed = JSON.parse(saved);
+          if (Array.isArray(parsed) && parsed.length === 19) {
+            state.councilors = parsed;
+            const hasImported = parsed.some(c => c.propostas.some(p => p.imported === true));
+            document.getElementById("customDataBadge").classList.toggle("hidden", !hasImported);
+            return;
+          }
+        }
+      } catch (e) {
+        console.warn("Erro ao carregar localStorage:", e);
+      }
+      state.councilors = JSON.parse(JSON.stringify(INITIAL_COUNCILORS));
+      document.getElementById("customDataBadge").classList.add("hidden");
+    }
+
+    function saveState() {
+      try {
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(state.councilors));
+      } catch (e) {
+        console.warn("Erro ao salvar localStorage:", e);
+      }
+    }
+
+    function formatNumber(num) {
+      return Number(num).toLocaleString("pt-BR");
+    }
+
+    function getInitials(name) {
+      const clean = name.replace(/\(.*?\)/g, "").trim();
+      const parts = clean.split(/\s+/);
+      if (parts.length === 1) return parts[0].slice(0, 2).toUpperCase();
+      return (parts[0][0] + parts[parts.length - 1][0]).toUpperCase();
+    }
+
+    function externalIcon(cls = "w-3 h-3") {
+      return `<svg class="${cls} inline-block shrink-0" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>`;
+    }
+
+    /**
+     * Retorna lista plana de todas as propostas enriquecidas com autor, partido e classificação
+     */
+    function getAllEnrichedProposals() {
+      const all = [];
+      state.councilors.forEach(c => {
+        (c.propostas || []).forEach(p => {
+          const loc = extrairLocalDaEmenta(p);
+          all.push({
+            ...p,
+            rua: loc.rua,
+            bairro: loc.bairro || p.bairro || "",
+            tipoServico: inferirTipoServico(p),
+            grupoKey: classificarProposta(p),
+            autorId: c.id,
+            autorNome: c.nome,
+            autorPartido: c.partido,
+            autorPerfilUrl: c.perfilUrl,
+            autorSiaveUrl: c.siaveUrl
+          });
+        });
+      });
+      return all;
+    }
+
+    function updateTopSummary() {
+      const all = getAllEnrichedProposals();
+      const topLink = document.getElementById("topTotalProposalsLink");
+      if (topLink) {
+        topLink.innerHTML = `${formatNumber(all.length)} ${externalIcon("w-3.5 h-3.5")}`;
+      }
+      const grpBadge = document.getElementById("groupsTotalProposalsBadge");
+      if (grpBadge) {
+        grpBadge.innerHTML = `${formatNumber(all.length)} ${externalIcon("w-3 h-3")}`;
+      }
+    }
+
+    /**
+     * Renderiza Pílulas de Acesso Rápido de Bairros e Ruas
+     */
+    function renderQuickLocationsBar() {
+      const bar = document.getElementById("quickLocationsBar");
+      const currentNorm = normalizeStr(state.streetQuery);
+      bar.innerHTML = QUICK_LOCATIONS.map(loc => {
+        const isActive = currentNorm && currentNorm === normalizeStr(loc.query);
+        const cls = isActive
+          ? "px-2.5 py-1.5 rounded-lg text-xs font-bold bg-[#0F2942] text-white border border-[#0F2942] transition cursor-pointer"
+          : "px-2.5 py-1.5 rounded-lg text-xs font-semibold bg-[#F8FAFC] hover:bg-blue-50 text-slate-700 hover:text-[#1D4ED8] border border-[#E2E8F0] transition cursor-pointer";
+        return `<button type="button" data-loc-query="${loc.query}" class="${cls}">${loc.label}</button>`;
+      }).join("");
+
+      bar.querySelectorAll("button").forEach(btn => {
+        btn.addEventListener("click", () => {
+          const input = document.getElementById("streetSearchInput");
+          input.value = btn.dataset.locQuery;
+          state.streetQuery = btn.dataset.locQuery;
+          document.getElementById("clearStreetSearchBtn").classList.remove("hidden");
+          renderQuickLocationsBar();
+          renderBairroRuaTab();
+        });
+      });
+    }
+
+    /**
+     * Renderiza Card de Cruzamento de Pedidos Repetidos na Mesma Rua
+     */
+    function renderRepeatedGroupCard(grupo) {
+      const firstUrl = grupo.pedidos[0]?.url || URLS_OFICIAIS.siaveIndice;
+      const authorSummaryText = grupo.mesmoVereador
+        ? `Mesmo vereador (${grupo.pedidos[0].autorNome} — ${grupo.pedidos[0].autorPartido})`
+        : `${grupo.autoresUnicosCount} vereadores diferentes`;
+
+      const timelineHtml = grupo.pedidos.map(ped => {
+        const pedUrl = ped.url || URLS_OFICIAIS.siaveIndice;
+        return `
+          <div class="bg-white border border-[#E2E8F0] rounded-lg p-2.5 flex flex-col sm:flex-row sm:items-center justify-between gap-2 text-xs">
+            <div class="space-y-0.5 min-w-0">
+              <div class="flex flex-wrap items-center gap-1.5">
+                <a
+                  href="${pedUrl}"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  title="Abrir protocolo oficial na data ${ped.data}"
+                  class="font-extrabold text-[#1D4ED8] underline decoration-blue-300 underline-offset-2 hover:text-blue-800 inline-flex items-center gap-1"
+                >
+                  <span>${ped.data}</span>
+                  ${externalIcon("w-3 h-3")}
+                </a>
+                <span class="text-slate-400">•</span>
+                <a
+                  href="${pedUrl}"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="font-bold text-[#1D4ED8] underline decoration-blue-300 hover:text-blue-800"
+                >
+                  ${ped.numero}
+                </a>
+                <span class="text-slate-400">•</span>
+                <a
+                  href="${ped.autorPerfilUrl}"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="font-bold text-[#0F2942] underline decoration-slate-300 hover:text-[#1D4ED8]"
+                >
+                  ${ped.autorNome} (${ped.autorPartido})
+                </a>
+              </div>
+              <p class="text-slate-700 leading-relaxed">${ped.resumoSimples}</p>
+              ${ped.trecho ? `<p class="text-[11px] text-slate-500"><strong>Trecho informado:</strong> ${ped.trecho}</p>` : ""}
+            </div>
+            <span class="shrink-0 self-start sm:self-center px-2 py-0.5 rounded-full text-[10px] font-semibold bg-emerald-50 text-[#047857] border border-emerald-200">
+              ${ped.situacao || "Encaminhada"}
+            </span>
+          </div>
+        `;
+      }).join("");
+
+      return `
+        <article class="bg-white border border-[#E2E8F0] rounded-xl overflow-hidden">
+          <div class="p-4 bg-[#F8FAFC] border-b border-[#E2E8F0] flex flex-wrap items-start justify-between gap-3">
+            <div class="space-y-1 min-w-0">
+              <div class="flex flex-wrap items-center gap-2">
+                <h4 class="text-sm sm:text-base font-extrabold text-[#0F2942]">${grupo.rua}</h4>
+                <span class="px-2 py-0.5 rounded-md text-[11px] font-semibold bg-white text-slate-700 border border-[#E2E8F0]">
+                  ${grupo.bairroPrincipal}
+                </span>
+              </div>
+              <p class="text-xs text-slate-700">
+                <strong>Tipo de pedido repetido:</strong> ${grupo.tipoServico}
+              </p>
+              <p class="text-[11px] text-slate-600">
+                Solicitado por: <strong>${authorSummaryText}</strong>
+              </p>
+            </div>
+
+            <div class="shrink-0 flex flex-col items-end gap-1">
+              <a
+                href="${firstUrl}"
+                target="_blank"
+                rel="noopener noreferrer"
+                title="Abrir documentos oficiais destes pedidos no Sino.Siave"
+                class="inline-flex items-center gap-1 px-3 py-1 rounded-full text-xs font-extrabold bg-blue-50 text-[#1D4ED8] border border-blue-200 underline hover:bg-blue-100"
+              >
+                <span>${grupo.contagem} pedidos iguais</span>
+                ${externalIcon("w-3 h-3")}
+              </a>
+              <span class="text-[10px] text-slate-500">Toque nos números/datas para ver no Siave</span>
+            </div>
+          </div>
+
+          <div class="p-3.5 space-y-2 bg-white">
+            <span class="block text-[10px] font-bold uppercase tracking-wide text-slate-500">
+              Linha do tempo com todas as datas e autores:
+            </span>
+            <div class="space-y-2">
+              ${timelineHtml}
+            </div>
+          </div>
+        </article>
+      `;
+    }
+
+    /**
+     * Renderiza Card Individual de Pedido na Lista Cronológica do Bairro/Rua
+     */
+    function renderProposalCardHtml(prop, showAuthorBadge = true) {
+      const safeUrl = prop.url || URLS_OFICIAIS.siaveIndice;
+      const grupoCfg = GRUPOS_CONFIG.find(g => g.key === (prop.grupoKey || classificarProposta(prop))) || GRUPOS_CONFIG[0];
+
+      return `
+        <div class="bg-white border border-[#E2E8F0] rounded-xl p-3.5 space-y-2 text-xs">
+          <div class="flex flex-wrap items-center justify-between gap-2">
+            <div class="flex flex-wrap items-center gap-1.5">
+              <a
+                href="${safeUrl}"
+                target="_blank"
+                rel="noopener noreferrer"
+                title="Abrir data oficial do protocolo no Sino.Siave"
+                class="font-extrabold text-[#1D4ED8] underline decoration-blue-300 underline-offset-2 hover:text-blue-800 inline-flex items-center gap-1"
+              >
+                <span>${prop.data}</span>
+                ${externalIcon("w-3 h-3")}
+              </a>
+              <span class="text-slate-400">•</span>
+              <a
+                href="${safeUrl}"
+                target="_blank"
+                rel="noopener noreferrer"
+                title="Abrir documento oficial no Sino.Siave"
+                class="font-extrabold text-[#1D4ED8] underline decoration-blue-300 underline-offset-2 hover:text-blue-800 inline-flex items-center gap-1"
+              >
+                <span>${prop.numero}</span>
+                ${externalIcon("w-3 h-3")}
+              </a>
+              ${showAuthorBadge && prop.autorNome ? `
+                <a
+                  href="${prop.autorPerfilUrl || URLS_OFICIAIS.partidos}"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="px-2 py-0.5 rounded bg-slate-100 hover:bg-blue-50 text-[#0F2942] hover:text-[#1D4ED8] font-bold border border-slate-200 underline decoration-slate-300"
+                >
+                  ${prop.autorNome} (${prop.autorPartido})
+                </a>
+              ` : ""}
+            </div>
+            <span class="px-2 py-0.5 rounded-full text-[10px] font-semibold bg-emerald-50 text-[#047857] border border-emerald-200">
+              ${prop.situacao || "Tramitando"}
+            </span>
+          </div>
+
+          <div class="flex flex-wrap items-center gap-1.5 text-[11px]">
+            ${prop.bairro ? `<span class="px-2 py-0.5 rounded bg-[#F8FAFC] border border-[#E2E8F0] text-slate-700 font-semibold">Bairro: ${prop.bairro}</span>` : ""}
+            ${prop.rua ? `<span class="px-2 py-0.5 rounded bg-[#F8FAFC] border border-[#E2E8F0] text-slate-700 font-semibold">Rua: ${prop.rua}</span>` : ""}
+            <span class="px-2 py-0.5 rounded border ${grupoCfg.badgeClass} font-semibold">${grupoCfg.titulo}</span>
+          </div>
+
+          <div class="p-2.5 rounded-lg bg-[#F8FAFC] border border-[#E2E8F0]">
+            <span class="block text-[10px] font-bold uppercase tracking-wide text-[#0F2942] mb-0.5">O que pede na prática:</span>
+            <p class="text-slate-800 leading-relaxed font-medium">${prop.resumoSimples}</p>
+          </div>
+
+          <p class="text-[11px] text-slate-600 leading-relaxed">
+            <strong class="text-slate-700">Ementa oficial:</strong> ${prop.ementa}
+          </p>
+
+          <div class="pt-0.5 flex justify-end">
+            <a
+              href="${safeUrl}"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="inline-flex items-center gap-1 text-[11px] font-bold text-[#1D4ED8] underline hover:text-blue-800"
+            >
+              <span>Abrir texto oficial no Sino.Siave</span>
+              ${externalIcon("w-3 h-3")}
+            </a>
+          </div>
+        </div>
+      `;
+    }
+
+    /**
+     * RENDERIZAÇÃO DA ABA 1: BUSCA POR BAIRRO OU RUA + CRUZAMENTO DE PEDIDOS REPETIDOS
+     */
+    function renderBairroRuaTab() {
+      const allProposals = getAllEnrichedProposals();
+      const allRepeated = cruzarPedidosMesmaRua(allProposals);
+      const qRaw = state.streetQuery.trim();
+      const qNorm = normalizeStr(qRaw);
+
+      const summarySec = document.getElementById("locationSummarySection");
+      const timelineSec = document.getElementById("locationTimelineSection");
+      const repeatedSec = document.getElementById("repeatedStreetsSection");
+      const emptySec = document.getElementById("locationEmptyState");
+
+      const repeatedContainer = document.getElementById("repeatedStreetsContainer");
+      const repeatedTitle = document.getElementById("repeatedSectionTitle");
+      const repeatedSubtitle = document.getElementById("repeatedSectionSubtitle");
+      const repeatedBadge = document.getElementById("repeatedGroupsCountBadge");
+
+      if (!qNorm) {
+        // Visão geral da cidade: mostra todas as ruas com pedidos repetidos
+        summarySec.classList.add("hidden");
+        timelineSec.classList.add("hidden");
+        emptySec.classList.add("hidden");
+        repeatedSec.classList.remove("hidden");
+
+        repeatedTitle.firstElementChild.textContent = "Cruzamento: Pedidos repetidos na mesma rua em Santa Bárbara d'Oeste";
+        repeatedSubtitle.textContent = "Mostrando todas as ruas onde o mesmo tipo de pedido apareceu 2 ou mais vezes (ordenadas pela maior contagem).";
+        repeatedBadge.href = URLS_OFICIAIS.siaveIndice;
+        repeatedBadge.innerHTML = `${allRepeated.length} ${externalIcon("w-3 h-3")}`;
+
+        repeatedContainer.innerHTML = allRepeated.map(g => renderRepeatedGroupCard(g)).join("");
+        return;
+      }
+
+      // Filtra todas as propostas que correspondem ao bairro, rua, trecho ou ementa pesquisada
+      const matchingProposals = allProposals
+        .filter(p => {
+          return (
+            normalizeStr(p.bairro).includes(qNorm) ||
+            normalizeStr(p.rua).includes(qNorm) ||
+            normalizeStr(p.trecho || "").includes(qNorm) ||
+            normalizeStr(p.ementa).includes(qNorm) ||
+            normalizeStr(p.resumoSimples).includes(qNorm)
+          );
+        })
+        .sort((a, b) => parseDateBR(b.data) - parseDateBR(a.data));
+
+      // Filtra também os grupos de pedidos repetidos pertinentes ao bairro ou rua buscada
+      const matchingRepeated = allRepeated.filter(g => {
+        const matchRua = normalizeStr(g.rua).includes(qNorm);
+        const matchBairro = normalizeStr(g.bairroPrincipal).includes(qNorm);
+        const matchInside = g.pedidos.some(p =>
+          normalizeStr(p.bairro).includes(qNorm) ||
+          normalizeStr(p.rua).includes(qNorm) ||
+          normalizeStr(p.ementa).includes(qNorm)
+        );
+        return matchRua || matchBairro || matchInside;
+      });
+
+      if (matchingProposals.length === 0 && matchingRepeated.length === 0) {
+        summarySec.classList.add("hidden");
+        timelineSec.classList.add("hidden");
+        repeatedSec.classList.add("hidden");
+        emptySec.classList.remove("hidden");
+        return;
+      }
+
+      emptySec.classList.add("hidden");
+      summarySec.classList.remove("hidden");
+      timelineSec.classList.remove("hidden");
+
+      const uniqueAuthors = new Set(matchingProposals.map(p => p.autorNome));
+      const firstResultUrl = matchingProposals[0]?.url || URLS_OFICIAIS.siaveIndice;
+
+      document.getElementById("searchedLocationHeading").textContent = `"${qRaw}"`;
+
+      const locTotalLink = document.getElementById("locTotalProposalsLink");
+      locTotalLink.href = firstResultUrl;
+      locTotalLink.innerHTML = `${matchingProposals.length} ${externalIcon("w-3.5 h-3.5")}`;
+
+      const locAuthorsLink = document.getElementById("locUniqueAuthorsLink");
+      locAuthorsLink.href = URLS_OFICIAIS.partidos;
+      locAuthorsLink.innerHTML = `${uniqueAuthors.size} ${externalIcon("w-3.5 h-3.5")}`;
+
+      const locRepeatedLink = document.getElementById("locRepeatedGroupsLink");
+      locRepeatedLink.href = firstResultUrl;
+      locRepeatedLink.innerHTML = `${matchingRepeated.length} ${externalIcon("w-3.5 h-3.5")}`;
+
+      // Exibe cruzamentos repetidos encontrados neste bairro/rua (se houver)
+      if (matchingRepeated.length > 0) {
+        repeatedSec.classList.remove("hidden");
+        repeatedTitle.firstElementChild.textContent = `Pedidos repetidos na mesma rua em "${qRaw}"`;
+        repeatedSubtitle.textContent = "Cruzamento automático de solicitações do mesmo tipo para a mesma rua neste local.";
+        repeatedBadge.href = firstResultUrl;
+        repeatedBadge.innerHTML = `${matchingRepeated.length} ${externalIcon("w-3 h-3")}`;
+        repeatedContainer.innerHTML = matchingRepeated.map(g => renderRepeatedGroupCard(g)).join("");
+      } else {
+        repeatedSec.classList.add("hidden");
+      }
+
+      // Exibe todos os pedidos registrados para o bairro ou rua
+      const timelineBadge = document.getElementById("locationTimelineCountBadge");
+      timelineBadge.href = firstResultUrl;
+      timelineBadge.innerHTML = `${matchingProposals.length} ${externalIcon("w-3 h-3")}`;
+
+      document.getElementById("locationProposalsList").innerHTML = matchingProposals
+        .map(p => renderProposalCardHtml(p, true))
+        .join("");
+    }
+
+    /**
+     * RENDERIZAÇÃO DA ABA 2: TODOS OS 19 VEREADORES
+     */
+    function renderPartyBar() {
+      const bar = document.getElementById("partyFilterBar");
+      bar.innerHTML = PARTIES.map(party => {
+        const active = state.selectedParty === party;
+        const baseCls = "px-3 py-1.5 rounded-full text-xs font-semibold border whitespace-nowrap transition cursor-pointer";
+        const activeCls = active
+          ? "bg-[#0F2942] text-white border-[#0F2942]"
+          : "bg-white text-slate-700 border-[#E2E8F0] hover:bg-[#F8FAFC]";
+        return `<button type="button" data-party="${party}" class="${baseCls} ${activeCls}">${party}</button>`;
+      }).join("");
+
+      bar.querySelectorAll("button").forEach(btn => {
+        btn.addEventListener("click", () => {
+          state.selectedParty = btn.dataset.party;
+          renderPartyBar();
+          renderCouncilorsTab();
+        });
+      });
+    }
+
+    function renderCouncilorsTab() {
+      const container = document.getElementById("councilorsListContainer");
+      const emptyEl = document.getElementById("councilorEmptyState");
+      const countLink = document.getElementById("visibleCouncilorsCountLink");
+      const q = normalizeStr(state.councilorQuery.trim());
+
+      const filtered = state.councilors
+        .filter(c => {
+          const matchParty = state.selectedParty === "Todos" || c.partido === state.selectedParty;
+          if (!matchParty) return false;
+          if (!q) return true;
+          const matchName =
+            normalizeStr(c.nome).includes(q) ||
+            normalizeStr(c.nomeCompleto).includes(q) ||
+            normalizeStr(c.partido).includes(q);
+          const matchProp = (c.propostas || []).some(p =>
+            normalizeStr(p.numero).includes(q) ||
+            normalizeStr(p.resumoSimples).includes(q) ||
+            normalizeStr(p.ementa).includes(q) ||
+            normalizeStr(p.bairro || "").includes(q) ||
+            normalizeStr(p.rua || "").includes(q)
+          );
+          return matchName || matchProp;
+        })
+        .sort((a, b) => {
+          if (state.sortBy === "votes") return b.votos2024 - a.votos2024;
+          if (state.sortBy === "party") {
+            const cmp = a.partido.localeCompare(b.partido, "pt-BR");
+            return cmp !== 0 ? cmp : a.nome.localeCompare(b.nome, "pt-BR");
+          }
+          return a.nome.localeCompare(b.nome, "pt-BR");
+        });
+
+      countLink.innerHTML = `${filtered.length} ${externalIcon("w-3 h-3")}`;
+
+      if (filtered.length === 0) {
+        container.innerHTML = "";
+        emptyEl.classList.remove("hidden");
+        return;
+      }
+      emptyEl.classList.add("hidden");
+
+      container.innerHTML = filtered.map(c => {
+        const initials = getInitials(c.nome);
+        const showFullName = normalizeStr(c.nome) !== normalizeStr(c.nomeCompleto);
+        const ataDrawerOpen = state.openAtaDrawers.has(c.id);
+
+        const grouped = { bairros: [], cobrancas: [], homenagens: [], leis: [], outros: [] };
+        (c.propostas || []).forEach(p => {
+          const loc = extrairLocalDaEmenta(p);
+          const enriched = {
+            ...p,
+            rua: loc.rua,
+            bairro: loc.bairro || p.bairro || "",
+            grupoKey: classificarProposta(p)
+          };
+          grouped[enriched.grupoKey].push(enriched);
+        });
+
+        const presencaLabel = c.ausenciasCount > 0
+          ? `${c.presencasCount} pres. / ${c.ausenciasCount} aus.`
+          : `${c.presencasCount} ${c.presencasCount === 1 ? "presença" : "presenças"}`;
+
+        const groupsAccordionHtml = GRUPOS_CONFIG.map(grp => {
+          const items = grouped[grp.key] || [];
+          const accKey = `c-${c.id}-${grp.key}`;
+          const isOpen = state.openGroupAccordions.has(accKey);
+          const firstItemUrl = items[0]?.url || c.siaveUrl;
+
+          return `
+            <div class="border border-[#E2E8F0] rounded-lg overflow-hidden bg-white">
+              <button
+                type="button"
+                data-acc-key="${accKey}"
+                aria-expanded="${isOpen ? "true" : "false"}"
+                class="councilor-group-btn w-full px-3 py-2.5 flex items-center justify-between gap-2 text-left hover:bg-[#F8FAFC] transition cursor-pointer"
+              >
+                <div class="flex items-center gap-2 min-w-0">
+                  <span class="w-2.5 h-2.5 rounded-full ${grp.dotColor} shrink-0"></span>
+                  <span class="text-xs font-bold text-[#0F2942] truncate">${grp.titulo}</span>
+                </div>
+                <div class="flex items-center gap-2 shrink-0">
+                  <a
+                    href="${firstItemUrl}"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    onclick="event.stopPropagation()"
+                    class="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-xs font-extrabold border ${grp.badgeClass} underline"
+                  >
+                    ${items.length}
+                    ${externalIcon("w-3 h-3")}
+                  </a>
+                  <svg class="w-4 h-4 text-slate-500 transition-transform ${isOpen ? "rotate-180" : ""}" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
+                  </svg>
+                </div>
+              </button>
+              ${isOpen ? `
+                <div class="border-t border-[#E2E8F0] bg-[#F8FAFC] p-3 space-y-2.5">
+                  <p class="text-[11px] text-slate-600">${grp.subtitulo}</p>
+                  ${items.length > 0
+                    ? items.map(item => renderProposalCardHtml(item, false)).join("")
+                    : `<div class="bg-white border border-[#E2E8F0] rounded-lg p-3 text-xs text-slate-600 flex flex-wrap items-center justify-between gap-2">
+                        <span>Nenhuma proposta indexada neste grupo para ${c.nome} na amostra atual.</span>
+                        <a href="${c.siaveUrl}" target="_blank" rel="noopener noreferrer" class="font-bold text-[#1D4ED8] underline inline-flex items-center gap-1">
+                          Consultar no Sino.Siave ${externalIcon("w-3 h-3")}
+                        </a>
+                      </div>`
+                  }
+                </div>
+              ` : ""}
+            </div>
+          `;
+        }).join("");
+
+        return `
+          <article class="bg-white border border-[#E2E8F0] rounded-xl overflow-hidden">
+            <div class="p-4 space-y-3.5">
+              <div class="flex items-start justify-between gap-3">
+                <div class="flex items-start gap-3 min-w-0">
+                  <div class="w-11 h-11 rounded-full bg-[#F8FAFC] border border-[#E2E8F0] text-[#0F2942] font-extrabold text-sm flex items-center justify-center shrink-0" aria-hidden="true">
+                    ${initials}
+                  </div>
+                  <div class="min-w-0">
+                    <div class="flex flex-wrap items-center gap-1.5">
+                      <h3 class="text-base font-extrabold text-[#0F2942] leading-tight">${c.nome}</h3>
+                      <span class="px-2 py-0.5 rounded-md text-[11px] font-bold bg-slate-100 text-slate-800 border border-slate-200">${c.partido}</span>
+                    </div>
+                    ${showFullName ? `<p class="text-xs text-slate-500 mt-0.5 truncate">${c.nomeCompleto}</p>` : ""}
+                    ${c.cargo ? `<p class="text-[11px] font-semibold text-[#0F2942] bg-blue-50/70 border border-blue-100 inline-block px-2 py-0.5 rounded mt-1">${c.cargo}</p>` : ""}
+                  </div>
+                </div>
+                <a
+                  href="${c.perfilUrl}"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="shrink-0 inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-[11px] font-semibold bg-emerald-50 text-[#047857] border border-emerald-200 hover:bg-emerald-100 transition"
+                >
+                  <span>Fonte Oficial</span>
+                  ${externalIcon("w-3 h-3")}
+                </a>
+              </div>
+
+              <div class="grid grid-cols-3 gap-2">
+                <div class="bg-[#F8FAFC] border border-[#E2E8F0] rounded-lg p-2.5">
+                  <span class="block text-[10px] font-semibold uppercase tracking-wide text-slate-500">
+                    Votos <a href="${c.perfilUrl}" target="_blank" rel="noopener noreferrer" class="text-[#1D4ED8] underline">2024</a>
+                  </span>
+                  <div class="mt-1">
+                    <a href="${c.perfilUrl}" target="_blank" rel="noopener noreferrer" class="text-sm font-extrabold text-[#1D4ED8] underline decoration-blue-300 underline-offset-2 inline-flex items-center gap-1">
+                      ${formatNumber(c.votos2024)} ${externalIcon("w-3 h-3")}
+                    </a>
+                  </div>
+                </div>
+
+                <div class="bg-[#F8FAFC] border border-[#E2E8F0] rounded-lg p-2.5">
+                  <span class="block text-[10px] font-semibold uppercase tracking-wide text-slate-500">
+                    Atas <a href="${URLS_OFICIAIS.ata37}" target="_blank" rel="noopener noreferrer" class="text-[#1D4ED8] underline">2026</a>
+                  </span>
+                  <div class="mt-1">
+                    <a href="${c.presencaUrl}" target="_blank" rel="noopener noreferrer" class="text-sm font-extrabold text-[#1D4ED8] underline decoration-blue-300 underline-offset-2 inline-flex items-center gap-1">
+                      ${presencaLabel} ${externalIcon("w-3 h-3")}
+                    </a>
+                  </div>
+                </div>
+
+                <div class="bg-[#F8FAFC] border border-[#E2E8F0] rounded-lg p-2.5">
+                  <span class="block text-[10px] font-semibold uppercase tracking-wide text-slate-500">
+                    Votos <a href="${URLS_OFICIAIS.ata11}" target="_blank" rel="noopener noreferrer" class="text-[#1D4ED8] underline">2026</a>
+                  </span>
+                  <div class="mt-1">
+                    <a href="${c.votosUrl}" target="_blank" rel="noopener noreferrer" class="text-sm font-extrabold text-[#1D4ED8] underline decoration-blue-300 underline-offset-2 inline-flex items-center gap-1">
+                      ${c.votosTexto} ${externalIcon("w-3 h-3")}
+                    </a>
+                  </div>
+                </div>
+              </div>
+
+              <div class="space-y-2">
+                <div class="flex items-center justify-between">
+                  <span class="text-[11px] font-bold uppercase tracking-wide text-[#0F2942]">Propostas por grupo (toque para ler)</span>
+                  <a href="${c.siaveUrl}" target="_blank" rel="noopener noreferrer" class="text-[11px] font-semibold text-[#1D4ED8] underline inline-flex items-center gap-0.5">
+                    Sino.Siave ${externalIcon("w-3 h-3")}
+                  </a>
+                </div>
+                <div class="space-y-1.5">
+                  ${groupsAccordionHtml}
+                </div>
+              </div>
+
+              <button
+                type="button"
+                data-ata-id="${c.id}"
+                aria-expanded="${ataDrawerOpen ? "true" : "false"}"
+                class="toggle-ata-btn w-full py-2 px-3 rounded-lg border border-[#E2E8F0] bg-[#F8FAFC] hover:bg-slate-100 text-xs font-semibold text-slate-700 flex items-center justify-center gap-1.5 transition cursor-pointer"
+              >
+                <span>${ataDrawerOpen ? "Ocultar registros de presença e votos nas atas" : "Ver registros de presença e votos nas atas oficiais"}</span>
+                <svg class="w-3.5 h-3.5 transition-transform ${ataDrawerOpen ? "rotate-180" : ""}" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
+                </svg>
+              </button>
+            </div>
+
+            ${ataDrawerOpen ? `
+              <div class="border-t border-[#E2E8F0] bg-[#F8FAFC] p-4 space-y-3 text-xs text-slate-700">
+                <div class="space-y-1.5">
+                  <h4 class="font-bold text-[#0F2942] uppercase tracking-wide">Chamada de Presença nas Atas (2026)</h4>
+                  <ul class="space-y-1.5">
+                    ${c.presencasDetalle.map(item => `
+                      <li class="bg-white border border-[#E2E8F0] rounded-lg p-2.5 flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+                        <span class="text-slate-800">${item.texto}</span>
+                        <a href="${item.url}" target="_blank" rel="noopener noreferrer" class="shrink-0 font-bold text-[#1D4ED8] underline inline-flex items-center gap-1">
+                          ${item.labelLink} ${externalIcon("w-3 h-3")}
+                        </a>
+                      </li>
+                    `).join("")}
+                  </ul>
+                </div>
+
+                <div class="space-y-1.5">
+                  <h4 class="font-bold text-[#0F2942] uppercase tracking-wide">Como Votou nas Sessões Auditadas</h4>
+                  <div class="bg-white border border-[#E2E8F0] rounded-lg p-2.5 space-y-2">
+                    <p class="text-slate-800 leading-relaxed">${c.votosDetalle}</p>
+                    <div class="flex flex-wrap gap-3">
+                      <a href="${URLS_OFICIAIS.ata11}" target="_blank" rel="noopener noreferrer" class="font-bold text-[#1D4ED8] underline inline-flex items-center gap-1">
+                        Ata 11ª Sessão (10×8) ${externalIcon("w-3 h-3")}
+                      </a>
+                      <a href="${URLS_OFICIAIS.ata37}" target="_blank" rel="noopener noreferrer" class="font-bold text-[#1D4ED8] underline inline-flex items-center gap-1">
+                        Ata 37ª Sessão (17×1) ${externalIcon("w-3 h-3")}
+                      </a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            ` : ""}
+          </article>
+        `;
+      }).join("");
+
+      container.querySelectorAll(".councilor-group-btn").forEach(btn => {
+        btn.addEventListener("click", () => {
+          const key = btn.dataset.accKey;
+          if (state.openGroupAccordions.has(key)) {
+            state.openGroupAccordions.delete(key);
+          } else {
+            state.openGroupAccordions.add(key);
+          }
+          renderCouncilorsTab();
+        });
+      });
+
+      container.querySelectorAll(".toggle-ata-btn").forEach(btn => {
+        btn.addEventListener("click", () => {
+          const id = Number(btn.dataset.ataId);
+          if (state.openAtaDrawers.has(id)) {
+            state.openAtaDrawers.delete(id);
+          } else {
+            state.openAtaDrawers.add(id);
+          }
+          renderCouncilorsTab();
+        });
+      });
+    }
+
+    /**
+     * RENDERIZAÇÃO DA ABA 3: POR GRUPO DE ASSUNTO (5 GRUPOS CONSOLIDADOS)
+     */
+    function renderGruposTab() {
+      const container = document.getElementById("consolidatedGroupsContainer");
+      const all = getAllEnrichedProposals();
+      const grouped = { bairros: [], cobrancas: [], homenagens: [], leis: [], outros: [] };
+
+      all.forEach(p => {
+        grouped[p.grupoKey].push(p);
+      });
+
+      container.innerHTML = GRUPOS_CONFIG.map(grp => {
+        const items = grouped[grp.key].sort((a, b) => parseDateBR(b.data) - parseDateBR(a.data));
+        const accKey = `global-${grp.key}`;
+        const isOpen = state.openGroupAccordions.has(accKey);
+
+        return `
+          <article class="bg-white border border-[#E2E8F0] rounded-xl overflow-hidden">
+            <button
+              type="button"
+              data-acc-key="${accKey}"
+              aria-expanded="${isOpen ? "true" : "false"}"
+              class="global-group-btn w-full p-4 flex items-center justify-between gap-3 text-left hover:bg-[#F8FAFC] transition cursor-pointer"
+            >
+              <div class="space-y-1 min-w-0">
+                <div class="flex items-center gap-2">
+                  <span class="w-3 h-3 rounded-full ${grp.dotColor} shrink-0"></span>
+                  <h3 class="text-sm sm:text-base font-extrabold text-[#0F2942]">${grp.titulo}</h3>
+                </div>
+                <p class="text-xs text-slate-600 leading-relaxed">${grp.subtitulo}</p>
+              </div>
+              <div class="flex items-center gap-2.5 shrink-0">
+                <a
+                  href="${grp.defaultUrl}"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  onclick="event.stopPropagation()"
+                  class="inline-flex items-center gap-1 px-3 py-1 rounded-full text-xs font-extrabold border ${grp.badgeClass} underline"
+                >
+                  ${items.length}
+                  ${externalIcon("w-3 h-3")}
+                </a>
+                <svg class="w-4 h-4 text-slate-500 transition-transform ${isOpen ? "rotate-180" : ""}" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
+                </svg>
+              </div>
+            </button>
+
+            ${isOpen ? `
+              <div class="border-t border-[#E2E8F0] bg-[#F8FAFC] p-4 space-y-2.5">
+                ${items.length > 0
+                  ? items.map(item => renderProposalCardHtml(item, true)).join("")
+                  : `<p class="text-xs text-slate-600">Nenhuma proposta indexada neste grupo.</p>`
+                }
+              </div>
+            ` : ""}
+          </article>
+        `;
+      }).join("");
+
+      container.querySelectorAll(".global-group-btn").forEach(btn => {
+        btn.addEventListener("click", () => {
+          const key = btn.dataset.accKey;
+          if (state.openGroupAccordions.has(key)) {
+            state.openGroupAccordions.delete(key);
+          } else {
+            state.openGroupAccordions.add(key);
+          }
+          renderGruposTab();
+        });
+      });
+    }
+
+    /**
+     * Alterna entre as 4 abas principais
+     */
+    function switchTab(tabName) {
+      state.activeTab = tabName;
+      const tabs = ["bairroRua", "vereadores", "grupos", "regras"];
+      tabs.forEach(t => {
+        const panel = document.getElementById(`tabPanel-${t}`);
+        if (panel) panel.classList.toggle("hidden", t !== tabName);
+      });
+
+      document.querySelectorAll(".main-tab-btn").forEach(btn => {
+        const isActive = btn.dataset.tab === tabName;
+        btn.setAttribute("aria-pressed", isActive ? "true" : "false");
+        btn.className = isActive
+          ? "main-tab-btn py-2.5 px-3 rounded-lg text-xs font-extrabold bg-[#0F2942] text-white shadow-2xs transition cursor-pointer text-center"
+          : "main-tab-btn py-2.5 px-3 rounded-lg text-xs font-bold bg-white text-slate-700 hover:bg-slate-100 border border-[#E2E8F0] transition cursor-pointer text-center";
+      });
+
+      updateTopSummary();
+      if (tabName === "bairroRua") renderBairroRuaTab();
+      if (tabName === "vereadores") renderCouncilorsTab();
+      if (tabName === "grupos") renderGruposTab();
+    }
+
+    /**
+     * Parser CSV/JSON: importa propostas do Sino.Siave, extrai bairro/rua/serviço e recalcula tudo
+     */
+    function parseAndApplyImport(rawText) {
+      const text = rawText.trim();
+      if (!text) {
+        return { ok: false, msg: "Nenhum conteúdo foi informado. Selecione um arquivo ou cole os dados." };
+      }
+
+      let records = [];
+      try {
+        if (text.startsWith("[") || text.startsWith("{")) {
+          const parsed = JSON.parse(text);
+          records = Array.isArray(parsed) ? parsed : (parsed.propostas || [parsed]);
+        } else {
+          const lines = text.split(/\r?\n/).map(l => l.trim()).filter(Boolean);
+          if (lines.length < 2) {
+            return { ok: false, msg: "O CSV precisa ter uma linha de cabeçalho e pelo menos uma linha de dados." };
+          }
+          const sep = lines[0].includes(";") ? ";" : ",";
+          const headers = lines[0].split(sep).map(h => h.trim().toLowerCase());
+          for (let i = 1; i < lines.length; i++) {
+            const cols = lines[i].split(sep).map(c => c.trim());
+            const obj = {};
+            headers.forEach((h, idx) => {
+              obj[h] = cols[idx] !== undefined ? cols[idx] : "";
+            });
+            records.push(obj);
+          }
+        }
+      } catch (err) {
+        return { ok: false, msg: "Erro ao ler o formato do arquivo. Verifique se é um CSV ou JSON válido." };
+      }
+
+      let addedCount = 0;
+      records.forEach(rec => {
+        const authorName = normalizeStr(rec.vereador || rec.autor || rec.nome || "");
+        const match = state.councilors.find(c =>
+          authorName && (normalizeStr(c.nome).includes(authorName) || normalizeStr(c.nomeCompleto).includes(authorName))
+        );
+
+        if (match && (rec.ementa || rec.numero)) {
+          const tipo = (rec.tipo || "Proposição").trim();
+          const num = (rec.numero || "S/N").trim();
+          const ano = (rec.ano || "2026").trim();
+          const labelNumero = num.toLowerCase().includes(tipo.toLowerCase()) ? num : `${tipo} nº ${num}/${ano}`;
+
+          const rawProp = {
+            tipo,
+            numero: labelNumero,
+            data: (rec.data || "10/11/2026").trim(),
+            bairro: (rec.bairro || "").trim(),
+            rua: (rec.rua || "").trim(),
+            trecho: (rec.trecho || "").trim(),
+            tipoServico: (rec.tiposervico || rec.tipoServico || "").trim(),
+            ementa: (rec.ementa || labelNumero).trim(),
+            resumoSimples: (rec.resumosimples || rec.resumoSimples || rec.ementa || labelNumero).trim(),
+            situacao: (rec.situacao || "Encaminhada à Prefeitura").trim(),
+            url: (rec.url || rec.fonteurl || match.siaveUrl).trim(),
+            imported: true
+          };
+
+          const extracted = extrairLocalDaEmenta(rawProp);
+          rawProp.rua = extracted.rua;
+          rawProp.bairro = extracted.bairro || rawProp.bairro;
+          rawProp.tipoServico = inferirTipoServico(rawProp);
+
+          const exists = match.propostas.some(p => normalizeStr(p.numero) === normalizeStr(rawProp.numero));
+          if (!exists) {
+            match.propostas.unshift(rawProp);
+            addedCount++;
+          }
+        }
+      });
+
+      if (addedCount === 0) {
+        return { ok: false, msg: "Nenhuma proposta nova foi adicionada. Verifique o nome do vereador e as colunas." };
+      }
+
+      saveState();
+      document.getElementById("customDataBadge").classList.remove("hidden");
+      switchTab(state.activeTab);
+      return { ok: true, msg: `${addedCount} proposta(s) importada(s), classificada(s) e cruzada(s) na busca por rua.` };
+    }
+
+    function resetToOriginalData() {
+      localStorage.removeItem(STORAGE_KEY);
+      state.councilors = JSON.parse(JSON.stringify(INITIAL_COUNCILORS));
+      state.openGroupAccordions.clear();
+      document.getElementById("customDataBadge").classList.add("hidden");
+      switchTab(state.activeTab);
+    }
+
+    document.addEventListener("DOMContentLoaded", () => {
+      loadState();
+      renderQuickLocationsBar();
+      renderPartyBar();
+      switchTab("bairroRua");
+
+      // Navegação entre abas
+      document.querySelectorAll(".main-tab-btn").forEach(btn => {
+        btn.addEventListener("click", () => switchTab(btn.dataset.tab));
+      });
+
+      // Busca por Bairro / Rua
+      const streetSearchInput = document.getElementById("streetSearchInput");
+      const clearStreetSearchBtn = document.getElementById("clearStreetSearchBtn");
+
+      streetSearchInput.addEventListener("input", () => {
+        state.streetQuery = streetSearchInput.value;
+        clearStreetSearchBtn.classList.toggle("hidden", !state.streetQuery);
+        renderQuickLocationsBar();
+        renderBairroRuaTab();
+      });
+
+      function clearStreetSearch() {
+        streetSearchInput.value = "";
+        state.streetQuery = "";
+        clearStreetSearchBtn.classList.add("hidden");
+        renderQuickLocationsBar();
+        renderBairroRuaTab();
+      }
+
+      clearStreetSearchBtn.addEventListener("click", () => {
+        clearStreetSearch();
+        streetSearchInput.focus();
+      });
+      document.getElementById("showAllCityRepeatedBtn").addEventListener("click", clearStreetSearch);
+      document.getElementById("clearLocationEmptyBtn").addEventListener("click", clearStreetSearch);
+
+      // Busca & Ordenação na aba Vereadores
+      const councilorSearchInput = document.getElementById("councilorSearchInput");
+      const clearCouncilorSearchBtn = document.getElementById("clearCouncilorSearchBtn");
+
+      councilorSearchInput.addEventListener("input", () => {
+        state.councilorQuery = councilorSearchInput.value;
+        clearCouncilorSearchBtn.classList.toggle("hidden", !state.councilorQuery);
+        renderCouncilorsTab();
+      });
+
+      clearCouncilorSearchBtn.addEventListener("click", () => {
+        councilorSearchInput.value = "";
+        state.councilorQuery = "";
+        clearCouncilorSearchBtn.classList.add("hidden");
+        renderCouncilorsTab();
+        councilorSearchInput.focus();
+      });
+
+      document.getElementById("councilorSortSelect").addEventListener("change", e => {
+        state.sortBy = e.target.value;
+        renderCouncilorsTab();
+      });
+
+      document.getElementById("resetCouncilorFiltersBtn").addEventListener("click", () => {
+        councilorSearchInput.value = "";
+        state.councilorQuery = "";
+        state.selectedParty = "Todos";
+        clearCouncilorSearchBtn.classList.add("hidden");
+        renderPartyBar();
+        renderCouncilorsTab();
+      });
+
+      document.getElementById("resetDataInlineBtn").addEventListener("click", resetToOriginalData);
+
+      // Modal de Importação CSV/JSON
+      const modal = document.getElementById("importModal");
+      const feedbackEl = document.getElementById("importFeedback");
+      const rawTextarea = document.getElementById("rawImportText");
+      const fileInput = document.getElementById("fileUploadInput");
+
+      function openModal() {
+        feedbackEl.classList.add("hidden");
+        modal.classList.remove("hidden");
+      }
+
+      function closeModal() {
+        modal.classList.add("hidden");
+      }
+
+      document.getElementById("openImportModalBtn").addEventListener("click", openModal);
+      document.getElementById("footerImportBtn").addEventListener("click", openModal);
+      document.getElementById("closeImportModalBtn").addEventListener("click", closeModal);
+      document.getElementById("cancelImportBtn").addEventListener("click", closeModal);
+
+      modal.addEventListener("click", e => {
+        if (e.target === modal) closeModal();
+      });
+
+      fileInput.addEventListener("change", e => {
+        const file = e.target.files[0];
+        if (!file) return;
+        const reader = new FileReader();
+        reader.onload = ev => {
+          rawTextarea.value = ev.target.result || "";
+        };
+        reader.readAsText(file, "UTF-8");
+      });
+
+      document.getElementById("fillSampleCsvBtn").addEventListener("click", () => {
+        rawTextarea.value = [
+          "vereador;tipo;numero;ano;data;bairro;rua;tipoServico;ementa;resumoSimples;situacao;url",
+          "Joi Fornasari;Indicação;4510;2026;04/11/2026;Cidade Nova;Rua do Algodão;Tapa-buraco e recapeamento;Indica operação tapa-buracos na Rua do Algodão, próximo à escola, Cidade Nova.;Pede tapa-buraco próximo à escola na Rua do Algodão, Cidade Nova.;Encaminhada à Prefeitura;http://www2.camarasantabarbara.sp.gov.br/Sino.Siave/Documentos/IndiceCronologico/74/8",
+          "Esther Moraes;Indicação;4515;2026;05/11/2026;Jardim Mollon;Rua do Cobre;Roçagem de mato e limpeza;Indica limpeza e roçagem de mato na Rua do Cobre, Jardim Mollon.;Solicita corte de mato e limpeza na Rua do Cobre, Jardim Mollon.;Encaminhada à Prefeitura;http://www2.camarasantabarbara.sp.gov.br/Sino.Siave/Documentos/IndiceCronologico/74/8"
+        ].join("\n");
+      });
+
+      document.getElementById("applyImportBtn").addEventListener("click", () => {
+        const result = parseAndApplyImport(rawTextarea.value);
+        feedbackEl.classList.remove("hidden", "bg-emerald-50", "text-emerald-800", "border-emerald-200", "bg-red-50", "text-red-800", "border-red-200");
+        if (result.ok) {
+          feedbackEl.classList.add("bg-emerald-50", "text-emerald-800", "border-emerald-200");
+          feedbackEl.textContent = result.msg;
+          setTimeout(() => closeModal(), 1100);
+        } else {
+          feedbackEl.classList.add("bg-red-50", "text-red-800", "border-red-200");
+          feedbackEl.textContent = result.msg;
+        }
+      });
+
+      document.getElementById("restoreDefaultBtn").addEventListener("click", () => {
+        resetToOriginalData();
+        feedbackEl.classList.remove("hidden", "bg-red-50", "text-red-800", "border-red-200");
+        feedbackEl.classList.add("bg-emerald-50", "text-emerald-800", "border-emerald-200");
+        feedbackEl.textContent = "Dados originais oficiais restaurados com sucesso.";
+        setTimeout(() => closeModal(), 900);
+      });
+    });
+  </script>
+</body>
+</html>

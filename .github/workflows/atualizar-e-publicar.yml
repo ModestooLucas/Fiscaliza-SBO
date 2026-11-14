@@ -1,0 +1,67 @@
+name: Atualizar Dados da Câmara e Publicar Site
+
+on:
+  schedule:
+    # Roda todo dia às 04:00 da manhã (horário de Brasília = 07:00 UTC)
+    - cron: '0 7 * * *'
+  workflow_dispatch: # Permite rodar manualmente a qualquer momento
+  push:
+    branches:
+      - main
+
+permissions:
+  contents: write
+  pages: write
+  id-token: write
+
+concurrency:
+  group: "pages-fiscaliza-sbo"
+  cancel-in-progress: false
+
+jobs:
+  coletar-e-validar:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Baixar código do repositório
+        uses: actions/checkout@v4
+
+      - name: Configurar Python 3.12
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Instalar dependências
+        run: pip install -r requirements.txt
+
+      - name: Coletar e auditar dados da Câmara (aborta se vier incompleto)
+        run: python atualiza_dados.py
+
+      - name: Salvar nova versão boa no repositório
+        run: |
+          git config user.name "Robo Fiscaliza SBO"
+          git config user.email "actions@users.noreply.github.com"
+          git add dados_camara.json
+          git diff --cached --quiet || git commit -m "Atualiza dados oficiais da Câmara [skip ci]"
+          git push
+
+      - name: Preparar pasta limpa para publicação
+        run: |
+          mkdir -p _site
+          cp index.html _site/
+          cp dados_camara.json _site/
+
+      - name: Enviar artefato para o GitHub Pages
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: '_site'
+
+  publicar-site:
+    needs: coletar-e-validar
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Publicar no GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
