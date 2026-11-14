@@ -324,4 +324,75 @@ def validar_coleta(novo: dict, caminho_atual: Path) -> tuple[bool, str]:
         return False, f"Poucas sessões coletadas ({len(sessoes)} < 10)."
 
     vereadores_encontrados = {
-        p.get("vereador") for p in propostas if p.get("vereador") in APELIDOS
+        p.get("vereador") for p in propostas if p.get("vereador") in APELIDOS_VEREADORES
+    }
+    if len(vereadores_encontrados) < 15:
+        return False, f"Apenas {len(vereadores_encontrados)} de 19 vereadores identificados nas propostas."
+
+    atas_validas = [s for s in sessoes if len(s.get("presentes", [])) >= 10]
+    if len(atas_validas) < 5:
+        return False, f"Poucas atas com lista de presença válida ({len(atas_validas)} < 5)."
+
+    if caminho_atual.exists():
+        try:
+            anterior = json.loads(caminho_atual.read_text(encoding="utf-8"))
+            ant_props = len(anterior.get("propostas", []))
+            ant_sess = len(anterior.get("sessoes", []))
+
+            if ant_props > 0 and len(propostas) < int(ant_props * 0.90):
+                return False, (
+                    f"Queda suspeita nas propostas: antes havia {ant_props}, agora vieram {len(propostas)}."
+                )
+
+            if ant_sess > 0 and len(sessoes) < ant_sess:
+                return False, (
+                    f"Queda suspeita nas sessões: antes havia {ant_sess}, agora vieram {len(sessoes)}."
+                )
+        except Exception as e:
+            print(f"   [Aviso] Não foi possível ler versão anterior para comparação: {e}")
+
+    return True, "Coleta validada com sucesso."
+
+
+def main():
+    pasta_script = Path(__file__).resolve().parent
+    caminho_saida = pasta_script / "dados_camara.json"
+    caminho_temp = pasta_script / "dados_camara_temp.json"
+
+    session = criar_sessao_resiliente()
+
+    try:
+        print("1. Coletando 100% das proposituras de 2026 no Siscam...")
+        propostas = coletar_todas_proposituras(session, ano=2026)
+
+        print("2. Coletando sessões e atas de 2026 (DOCX e PDF)...")
+        sessoes = coletar_sessoes_e_atas(session, ano=2026)
+    except Exception as e:
+        print(f"\n[BLOQUEADO] Erro durante a coleta na Câmara: {e}")
+        print("Mantendo a última versão boa de dados_camara.json.")
+        sys.exit(1)
+
+    saida = {
+        "gerado_em": pd.Timestamp.now(tz="America/Sao_Paulo").isoformat(),
+        "fonte_oficial": BASE_SISCAM,
+        "total_propostas": len(propostas),
+        "total_sessoes": len(sessoes),
+        "propostas": propostas,
+        "sessoes": sessoes,
+    }
+
+    ok, motivo = validar_coleta(saida, caminho_saida)
+    if not ok:
+        print(f"\n[BLOQUEADO] {motivo}")
+        print("O site NÃO será republicado; a última versão boa foi preservada.")
+        sys.exit(1)
+
+    caminho_temp.write_text(json.dumps(saida, ensure_ascii=False, indent=2), encoding="utf-8")
+    caminho_temp.replace(caminho_saida)
+
+    print(f"\n[OK] {motivo}")
+    print(f"Salvo em: {caminho_saida} ({len(propostas)} propostas | {len(sessoes)} sessões)")
+
+
+if __name__ == "__main__":
+    main()
