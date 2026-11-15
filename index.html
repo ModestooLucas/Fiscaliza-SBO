@@ -6,237 +6,243 @@
 <title>Fiscaliza SBO — Raio-X da Câmara de Santa Bárbara d'Oeste</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,800&family=Public+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700;12..96,800&family=Public+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
 <style>
 :root{
-  --paper:#ffffff; --ink:#0f1720; --mute:#5b6875; --hair:#e6eaee; --soft:#f5f7f9;
-  --b:#1d5fe0; --b-t:#eaf1ff; --c:#d9580b; --c-t:#fff1e6; --h:#cf2573; --h-t:#ffeaf3; --l:#0a8a5f; --l-t:#e4f7ef; --o:#5b6875; --o-t:#eef1f4;
-  --red:#ff3131; --ok:#0a8a5f; --warn:#c98a12; --bad:#d23a2e;
-  --shadow:0 1px 2px rgba(15,23,32,.05),0 8px 24px -12px rgba(15,23,32,.14);
+  --paper:#faf9f6;
+  --card:#ffffff;
+  --ink:#14171a;
+  --ink-2:#374151;
+  --mute:#636b75;
+  --hair:#e4e2dc;
+  --soft:#f2f0ea;
+  --b:#1b56d1; --b-t:#ebf1fd;
+  --c:#c94e08; --c-t:#fdf0e6;
+  --h:#b82065; --h-t:#fcebf3;
+  --l:#0b7a54; --l-t:#e6f5ef;
+  --o:#56606b; --o-t:#eef0f2;
+  --red:#c92a2a;
+  --ok:#0b7a54;
+  --bad:#c92a2a;
   --display:"Bricolage Grotesque","Public Sans",system-ui,sans-serif;
   --body:"Public Sans",system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
   color-scheme:light;
 }
 *{box-sizing:border-box}
 html{-webkit-text-size-adjust:100%}
-body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--body);font-size:16px;line-height:1.5}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--body);font-size:16px;line-height:1.55;-webkit-font-smoothing:antialiased}
 a{color:var(--b);text-underline-offset:3px}
 button{font:inherit;color:inherit;cursor:pointer}
-:focus-visible{outline:2.5px solid var(--b);outline-offset:2px;border-radius:8px}
+:focus-visible{outline:2px solid var(--b);outline-offset:2px;border-radius:6px}
 svg{display:block}
-.wrap{max-width:1080px;margin:0 auto;padding:0 18px}
+.wrap{max-width:1060px;margin:0 auto;padding:0 20px}
 .num{font-variant-numeric:tabular-nums}
 .mute{color:var(--mute)}
 .k-b{--k:var(--b);--kt:var(--b-t)}.k-c{--k:var(--c);--kt:var(--c-t)}.k-h{--k:var(--h);--kt:var(--h-t)}.k-l{--k:var(--l);--kt:var(--l-t)}.k-o{--k:var(--o);--kt:var(--o-t)}
 
-/* topo */
-.top{padding:26px 0 6px}
-.live{display:inline-flex;align-items:center;gap:8px;font-size:12.5px;font-weight:700;color:var(--ink);background:var(--soft);border-radius:999px;padding:6px 12px}
-.live i{width:9px;height:9px;border-radius:50%;background:var(--ok);box-shadow:0 0 0 0 rgba(10,138,95,.55);animation:pulse 1.8s infinite}
-@keyframes pulse{70%{box-shadow:0 0 0 9px rgba(10,138,95,0)}100%{box-shadow:0 0 0 0 rgba(10,138,95,0)}}
-.brand{margin:16px 0 10px;display:flex;align-items:center;gap:12px;flex-wrap:wrap}
-.brand-mark{width:46px;height:46px;border-radius:14px;background:var(--ink);color:#fff;display:flex;align-items:center;justify-content:center;font-family:var(--display);font-weight:800;font-size:22px;letter-spacing:-.03em}
-.brand h1{font-family:var(--display);font-weight:800;font-size:clamp(34px,7vw,50px);line-height:.98;letter-spacing:-.03em;margin:0}
-.brand h1 span{color:var(--b)}
-.lede{font-size:clamp(18px,2.4vw,21px);max-width:44ch;margin:0 0 18px;text-wrap:balance}
-.stats{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;max-width:780px}
-@media (min-width:620px){.stats{grid-template-columns:repeat(4,1fr)}}
-.stat{background:var(--soft);border-radius:14px;padding:12px 12px 10px;text-decoration:none;color:inherit;display:block;transition:transform .12s,background .12s}
-.stat:hover{background:#eceff3;transform:translateY(-1px)}
-.stat b{font-family:var(--display);font-weight:800;font-size:clamp(30px,8vw,40px);line-height:1;display:block;letter-spacing:-.02em}
+/* Cabeçalho editorial */
+.top{padding:32px 0 12px;border-bottom:1px solid var(--hair)}
+.kicker{display:inline-flex;align-items:center;gap:8px;font-size:12.5px;font-weight:600;color:var(--mute);margin-bottom:12px}
+.kicker i{width:8px;height:8px;border-radius:50%;background:var(--ok)}
+.wordmark{margin:0 0 12px;font-family:var(--display);font-weight:800;font-size:clamp(38px,7.5vw,58px);line-height:.95;letter-spacing:-.035em;color:var(--ink)}
+.wordmark em{font-style:normal;color:var(--b);position:relative}
+.wordmark em::after{content:"";position:absolute;left:0;right:0;bottom:3px;height:5px;background:var(--b-t);z-index:-1;border-radius:2px}
+.lede{font-size:clamp(18px,2.3vw,20.5px);color:var(--ink-2);max-width:48ch;margin:0 0 22px;line-height:1.45}
+.lede strong{color:var(--ink);font-weight:700}
+
+.stats{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;max-width:820px}
+@media (min-width:640px){.stats{grid-template-columns:repeat(4,1fr)}}
+.stat{background:var(--card);border:1px solid var(--hair);border-radius:12px;padding:14px 14px 12px;text-decoration:none;color:inherit;display:block;transition:border-color .15s}
+.stat:hover{border-color:var(--ink)}
+.stat b{font-family:var(--display);font-weight:800;font-size:clamp(28px,6vw,38px);line-height:1;display:block;letter-spacing:-.025em}
 .stat b.k{color:var(--k)}
-.stat span{font-size:12.5px;color:var(--mute);line-height:1.25;display:block;margin-top:4px}
-.upd{font-size:13px;color:var(--mute);margin:14px 0 0}
-.local-bar{margin-top:12px;display:none;flex-wrap:wrap;gap:10px;align-items:center;background:var(--b-t);border:1px solid #c5d9ff;border-radius:14px;padding:10px 14px;font-size:13.5px}
+.stat span{font-size:13px;color:var(--mute);line-height:1.3;display:block;margin-top:6px}
+.upd{font-size:13px;color:var(--mute);margin:16px 0 6px}
+
+.local-bar{margin-top:14px;display:none;flex-wrap:wrap;gap:10px;align-items:center;background:var(--b-t);border:1px solid #c7d8fa;border-radius:12px;padding:10px 14px;font-size:13.5px}
 .local-bar.on{display:flex}
 
-section{padding:40px 0 8px}
-.eye{display:inline-block;font-size:12px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--mute);margin-bottom:8px}
-h2{font-family:var(--display);font-weight:800;font-size:clamp(30px,6vw,42px);line-height:1.02;letter-spacing:-.025em;margin:0 0 8px;text-wrap:balance}
-.sub{color:var(--mute);margin:0 0 18px;max-width:62ch;font-size:15.5px}
+section{padding:44px 0 8px}
+.eye{display:block;font-size:12px;font-weight:700;letter-spacing:.07em;text-transform:uppercase;color:var(--mute);margin-bottom:6px}
+h2{font-family:var(--display);font-weight:800;font-size:clamp(28px,5.5vw,38px);line-height:1.06;letter-spacing:-.025em;margin:0 0 8px}
+.sub{color:var(--mute);margin:0 0 20px;max-width:62ch;font-size:15.5px}
 
-/* busca do bairro */
+/* Busca por bairro */
 .search{position:relative}
 .search svg{position:absolute;left:16px;top:50%;transform:translateY(-50%);color:var(--mute)}
-.search input{font:inherit;font-size:17px;width:100%;border:2px solid var(--ink);border-radius:16px;padding:16px 16px 16px 48px;background:var(--paper);color:var(--ink);box-shadow:var(--shadow)}
-.search input::placeholder{color:#8b97a3}
-.chips{display:flex;gap:8px;margin:12px -18px 0;padding:2px 18px 6px;list-style:none;overflow-x:auto;scrollbar-width:none}
+.search input{font:inherit;font-size:16.5px;width:100%;border:1.5px solid var(--ink);border-radius:12px;padding:15px 16px 15px 46px;background:var(--card);color:var(--ink)}
+.search input::placeholder{color:#8c939c}
+.chips{display:flex;gap:8px;margin:12px -20px 0;padding:2px 20px 6px;list-style:none;overflow-x:auto;scrollbar-width:none}
 .chips::-webkit-scrollbar{display:none}
-.chip{white-space:nowrap;border:1px solid var(--hair);background:var(--paper);border-radius:999px;padding:8px 14px;font-size:14px;font-weight:600}
-.chip:hover{border-color:var(--ink)}
+.chip{white-space:nowrap;border:1px solid var(--hair);background:var(--card);border-radius:999px;padding:7px 14px;font-size:13.5px;font-weight:600;color:var(--ink-2)}
+.chip:hover{border-color:var(--ink);color:var(--ink)}
 .chip.on{background:var(--ink);color:#fff;border-color:var(--ink)}
-.chip small{font-weight:400;opacity:.7;margin-left:4px}
+.chip small{font-weight:400;opacity:.75;margin-left:4px}
 
-.panel{border:1px solid var(--hair);border-radius:22px;padding:20px;margin-top:16px;box-shadow:var(--shadow);background:var(--paper)}
-.ph{display:flex;align-items:baseline;gap:12px;flex-wrap:wrap}
-.big{font-family:var(--display);font-weight:800;font-size:clamp(52px,13vw,76px);line-height:.9;letter-spacing:-.03em;color:var(--b);text-decoration:none}
-.ph p{margin:0;font-size:16px;max-width:26ch}
-.two{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:22px 30px;margin-top:20px}
-.two h3,.h3{font-size:13px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--mute);margin:0 0 10px}
-.rank{display:flex;flex-direction:column;gap:10px;margin:0;padding:0;list-style:none}
+.panel{border:1px solid var(--hair);border-radius:16px;padding:22px;margin-top:16px;background:var(--card)}
+.ph{display:flex;align-items:baseline;gap:14px;flex-wrap:wrap;padding-bottom:16px;border-bottom:1px solid var(--hair)}
+.big{font-family:var(--display);font-weight:800;font-size:clamp(46px,11vw,68px);line-height:.92;letter-spacing:-.03em;color:var(--b);text-decoration:none}
+.ph p{margin:0;font-size:16px;max-width:30ch;color:var(--ink-2)}
+.two{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:24px 32px;margin-top:20px}
+.two h3,.h3{font-size:12.5px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--mute);margin:0 0 12px}
+.rank{display:flex;flex-direction:column;gap:11px;margin:0;padding:0;list-style:none}
 .rank li{display:grid;grid-template-columns:34px 1fr auto;gap:10px;align-items:center;font-size:15px}
 .rank .nm{font-weight:600;line-height:1.2}
-.rank .br{grid-column:2/4;height:6px;background:var(--soft);border-radius:3px;overflow:hidden;margin-top:-4px}
+.rank .br{grid-column:2/4;height:5px;background:var(--soft);border-radius:3px;overflow:hidden;margin-top:-5px}
 .rank .br i{display:block;height:100%;background:var(--b);border-radius:3px}
-.rank b{font-family:var(--display);font-weight:800;font-size:18px}
+.rank b{font-family:var(--display);font-weight:800;font-size:17px}
 .rank b a{color:inherit;text-decoration:none}
-.rank b a:hover{text-decoration:underline}
-.av{width:34px;height:34px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:12.5px;flex:none;object-fit:cover;object-position:top center;background:var(--soft)}
-.reps{display:grid;grid-template-columns:repeat(auto-fill,minmax(290px,1fr));gap:12px}
-.rp{display:grid;grid-template-columns:auto 1fr;gap:4px 14px;text-align:left;border:1px solid var(--hair);background:var(--paper);border-radius:20px;padding:16px;box-shadow:var(--shadow);align-items:center}
+.av{width:34px;height:34px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:12px;flex:none;object-fit:cover;object-position:top center;background:var(--soft);color:var(--ink-2);border:1px solid var(--hair)}
+
+/* Pedidos repetidos */
+.reps{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:12px}
+.rp{display:grid;grid-template-columns:auto 1fr;gap:4px 14px;text-align:left;border:1px solid var(--hair);background:var(--card);border-radius:14px;padding:16px;align-items:center}
 .rp:hover{border-color:var(--ink)}
-.rp .rn{grid-row:1/3;font-family:var(--display);font-weight:800;font-size:44px;line-height:.9;letter-spacing:-.03em;color:var(--red);text-align:center;min-width:64px}
-.rp .rn small{display:block;font-family:var(--body);font-size:11.5px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--mute);margin-top:4px}
-.rp .rr{font-weight:700;font-size:16.5px;line-height:1.2}
+.rp .rn{grid-row:1/3;font-family:var(--display);font-weight:800;font-size:40px;line-height:.92;letter-spacing:-.03em;color:var(--red);text-align:center;min-width:60px}
+.rp .rn small{display:block;font-family:var(--body);font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--mute);margin-top:4px}
+.rp .rr{font-weight:700;font-size:16px;line-height:1.25}
 .rp .rb{font-size:13.5px;color:var(--mute)}
 .rp .rm{grid-column:1/-1;display:flex;flex-wrap:wrap;gap:6px;align-items:center;font-size:12.5px;color:var(--mute);margin-top:8px}
 .rp .rm .lab{background:var(--b-t);color:var(--b)}
-.notice-box{background:var(--soft);border:1px solid var(--hair);border-radius:16px;padding:14px 16px;font-size:13.5px;color:var(--mute);margin-top:14px;max-width:72ch}
+.notice-box{background:var(--soft);border-left:3px solid var(--mute);border-radius:0 10px 10px 0;padding:12px 16px;font-size:13.5px;color:var(--ink-2);margin-top:16px;max-width:74ch}
 .notice-box strong{color:var(--ink)}
-.themes{display:flex;flex-direction:column;gap:9px;margin:0;padding:0;list-style:none}
-.themes li{display:grid;grid-template-columns:30px 1fr auto;gap:10px;align-items:center;font-size:15px}
-.themes .ti{width:30px;height:30px;border-radius:9px;background:var(--b-t);color:var(--b);display:flex;align-items:center;justify-content:center}
-.themes b{font-weight:700}
-.themes b a{color:inherit;text-decoration:none}
 
-/* cartões de proposta */
+.themes{display:flex;flex-direction:column;gap:9px;margin:0;padding:0;list-style:none}
+.themes li{display:grid;grid-template-columns:28px 1fr auto;gap:10px;align-items:center;font-size:15px}
+.themes .ti{width:28px;height:28px;border-radius:8px;background:var(--b-t);color:var(--b);display:flex;align-items:center;justify-content:center}
+.themes b{font-weight:700}
+
+/* Cartões de proposta */
 .items{display:flex;flex-direction:column;gap:10px;margin:0;padding:0;list-style:none}
-.it{display:grid;grid-template-columns:42px 1fr;gap:12px;border:1px solid var(--hair);border-radius:16px;padding:14px;background:var(--paper)}
-.it .ic{width:42px;height:42px;border-radius:12px;background:var(--kt);color:var(--k);display:flex;align-items:center;justify-content:center}
-.it .tx{margin:0;font-size:15.5px;font-weight:600;line-height:1.35;overflow-wrap:anywhere}
+.it{display:grid;grid-template-columns:40px 1fr;gap:12px;border:1px solid var(--hair);border-radius:12px;padding:14px;background:var(--card)}
+.it .ic{width:40px;height:40px;border-radius:10px;background:var(--kt);color:var(--k);display:flex;align-items:center;justify-content:center}
+.it .tx{margin:0;font-size:15px;font-weight:500;line-height:1.42;color:var(--ink);overflow-wrap:anywhere}
 .it .mt{display:flex;flex-wrap:wrap;gap:6px;align-items:center;margin-top:8px;font-size:12.5px;color:var(--mute)}
-.lab{background:var(--kt);color:var(--k);border-radius:6px;padding:2px 8px;font-weight:700;font-size:12px}
-.stt{border-radius:6px;padding:2px 8px;font-weight:700;font-size:12px;background:var(--o-t);color:var(--o)}
+.lab{background:var(--kt);color:var(--k);border-radius:5px;padding:2px 8px;font-weight:700;font-size:11.5px}
+.stt{border-radius:5px;padding:2px 8px;font-weight:600;font-size:11.5px;background:var(--soft);color:var(--ink-2)}
 .stt.ok{background:var(--l-t);color:var(--ok)}.stt.no{background:#fdecea;color:var(--bad)}
-.it .ft{display:flex;flex-wrap:wrap;gap:6px 10px;align-items:center;justify-content:space-between;margin-top:10px;font-size:13px}
+.it .ft{display:flex;flex-wrap:wrap;gap:6px 10px;align-items:center;justify-content:space-between;margin-top:10px;padding-top:8px;border-top:1px solid var(--soft);font-size:13px}
 .who{display:flex;flex-wrap:wrap;gap:6px;align-items:center}
 .who .av{width:24px;height:24px;font-size:9.5px}
 .who span.n{font-weight:600}
 .ext{font-weight:600;text-decoration:none;white-space:nowrap}
 .ext:hover{text-decoration:underline}
-.more{margin-top:14px;border:0;background:var(--ink);color:#fff;border-radius:14px;padding:14px 16px;font-weight:700;width:100%}
-.more:hover{background:#26323e}
+.more{margin-top:14px;border:1px solid var(--ink);background:var(--card);color:var(--ink);border-radius:10px;padding:12px 16px;font-weight:700;width:100%}
+.more:hover{background:var(--ink);color:#fff}
 
-/* homenagem ou trabalho */
-.split{display:flex;height:16px;border-radius:8px;overflow:hidden;gap:3px;margin:0 0 16px}
-.split i{display:block;background:var(--k);min-width:5px}
+/* Homenagem ou trabalho */
+.split{display:flex;height:14px;border-radius:6px;overflow:hidden;gap:2px;margin:0 0 18px}
+.split i{display:block;background:var(--k);min-width:4px}
 .cats{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:12px}
-.cat{display:grid;grid-template-columns:48px 1fr;gap:6px 14px;text-align:left;background:var(--kt);border:0;border-radius:20px;padding:18px;align-content:start;transition:transform .15s}
-.cat:hover{transform:translateY(-2px)}
-.cat .ci{width:48px;height:48px;border-radius:14px;background:var(--paper);color:var(--k);display:flex;align-items:center;justify-content:center;grid-row:1/3}
-.cat .cv{font-family:var(--display);font-weight:800;font-size:38px;line-height:1;letter-spacing:-.02em;color:var(--k)}
-.cat .cn{font-weight:700;font-size:16px;line-height:1.2}
-.cat .cd{grid-column:1/-1;font-size:14px;color:var(--ink);opacity:.78;margin-top:6px}
-.cat .go{grid-column:1/-1;font-size:14px;font-weight:700;color:var(--k);margin-top:4px}
+.cat{display:grid;grid-template-columns:44px 1fr;gap:4px 12px;text-align:left;background:var(--card);border:1px solid var(--hair);border-top:4px solid var(--k);border-radius:14px;padding:16px;align-content:start;transition:border-color .15s}
+.cat:hover{border-color:var(--k)}
+.cat .ci{width:44px;height:44px;border-radius:10px;background:var(--kt);color:var(--k);display:flex;align-items:center;justify-content:center;grid-row:1/3}
+.cat .cv{font-family:var(--display);font-weight:800;font-size:34px;line-height:1;letter-spacing:-.025em;color:var(--ink)}
+.cat .cn{font-weight:700;font-size:15.5px;line-height:1.25}
+.cat .cd{grid-column:1/-1;font-size:14px;color:var(--mute);margin-top:8px;line-height:1.4}
+.cat .go{grid-column:1/-1;font-size:13.5px;font-weight:700;color:var(--k);margin-top:6px}
 
-/* guia cidadão compacto */
-.guide-tabs{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:12px}
-.guide-box{background:var(--soft);border-radius:18px;padding:16px 18px;border:1px solid var(--hair)}
-.guide-box h3{margin:0 0 4px;font-size:17px}
-.guide-box p{margin:0 0 8px;font-size:14.5px;color:var(--mute)}
-.guide-ex{background:var(--paper);border-radius:12px;padding:10px 12px;font-size:13.5px;border:1px solid var(--hair)}
-
-/* crachás */
-.tools{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:10px;margin:0 0 10px}
+/* Crachás editoriais dos vereadores */
+.tools{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:10px;margin:0 0 12px}
 .field{display:flex;flex-direction:column;gap:5px;font-size:12.5px;color:var(--mute);font-weight:600}
-.field input,.field select{font:inherit;font-size:16px;font-weight:400;color:var(--ink);background:var(--soft);border:1px solid transparent;border-radius:12px;padding:12px 14px;width:100%}
-.field input:focus,.field select:focus{background:var(--paper);border-color:var(--ink)}
+.field input,.field select{font:inherit;font-size:15.5px;font-weight:400;color:var(--ink);background:var(--card);border:1px solid var(--hair);border-radius:10px;padding:11px 13px;width:100%}
+.field input:focus,.field select:focus{border-color:var(--ink)}
 #conta{font-size:13.5px;color:var(--mute);margin:0 0 16px}
-.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(310px,1fr));gap:20px}
-.badge{border:1px solid var(--hair);border-radius:24px;overflow:hidden;display:flex;flex-direction:column;background:var(--paper);box-shadow:var(--shadow);min-width:0}
-.bh{background:var(--tint);padding:12px 18px 16px;position:relative}
-.slot{width:56px;height:10px;background:var(--paper);border-radius:999px;margin:0 auto 14px;box-shadow:inset 0 1px 2px rgba(0,0,0,.18)}
-.idr{display:grid;grid-template-columns:84px 1fr;gap:16px;align-items:center}
-.pho-wrap{position:relative;width:84px;height:84px}
-.pho{width:84px;height:84px;border-radius:50%;background:var(--paper);color:var(--deep);display:flex;align-items:center;justify-content:center;font-family:var(--display);font-weight:800;font-size:28px;letter-spacing:-.02em;box-shadow:0 0 0 3px var(--paper),0 0 0 5px var(--deep);object-fit:cover;object-position:top center}
-.idr h3{font-family:var(--display);font-weight:800;font-size:25px;line-height:1.04;letter-spacing:-.02em;margin:0;overflow-wrap:anywhere;text-wrap:balance}
-.civil{font-size:12.5px;color:var(--ink);opacity:.72;margin:4px 0 0}
-.tags{display:flex;flex-wrap:wrap;gap:6px;margin-top:12px}
-.pill{background:var(--ink);color:#fff;border-radius:6px;padding:2px 8px;font-weight:700;font-size:12px}
-.pill.r{background:var(--paper);color:var(--ink)}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(310px,1fr));gap:18px}
+
+.badge{border:1px solid var(--hair);border-radius:16px;overflow:hidden;display:flex;flex-direction:column;background:var(--card);min-width:0;transition:border-color .15s}
+.badge:hover{border-color:#bfc5ce}
+.bh{background:var(--card);padding:18px 18px 14px;border-bottom:1px solid var(--hair)}
+.idr{display:grid;grid-template-columns:76px 1fr;gap:14px;align-items:center}
+.pho-wrap{position:relative;width:76px;height:76px;border-radius:50%;overflow:hidden;background:var(--soft);border:1px solid var(--hair)}
+.pho{width:100%;height:100%;display:flex;align-items:center;justify-content:center;font-family:var(--display);font-weight:700;font-size:24px;color:var(--ink-2);object-fit:cover;object-position:top center}
+.idr h3{font-family:var(--display);font-weight:800;font-size:22px;line-height:1.08;letter-spacing:-.02em;margin:0;color:var(--ink)}
+.civil{font-size:13px;color:var(--mute);margin:3px 0 0;line-height:1.25}
+.tags{display:flex;flex-wrap:wrap;gap:6px;margin-top:10px}
+.party-tag{display:inline-flex;align-items:center;background:var(--soft);color:var(--ink-2);border:1px solid var(--hair);border-radius:6px;padding:2px 9px;font-weight:700;font-size:11.5px;letter-spacing:.03em;text-transform:uppercase}
+.role-tag{display:inline-flex;align-items:center;background:var(--b-t);color:var(--b);border-radius:6px;padding:2px 9px;font-weight:700;font-size:11.5px}
+
 .bb{padding:16px 18px 18px;display:flex;flex-direction:column;gap:16px}
-.pres{display:grid;grid-template-columns:76px 1fr;gap:14px;align-items:center}
-.ring{position:relative;width:76px;height:76px}
-.ring b{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-family:var(--display);font-weight:800;font-size:20px}
+.pres{display:grid;grid-template-columns:68px 1fr;gap:14px;align-items:center}
+.ring{position:relative;width:68px;height:68px}
+.ring b{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-family:var(--display);font-weight:800;font-size:18px}
 .ring b a{color:inherit;text-decoration:none}
-.pres p{margin:0;font-size:15px;line-height:1.35}
+.pres p{margin:0;font-size:14.5px;line-height:1.35}
 .pres p a{color:inherit;text-decoration:none;border-bottom:1px dashed var(--mute)}
-.pres small{display:block;font-size:13.5px;color:var(--mute);margin-top:3px}
+.pres small{display:block;font-size:13px;color:var(--mute);margin-top:2px}
 .pres small b.bad{color:var(--bad)}
 .mini{display:grid;grid-template-columns:1fr 1fr;gap:8px}
-.mini a,.mini div{background:var(--soft);border-radius:12px;padding:10px 12px;text-decoration:none;color:inherit;display:block}
-.mini a:hover{background:#eceff3}
-.mini b{font-family:var(--display);font-weight:800;font-size:19px;display:block;line-height:1.1}
-.mini span{font-size:12.5px;color:var(--mute)}
-.bar5{display:flex;height:8px;border-radius:4px;overflow:hidden;gap:2px;margin:0 0 6px}
+.mini a{background:var(--paper);border:1px solid var(--hair);border-radius:10px;padding:9px 11px;text-decoration:none;color:inherit;display:block}
+.mini a:hover{border-color:var(--ink)}
+.mini b{font-family:var(--display);font-weight:800;font-size:18px;display:block;line-height:1.15}
+.mini span{font-size:12px;color:var(--mute)}
+.bar5{display:flex;height:6px;border-radius:3px;overflow:hidden;gap:2px;margin:0 0 8px}
 .bar5 i{display:block;background:var(--k);min-width:3px}
-.pick{display:grid;grid-template-columns:10px 1fr auto 14px;gap:10px;align-items:center;width:100%;text-align:left;background:none;border:0;border-radius:10px;padding:8px 6px;font-size:15px}
-.pick i{width:10px;height:10px;border-radius:3px;background:var(--k)}
+.pick{display:grid;grid-template-columns:9px 1fr auto 14px;gap:9px;align-items:center;width:100%;text-align:left;background:none;border:0;border-radius:8px;padding:6px;font-size:14.5px}
+.pick i{width:9px;height:9px;border-radius:2px;background:var(--k)}
 .pick b{font-weight:700}
 .pick .ar{color:var(--k);font-weight:700}
 .pick:hover{background:var(--kt)}
 .pick[disabled]{cursor:default;color:var(--mute);background:none}
 .pick[disabled] .ar{visibility:hidden}
 .vote{display:flex;gap:8px}
-.vote a{flex:1;border-radius:12px;padding:10px 12px;background:var(--l-t);text-decoration:none;color:inherit;display:block}
+.vote a{flex:1;border-radius:10px;padding:9px 11px;background:var(--l-t);text-decoration:none;color:inherit;display:block}
 .vote a.n{background:#fdecea}
-.vote b{font-family:var(--display);font-weight:800;font-size:22px;display:block;line-height:1}
-.vote span{font-size:12.5px}
-.lnk{background:none;border:0;padding:0;color:var(--b);font-weight:600;font-size:14.5px;text-align:left}
+.vote b{font-family:var(--display);font-weight:800;font-size:20px;display:block;line-height:1.1}
+.vote span{font-size:12px;color:var(--ink-2)}
+.lnk{background:none;border:0;padding:0;color:var(--b);font-weight:600;font-size:14px;text-align:left}
 .lnk:hover{text-decoration:underline}
-.foot{font-size:14px;margin:0;border-top:1px solid var(--hair);padding-top:12px}
+.foot{font-size:13.5px;margin:0;border-top:1px solid var(--hair);padding-top:12px}
 .foot a{font-weight:600;text-decoration:none}
+.foot a:hover{text-decoration:underline}
 
-/* painel */
-.veil{position:fixed;inset:0;background:rgba(15,23,32,.45);z-index:9;display:none}
+/* Gaveta */
+.veil{position:fixed;inset:0;background:rgba(20,23,26,.45);z-index:9;display:none}
 .veil.on{display:block}
-.sheet{position:fixed;z-index:10;background:var(--paper);display:none;flex-direction:column;inset:0}
+.sheet{position:fixed;z-index:10;background:var(--card);display:none;flex-direction:column;inset:0}
 .sheet.on{display:flex}
-@media (min-width:820px){.sheet{inset:4vh auto 4vh 50%;width:760px;transform:translateX(-50%);border-radius:24px;overflow:hidden;box-shadow:0 30px 80px -20px rgba(0,0,0,.4)}}
-.sh-top{background:var(--kt);padding:18px 18px 14px;display:grid;grid-template-columns:46px 1fr auto;gap:12px;align-items:center}
-.sh-ic{width:46px;height:46px;border-radius:14px;background:var(--paper);color:var(--k);display:flex;align-items:center;justify-content:center}
-.sh-top h2{font-size:23px;margin:0;line-height:1.05}
-.sh-top p{margin:3px 0 0;font-size:13.5px;color:var(--ink);opacity:.75}
-.x{width:42px;height:42px;border-radius:50%;border:0;background:var(--paper);display:flex;align-items:center;justify-content:center}
-.sh-f{padding:10px 18px 2px;border-bottom:1px solid var(--hair)}
+@media (min-width:820px){.sheet{inset:4vh auto 4vh 50%;width:760px;transform:translateX(-50%);border-radius:18px;overflow:hidden;box-shadow:0 24px 64px -16px rgba(0,0,0,.35)}}
+.sh-top{background:var(--kt);padding:18px 20px 14px;display:grid;grid-template-columns:44px 1fr auto;gap:12px;align-items:center}
+.sh-ic{width:44px;height:44px;border-radius:11px;background:var(--card);color:var(--k);display:flex;align-items:center;justify-content:center}
+.sh-top h2{font-size:22px;margin:0;line-height:1.1}
+.sh-top p{margin:3px 0 0;font-size:13.5px;color:var(--ink-2)}
+.x{width:38px;height:38px;border-radius:50%;border:1px solid var(--hair);background:var(--card);display:flex;align-items:center;justify-content:center}
+.sh-f{padding:10px 20px 4px;border-bottom:1px solid var(--hair);background:var(--card)}
 .sh-f .chips{margin-top:0}
-.sh-body{overflow:auto;padding:16px 18px 40px;flex:1;background:var(--soft)}
+.sh-body{overflow:auto;padding:16px 20px 40px;flex:1;background:var(--paper)}
 
 .how{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:12px}
-.how div{background:var(--soft);border-radius:16px;padding:16px}
-.how h3{font-size:15px;margin:0 0 4px}
-.how p{font-size:14.5px;color:var(--mute);margin:0}
-footer{padding:26px 0 50px;color:var(--mute);font-size:13.5px;margin-top:36px;border-top:1px solid var(--hair)}
+.how div{background:var(--card);border:1px solid var(--hair);border-radius:12px;padding:16px}
+.how h3{font-size:15px;margin:0 0 5px}
+.how p{font-size:14px;color:var(--mute);margin:0;line-height:1.45}
+footer{padding:28px 0 52px;color:var(--mute);font-size:13.5px;margin-top:40px;border-top:1px solid var(--hair)}
 footer p{margin:0 0 6px;max-width:74ch}
-@media (prefers-reduced-motion:reduce){.cat{transition:none}.live i{animation:none}}
+@media (prefers-reduced-motion:reduce){.cat{transition:none}}
 </style>
 </head>
 <body>
 <div class="wrap">
   <header class="top">
-    <div class="live" id="live"><i></i><span id="livet">Dados oficiais da Câmara</span></div>
-    <div class="brand">
-      <div class="brand-mark" aria-hidden="true">SBO</div>
-      <h1>Fiscaliza <span>SBO</span></h1>
-    </div>
-    <p class="lede"><b>Raio-X da Câmara de Santa Bárbara d'Oeste-SP.</b> O que cada vereador propôs, quantas vezes foi às sessões e como votou — sem nota nem opinião, com link oficial em cada número.</p>
+    <div class="kicker"><i></i><span id="livet">Monitoramento independente · Santa Bárbara d'Oeste-SP</span></div>
+    <h1 class="wordmark">Fiscaliza <em>SBO</em></h1>
+    <p class="lede"><strong>O trabalho dos 19 vereadores de Santa Bárbara d'Oeste</strong> contado com os registros oficiais da Câmara — o que propuseram, quando compareceram e como votaram.</p>
     <div class="stats num" id="stats"></div>
     <p class="upd" id="upd"></p>
     <div class="local-bar" id="localBar">
-      <span>Modo local sem servidor: selecione o arquivo <b>dados_camara.json</b> gerado pelo Python para ver 100% dos registros.</span>
-      <label class="chip on" style="cursor:pointer">Carregar dados_camara.json
+      <span>Arquivo local aberto sem servidor: carregue o <b>dados_camara.json</b> para visualizar todos os registros extraídos.</span>
+      <label class="chip on" style="cursor:pointer">Selecionar dados_camara.json
         <input id="jsonFile" type="file" accept=".json" style="display:none">
       </label>
     </div>
   </header>
 
   <section aria-labelledby="h-b">
-    <span class="eye">Comece por aqui</span>
+    <span class="eye">Pesquisa por endereço</span>
     <h2 id="h-b">O que pediram pelo seu bairro?</h2>
-    <p class="sub">Digite o bairro ou a rua. Sem nada digitado, você vê o resumo da cidade inteira.</p>
+    <p class="sub">Digite o nome do bairro ou da rua. Com o campo vazio, você acompanha o panorama geral da cidade.</p>
     <label class="search" for="bq">
-      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg>
-      <input id="bq" type="search" list="bl" placeholder="Digite seu bairro ou sua rua (ex.: Jardim Pérola, Rua do Algodão)" autocomplete="off" aria-label="Bairro ou rua">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg>
+      <input id="bq" type="search" list="bl" placeholder="Digite seu bairro ou rua (ex.: Jardim Pérola, Rua do Algodão)" autocomplete="off" aria-label="Bairro ou rua">
     </label>
     <datalist id="bl"></datalist>
     <ul class="chips" id="chips"></ul>
@@ -244,33 +250,25 @@ footer p{margin:0 0 6px;max-width:74ch}
   </section>
 
   <section aria-labelledby="h-r">
-    <span class="eye">Cruzamento automático</span>
+    <span class="eye">Cruzamento de pedidos</span>
     <h2 id="h-r">O pedido que volta para a mesma rua</h2>
-    <p class="sub">Cruzamos todos os pedidos para mostrar quando o mesmo tipo de serviço volta várias vezes para a mesma via, com a contagem e as datas.</p>
+    <p class="sub">Quando o mesmo tipo de serviço aparece mais de uma vez na mesma via, reunimos os protocolos lado a lado com suas datas.</p>
     <div class="reps" id="reps"></div>
     <div class="notice-box">
-      <strong>Aviso importante:</strong> Pedido repetido não prova que a Prefeitura ignorou. O problema pode ter voltado após chuvas ou crescimento do mato, o pedido pode tratar de outro quarteirão da mesma rua, ou vereadores diferentes podem ter protocolado demandas parecidas. Abra o cartão e leia os pedidos e datas.
+      <strong>Leitura responsável:</strong> Pedido repetido não prova que a Prefeitura ignorou. O mato ou buraco pode ter voltado após chuvas, o pedido pode se referir a outro quarteirão da mesma rua, ou gabinetes diferentes podem ter protocolado demandas semelhantes. Abra o cartão para conferir cada documento.
     </div>
   </section>
 
   <section aria-labelledby="h-h">
-    <span class="eye">O trabalho da Câmara</span>
+    <span class="eye">Balanço das proposituras</span>
     <h2 id="h-h">Homenagem ou trabalho?</h2>
     <p class="sub" id="hsub"></p>
     <div class="split" id="split" role="img" aria-label="Divisão das propostas por tipo"></div>
     <div class="cats" id="cats"></div>
   </section>
 
-  <section aria-labelledby="h-g">
-    <span class="eye">Sem juridiquês</span>
-    <h2 id="h-g">Não sabe a diferença? Entenda rápido</h2>
-    <p class="sub">Toque em cada tipo para ver o que significa na prática antes de abrir os crachás.</p>
-    <div class="guide-tabs" id="gtabs"></div>
-    <div class="guide-box" id="gbox"></div>
-  </section>
-
   <section aria-labelledby="h-v">
-    <span class="eye">Um por um</span>
+    <span class="eye">Legislatura 2025–2028</span>
     <h2 id="h-v">Os 19 vereadores</h2>
     <p class="sub" id="vsub"></p>
     <div class="tools">
@@ -296,21 +294,21 @@ footer p{margin:0 0 6px;max-width:74ch}
   </section>
 
   <section aria-labelledby="h-c">
-    <span class="eye">Transparência e regra única</span>
+    <span class="eye">Metodologia</span>
     <h2 id="h-c">De onde vêm os números</h2>
-    <p class="sub">Tudo sai do portal oficial da Câmara Municipal de Santa Bárbara d'Oeste e do sistema Sino.Siave/Siscam.</p>
+    <p class="sub">Todos os dados são coletados diretamente do portal da Câmara Municipal e do sistema Sino.Siave/Siscam, aplicando a mesma regra para os 19 parlamentares.</p>
     <div class="how">
-      <div><h3>Regra única de classificação</h3><p>Todo pedido de zeladoria (Indicação) vai para <b>Pedidos nos bairros</b>. Todo <b>Requerimento</b> vai para <b>Perguntas e cobranças</b>. <b>Moções de aplauso/pesar</b>, <b>Decretos de título de cidadão</b> e <b>PLs de nome de rua ou data comemorativa</b> vão para <b>Homenagens</b>. Os demais <b>PLs</b> vão para <b>Propostas de lei</b>.</p></div>
+      <div><h3>Classificação por tipo</h3><p>Indicações de zeladoria entram em <b>Pedidos nos bairros</b>. Requerimentos entram em <b>Perguntas e cobranças</b>. Moções de aplauso/pesar, títulos honoríficos e PLs de denominação de via ou data comemorativa entram em <b>Homenagens</b>. Os demais PLs entram em <b>Propostas de lei</b>.</p></div>
       <div><h3>Presença nas sessões</h3><p id="m-pres"></p></div>
       <div><h3>Votações nominais</h3><p id="m-vot"></p></div>
-      <div><h3>Pedido não é obra feita</h3><p>Um pedido de melhoria é apenas um ofício encaminhado ao Executivo. O sistema da Câmara não informa se a Prefeitura executou o serviço.</p></div>
-      <div><h3>Fotos e fichas oficiais</h3><p>As fotos de perfil e os dados cadastrais são carregados diretamente das páginas oficiais dos vereadores em <b>camarasantabarbara.sp.gov.br</b>.</p></div>
-      <div><h3>Achou divergência?</h3><p>Cada número do crachá abre diretamente o documento ou ata correspondente no Siscam para conferência pública.</p></div>
+      <div><h3>Pedido não é obra feita</h3><p>Uma Indicação é apenas uma sugestão encaminhada ao Executivo. O sistema da Câmara não informa se a Prefeitura executou o serviço.</p></div>
+      <div><h3>Fichas e fotos oficiais</h3><p>As fotografias e fichas parlamentares vêm diretamente das páginas oficiais dos vereadores em <b>camarasantabarbara.sp.gov.br</b>.</p></div>
+      <div><h3>Conferência pública</h3><p>Cada contador possui link direto para o documento ou ata correspondente no Siscam.</p></div>
     </div>
   </section>
 
   <footer>
-    <p>Fiscaliza SBO é uma iniciativa independente de transparência cidadã para Santa Bárbara d'Oeste-SP, sem vínculo institucional com a Câmara Municipal, Prefeitura ou partidos políticos. Não atribui notas nem opiniões: apenas organiza os registros públicos oficiais.</p>
+    <p>Fiscaliza SBO é um projeto independente de transparência cidadã para Santa Bárbara d'Oeste-SP, sem vínculo com a Câmara Municipal, Prefeitura ou partidos políticos. Não atribui notas nem julgamentos: organiza documentos públicos oficiais.</p>
     <p id="rod"></p>
   </footer>
 </div>
@@ -318,7 +316,7 @@ footer p{margin:0 0 6px;max-width:74ch}
 <div class="veil" id="veil"></div>
 <div class="sheet" id="sheet" role="dialog" aria-modal="true" aria-labelledby="sh-t">
   <div class="sh-top" id="sh-top"><span class="sh-ic" id="sh-i"></span><div><h2 id="sh-t"></h2><p id="sh-s"></p></div>
-    <button class="x" id="sh-x" type="button" aria-label="Fechar"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg></button></div>
+    <button class="x" id="sh-x" type="button" aria-label="Fechar"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg></button></div>
   <div class="sh-f" id="sh-f"></div>
   <div class="sh-body" id="sh-b"></div>
 </div>
@@ -333,7 +331,7 @@ const nf = n => Number(n || 0).toLocaleString('pt-BR');
 const esc = s => String(s ?? '').replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
 const norm = s => String(s ?? '').normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase().trim();
 const $ = id => document.getElementById(id);
-const svg = (p, s = 22) => `<svg width="${s}" height="${s}" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">${p}</svg>`;
+const svg = (p, s = 20) => `<svg width="${s}" height="${s}" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">${p}</svg>`;
 
 const ICON = {
   pin:'<path d="M12 21s7-6.2 7-11a7 7 0 10-14 0c0 4.8 7 11 7 11z"/><circle cx="12" cy="10" r="2.5"/>',
@@ -412,8 +410,6 @@ const VEREADORES_BASE = [
   { ap:"Wilson da Engenharia", nome:"Wilson Aparecido de Oliveira", part:"União Brasil", idPortal:108, votos:1148, mesa:"", aliases:["wilson da engenharia","wilson aparecido"] }
 ];
 
-const hue = i => (i * 47 + 12) % 360;
-const avStyle = i => `background:hsl(${hue(i)} 80% 92%);color:hsl(${hue(i)} 55% 28%)`;
 const ini = s => {
   const w = s.split(/\s+/).filter(x => !/^(da|de|do|dos|das)$/i.test(x));
   return (w[0][0] + (w.length > 1 ? w[w.length - 1][0] : '')).toUpperCase();
@@ -424,8 +420,8 @@ const V = VEREADORES_BASE.map((v, idx) => ({
   idx,
   in: ini(v.ap),
   url: `${URL_PORTAL}/Vereador/Listar/${v.idPortal}`,
-  fotoUrl: `${URL_PORTAL}/Vereador/Foto/${v.idPortal}`,
-  fotoCustom: null,
+  fotoLocal: `fotos/${v.idPortal}.jpg`,
+  fotoRemota: null,
   P: 0, A: 0, F: 0,
   vs: 0, vn: 0,
   naos: [],
@@ -433,34 +429,33 @@ const V = VEREADORES_BASE.map((v, idx) => ({
   cat: { b:0, c:0, h:0, l:0, o:0 }
 }));
 
-/* Busca automática das URLs reais de foto na página /vereador da Câmara (com fallback via proxy público CORS-safe) */
-async function carregarFotosOficiaisCamara() {
-  const endpoints = [
-    `${URL_PORTAL}/vereador`,
+/* Tenta descobrir URLs remotas das fotos no portal da Câmara caso o arquivo local fotos/{id}.jpg ainda não exista */
+async function sincronizarFotosPortal() {
+  const proxies = [
+    `https://corsproxy.io/?${encodeURIComponent(URL_PORTAL + '/vereador')}`,
     `https://api.allorigins.win/raw?url=${encodeURIComponent(URL_PORTAL + '/vereador')}`
   ];
-  for (const ep of endpoints) {
+  for (const ep of proxies) {
     try {
-      const resp = await fetch(ep, { mode: 'cors' });
+      const resp = await fetch(ep);
       if (!resp.ok) continue;
       const html = await resp.text();
       const doc = new DOMParser().parseFromString(html, 'text/html');
-      let achouAlguma = false;
+      let achou = false;
       doc.querySelectorAll('a[href*="/Vereador/Listar/"]').forEach(a => {
         const m = (a.getAttribute('href') || '').match(/\/Vereador\/Listar\/(\d+)/i);
         if (!m) return;
-        const idP = Number(m[1]);
-        const v = V.find(x => x.idPortal === idP);
+        const v = V.find(x => x.idPortal === Number(m[1]));
         if (!v) return;
         const card = a.closest('div, li, article') || a.parentElement;
         const img = (card && card.querySelector('img')) || a.querySelector('img');
         if (img && img.getAttribute('src')) {
           const src = img.getAttribute('src');
-          v.fotoCustom = src.startsWith('http') ? src : URL_PORTAL + (src.startsWith('/') ? '' : '/') + src;
-          achouAlguma = true;
+          v.fotoRemota = src.startsWith('http') ? src : URL_PORTAL + (src.startsWith('/') ? '' : '/') + src;
+          achou = true;
         }
       });
-      if (achouAlguma) {
+      if (achou) {
         renderGrid();
         bairro($('bq').value);
         break;
@@ -469,26 +464,24 @@ async function carregarFotosOficiaisCamara() {
   }
 }
 
-function fotoSrc(v) {
-  return v.fotoCustom || v.fotoUrl;
+function imgTagVereador(v, classe) {
+  const fallbackRemoto = v.fotoRemota ? `if(!this.dataset.tried){this.dataset.tried='1';this.src='${esc(v.fotoRemota)}';}else{this.remove();}` : `this.remove();`;
+  return `<img class="${classe}" src="${esc(v.fotoLocal)}" alt="Foto oficial de ${esc(v.ap)}" loading="lazy" onerror="${fallbackRemoto}">`;
 }
 
 function av(idx) {
   const v = V[idx];
   if (!v) return '';
-  return `<span class="av" style="${avStyle(idx)}" aria-hidden="true">${v.in}</span>`;
+  return `<span class="av" style="position:relative;overflow:hidden">${v.in}${imgTagVereador(v, 'av')}</span>`;
 }
 
 function badgePhotoHTML(v) {
   return `<div class="pho-wrap">
     <div class="pho" aria-hidden="true">${v.in}</div>
-    <img class="pho" src="${esc(fotoSrc(v))}" alt="Foto oficial de ${esc(v.ap)}" loading="lazy"
-      style="position:absolute;inset:0"
-      onerror="this.remove()">
+    ${imgTagVereador(v, 'pho')}
   </div>`;
 }
 
-/* Dados iniciais verificados (substituídos integralmente pelo dados_camara.json quando carregado) */
 let DADOS = {
   gerado_em: "2026-11-15T04:00:00-03:00",
   fonte_oficial: URL_SISCAM,
@@ -586,9 +579,11 @@ function processarDados(raw) {
     v.naos = [];
     v.ausencias = [];
     v.cat = { b:0, c:0, h:0, l:0, o:0 };
+    if (raw.fotos && raw.fotos[String(v.idPortal)]) {
+      v.fotoLocal = raw.fotos[String(v.idPortal)];
+    }
   });
 
-  // 1. Propostas
   const mapaUnico = new Map();
   (raw.propostas || []).forEach(p => {
     const vIdx = findVereadorIdx(p.vereador || p.autoria_original || '');
@@ -622,7 +617,6 @@ function processarDados(raw) {
   });
   IT = [...mapaUnico.values()];
 
-  // 2. Sessões e presenças (considera apenas sessões cuja ata teve chamada extraída)
   const sessoesComAta = (raw.sessoes || []).filter(s => Array.isArray(s.presentes) && s.presentes.length >= 10);
   TOTAL_VOT = 0;
   UNAN_VOT = 0;
@@ -645,7 +639,7 @@ function processarDados(raw) {
       if (contrSet.size === 0) UNAN_VOT++;
 
       V.forEach((v, idx) => {
-        if (v.mesa === 'Presidente' && contrSet.size > 0) return; // Presidente não vota em matérias ordinárias sem empate
+        if (v.mesa === 'Presidente' && contrSet.size > 0) return;
         if (ausSet.has(idx) || !presSet.has(idx)) return;
         if (contrSet.has(idx)) {
           v.vn++;
@@ -662,7 +656,6 @@ function processarDados(raw) {
     });
   });
 
-  // 3. Cruzamento de pedidos repetidos na mesma rua e mesmo tema
   const gruposRua = new Map();
   IT.filter(it => (it.cat === 'b' || it.cat === 'c') && it.rua).forEach(it => {
     const chaveRua = `${norm(it.rua)}|${it.th || 'geral'}`;
@@ -698,12 +691,10 @@ function processarDados(raw) {
     })
     .sort((a, b) => b.n - a.n);
 
-  // 4. Bairros mais citados
   const mapaBairros = new Map();
   IT.forEach(it => {
     if (!it.bairro) return;
-    const bNorm = it.bairro;
-    mapaBairros.set(bNorm, (mapaBairros.get(bNorm) || 0) + 1);
+    mapaBairros.set(it.bairro, (mapaBairros.get(it.bairro) || 0) + 1);
   });
   const topBairros = [...mapaBairros.entries()].sort((a, b) => b[1] - a[1]);
   BAIRROS = topBairros.length ? topBairros.map(x => x[0]) : ["Jardim Pérola","Vila Grego","Parque Zabani","Centro","Cidade Nova","Mollon","Jardim Europa","Jardim Esmeralda"];
@@ -712,7 +703,6 @@ function processarDados(raw) {
   atualizarInterface();
 }
 
-/* ---------- Cartões e listas ---------- */
 function stt(r) {
   if (!r) return '';
   const k = /^aprovad/i.test(r) ? 'ok' : (/rejeit|adiad/i.test(r) ? 'no' : '');
@@ -753,12 +743,11 @@ function themeCount(items) {
   return [...m.entries()].sort((a, b) => b[1] - a[1]);
 }
 
-/* ---------- Gaveta deslizante (Sheet) ---------- */
 const sheet = $('sheet'), veil = $('veil'); let lastFocus = null;
 function openSheet(k, icon, title, sub) {
   lastFocus = document.activeElement;
   $('sh-top').className = 'sh-top k-' + k;
-  $('sh-i').innerHTML = svg(ICON[icon], 24);
+  $('sh-i').innerHTML = svg(ICON[icon], 22);
   $('sh-t').textContent = title;
   $('sh-s').textContent = sub || '';
   $('sh-f').innerHTML = '';
@@ -825,7 +814,6 @@ function openRep(g) {
   pager($('replist'), g.items, true, 20);
 }
 
-/* ---------- Renderização geral ---------- */
 function atualizarInterface() {
   const catTot = { b:0, c:0, h:0, l:0, o:0 };
   IT.forEach(it => { catTot[it.cat] = (catTot[it.cat] || 0) + 1; });
@@ -842,10 +830,9 @@ function atualizarInterface() {
 
   const ger = new Date(DADOS.gerado_em || Date.now());
   const sessoesComAta = (DADOS.sessoes || []).filter(s => Array.isArray(s.presentes) && s.presentes.length >= 10);
-  $('livet').textContent = `Dados oficiais · ${nf(IT.length)} propostas e ${sessoesComAta.length} atas auditadas`;
-  $('upd').innerHTML = `Última coleta no <a href="${URL_SISCAM}" target="_blank" rel="noopener">Sino.Siave / Siscam</a>: <b>${ger.toLocaleDateString('pt-BR')}</b> às <b>${ger.toLocaleTimeString('pt-BR', {hour:'2-digit', minute:'2-digit'})}</b>. Atualização diária automática às 04h00.`;
+  $('livet').textContent = `Santa Bárbara d'Oeste · ${nf(IT.length)} propostas e ${sessoesComAta.length} atas conferidas`;
+  $('upd').innerHTML = `Última coleta no <a href="${URL_SISCAM}" target="_blank" rel="noopener">Sino.Siave / Siscam</a>: <b>${ger.toLocaleDateString('pt-BR')}</b> às <b>${ger.toLocaleTimeString('pt-BR', {hour:'2-digit', minute:'2-digit'})}</b>.`;
 
-  // Repetidos
   const repHost = $('reps');
   repHost.innerHTML = '';
   if (!REPS.length) {
@@ -860,7 +847,7 @@ function atualizarInterface() {
         return `<button class="rp" type="button" data-g="${realIdx}"><span class="rn num">${g.n}<small>vezes</small></span>
           <span class="rr">${esc(g.r)}</span><span class="rb">${esc(g.b)}</span>
           <span class="rm"><span class="lab">${esc(THX[g.th][1])}</span><span>${g.a} ${g.a === 1 ? 'vereador pediu' : 'vereadores pediram'}</span>${g.d0 ? `<span>·</span><span>${esc(g.d0)} a ${esc(g.d1)}</span>` : ''}</span>
-          <span style="grid-column:1/-1;color:var(--b);font-weight:700;font-size:14px;margin-top:6px">Abrir os ${g.n} pedidos e datas →</span></button>`;
+          <span style="grid-column:1/-1;color:var(--b);font-weight:700;font-size:13.5px;margin-top:6px">Abrir os ${g.n} pedidos →</span></button>`;
       }).join(''));
       n += 6;
       if (n >= REPS.length) btn.remove();
@@ -873,26 +860,23 @@ function atualizarInterface() {
     add();
   }
 
-  // Bairro chips e datalist
   $('bl').innerHTML = BAIRROS.map(b => `<option value="${esc(b)}"></option>`).join('');
   $('chips').innerHTML = BAIRROS.slice(0, 10).map(b => `<li><button class="chip" type="button" data-b="${esc(b)}">${esc(b)}</button></li>`).join('');
   bairro($('bq').value);
 
-  // Homenagem ou trabalho
   const tot = ORDER.reduce((s, c) => s + (catTot[c] || 0), 0);
   $('hsub').textContent = `São ${nf(tot)} propostas classificadas com a mesma regra para todos os 19 vereadores. Toque em um grupo para ler proposta por proposta.`;
   $('split').innerHTML = ORDER.map(c => `<i class="k-${c}" style="flex:${catTot[c] || 0} 1 0"></i>`).join('');
   $('cats').innerHTML = ORDER.map(c => `<button class="cat k-${c}" type="button" data-c="${c}">
-    <span class="ci">${svg(ICON[CAT[c][2]], 26)}</span>
+    <span class="ci">${svg(ICON[CAT[c][2]], 22)}</span>
     <span class="cv num">${nf(catTot[c] || 0)}</span>
     <span class="cn">${CAT[c][0]}</span>
     <span class="cd">${CAT[c][1]}</span>
     <span class="go">Ler proposta por proposta →</span>
   </button>`).join('');
 
-  // Crachás
   const pct = TOTAL_VOT ? Math.floor((UNAN_VOT / TOTAL_VOT) * 100) : 100;
-  $('vsub').textContent = `Toque nos números do crachá para ler as propostas de cada vereador ou abrir a ficha e atas oficiais na Câmara.`;
+  $('vsub').textContent = `Toque nos números de cada vereador para abrir suas propostas ou conferir os documentos originais na Câmara.`;
   const selP = $('partido');
   const valAtual = selP.value;
   selP.innerHTML = '<option value="">Todos</option>';
@@ -905,7 +889,6 @@ function atualizarInterface() {
   selP.value = valAtual;
   renderGrid();
 
-  // Método
   $('m-pres').innerHTML = `Conta a presença na chamada inicial de cada ata oficial. No momento há <b>${sessoesComAta.length} sessões com ata extraída</b> de um total de <a href="${URL_SESSOES}" target="_blank" rel="noopener">${(DADOS.sessoes || []).length} sessões listadas em 2026 ↗</a>.`;
   $('m-vot').innerHTML = `Entram as votações com placar nominal registrado nas atas (${nf(TOTAL_VOT)} registros nominais auditados; em ${pct}% deles houve unanimidade). O Presidente da Câmara (Kifú) não vota em matérias comuns, exceto em desempate.`;
   $('rod').innerHTML = `Fontes oficiais: <a href="${URL_PORTAL}" target="_blank" rel="noopener">camarasantabarbara.sp.gov.br</a> e <a href="${URL_SISCAM}" target="_blank" rel="noopener">santabarbara.siscam.com.br</a>.`;
@@ -934,8 +917,8 @@ function bairro(q) {
     <div class="ph"><a class="big num" href="${URL_PROPS}" target="_blank" rel="noopener">${nf(items.length)}</a><p>${city ? 'propostas registradas em <b>toda a cidade</b>' : `${items.length === 1 ? 'proposta cita' : 'propostas citam'} <b>${esc(q.trim())}</b>`}</p></div>
     <div class="two">
       ${top.length ? `<div><h3>${city ? 'Quem mais propôs' : 'Quem mais pediu'}</h3><ol class="rank">${top.slice(0, 5).map(([a, n]) => `<li>${av(a)}<span class="nm">${esc(V[a].ap)} <span class="mute" style="font-weight:400">· ${esc(V[a].part)}</span></span><b class="num"><a href="${esc(V[a].url)}" target="_blank" rel="noopener">${nf(n)}</a></b><span class="br"><i style="width:${(n / mx) * 100}%"></i></span></li>`).join('')}</ol></div>` : ''}
-      ${th.length ? `<div><h3>Assuntos mais pedidos</h3><ul class="themes">${th.map(([t, n]) => `<li><span class="ti">${svg(ICON[THX[t][2]], 18)}</span><span>${esc(THX[t][1])}</span><b class="num">${nf(n)}</b></li>`).join('')}</ul></div>` : ''}
-      ${city && BAIRROS.length ? `<div><h3>Bairros citados</h3><ul class="themes">${BAIRROS.slice(0, 5).map((b, i) => `<li><span class="ti">${svg(ICON.pin, 18)}</span><button class="lnk" type="button" data-b="${esc(b)}">${esc(b)}</button><b class="num">${BAIRROSN[i] ? nf(BAIRROSN[i]) : ''}</b></li>`).join('')}</ul></div>` : ''}
+      ${th.length ? `<div><h3>Assuntos mais pedidos</h3><ul class="themes">${th.map(([t, n]) => `<li><span class="ti">${svg(ICON[THX[t][2]], 17)}</span><span>${esc(THX[t][1])}</span><b class="num">${nf(n)}</b></li>`).join('')}</ul></div>` : ''}
+      ${city && BAIRROS.length ? `<div><h3>Bairros citados</h3><ul class="themes">${BAIRROS.slice(0, 5).map((b, i) => `<li><span class="ti">${svg(ICON.pin, 17)}</span><button class="lnk" type="button" data-b="${esc(b)}">${esc(b)}</button><b class="num">${BAIRROSN[i] ? nf(BAIRROSN[i]) : ''}</b></li>`).join('')}</ul></div>` : ''}
     </div>
     ${reps.length ? `<p class="h3" style="margin-top:24px">Pedidos repetidos nesta via</p><div class="reps">${reps.map(g => `<button class="rp" type="button" data-g="${REPS.indexOf(g)}"><span class="rn num">${g.n}<small>vezes</small></span><span class="rr">${esc(g.r)}</span><span class="rb">${esc(g.b)}</span><span class="rm"><span class="lab">${esc(THX[g.th][1])}</span><span>Ver pedidos →</span></span></button>`).join('')}</div>` : ''}
     <p class="h3" style="margin-top:24px">${city ? 'Propostas mais recentes' : 'Pedidos encontrados neste local'}</p><div id="blist"></div></div>`;
@@ -945,19 +928,20 @@ function bairro(q) {
 function ring(v) {
   const t = v.P + v.A + v.F;
   if (!t) {
-    return `<div class="ring"><svg width="76" height="76" viewBox="0 0 76 76"><circle cx="38" cy="38" r="30" fill="none" stroke="#eef1f4" stroke-width="9"/></svg><b class="num">—</b></div>`;
+    return `<div class="ring"><svg width="68" height="68" viewBox="0 0 68 68"><circle cx="34" cy="34" r="27" fill="none" stroke="#eceae4" stroke-width="7"/></svg><b class="num">—</b></div>`;
   }
-  const C = 2 * Math.PI * 30;
-  const seg = (n, col, off) => n ? `<circle cx="38" cy="38" r="30" fill="none" stroke="${col}" stroke-width="9" stroke-dasharray="${(n / t) * C} ${C}" stroke-dashoffset="${-(off / t) * C}" transform="rotate(-90 38 38)"/>` : '';
-  return `<div class="ring"><svg width="76" height="76" viewBox="0 0 76 76" role="img" aria-label="${v.P} presenças em ${t} sessões"><circle cx="38" cy="38" r="30" fill="none" stroke="#eef1f4" stroke-width="9"/>${seg(v.P, '#0f1720', 0)}${seg(v.A, '#e0a23a', v.P)}${seg(v.F, '#d23a2e', v.P + v.A)}</svg><b class="num"><a href="${URL_SESSOES}" target="_blank" rel="noopener">${Math.round((v.P / t) * 100)}%</a></b></div>`;
+  const C = 2 * Math.PI * 27;
+  const seg = (n, col, off) => n ? `<circle cx="34" cy="34" r="27" fill="none" stroke="${col}" stroke-width="7" stroke-dasharray="${(n / t) * C} ${C}" stroke-dashoffset="${-(off / t) * C}" transform="rotate(-90 34 34)"/>` : '';
+  return `<div class="ring"><svg width="68" height="68" viewBox="0 0 68 68" role="img" aria-label="${v.P} presenças em ${t} sessões"><circle cx="34" cy="34" r="27" fill="none" stroke="#eceae4" stroke-width="7"/>${seg(v.P, '#14171a', 0)}${seg(v.A, '#d9822b', v.P)}${seg(v.F, '#c92a2a', v.P + v.A)}</svg><b class="num"><a href="${URL_SESSOES}" target="_blank" rel="noopener">${Math.round((v.P / t) * 100)}%</a></b></div>`;
 }
 
 function badge(v) {
-  const i = v.idx, t = v.P + v.A + v.F, h = hue(i);
-  return `<article class="badge" style="--tint:hsl(${h} 85% 94%);--deep:hsl(${h} 55% 30%)">
-   <div class="bh"><div class="slot" aria-hidden="true"></div>
+  const i = v.idx, t = v.P + v.A + v.F;
+  return `<article class="badge">
+   <div class="bh">
      <div class="idr">${badgePhotoHTML(v)}<div><h3>${esc(v.ap)}</h3><p class="civil">${esc(v.nome)}</p></div></div>
-     <div class="tags"><span class="pill">${esc(v.part)}</span>${v.mesa ? `<span class="pill r">${esc(v.mesa)} da Câmara</span>` : ''}</div></div>
+     <div class="tags"><span class="party-tag">${esc(v.part)}</span>${v.mesa ? `<span class="role-tag">${esc(v.mesa)} da Câmara</span>` : ''}</div>
+   </div>
    <div class="bb">
      <div class="pres">${ring(v)}<p><b class="num"><a href="${URL_SESSOES}" target="_blank" rel="noopener">${v.P} de ${t}</a></b> sessões com ata lida
        <small class="num"><b class="${v.F ? 'bad' : ''}">${v.F} ${v.F === 1 ? 'ausência' : 'ausências'}</b>${v.ausencias.length ? ` · <button class="lnk" type="button" data-aus="${i}" style="font-size:13px">ver quais</button>` : ''}</small></p></div>
@@ -973,7 +957,7 @@ function badge(v) {
          <a href="${URL_SESSOES}" target="_blank" rel="noopener"><b>${nf(v.vs)}</b><span>vezes favorável ↗</span></a>
          <a class="n" href="${URL_SESSOES}" target="_blank" rel="noopener"><b>${nf(v.vn)}</b><span>vezes contrário ↗</span></a>
        </div>
-       ${v.mesa === 'Presidente' ? '<p class="mute" style="font-size:13.5px;margin:8px 0 0">Pelo Regimento, o Presidente só vota em empate ou quórum especial.</p>' : ''}
+       ${v.mesa === 'Presidente' ? '<p class="mute" style="font-size:13px;margin:8px 0 0">Pelo Regimento, o Presidente só vota em empate ou quórum especial.</p>' : ''}
        ${v.naos.length ? `<p style="margin:10px 0 0"><button class="lnk" type="button" data-n="${i}">Ver votações contrárias →</button></p>` : ''}</div>
      <p class="foot"><a href="${esc(v.url)}" target="_blank" rel="noopener">Ficha oficial na Câmara Municipal ↗</a></p>
    </div></article>`;
@@ -995,26 +979,6 @@ function renderGrid() {
   $('conta').textContent = L.length === V.length ? `Mostrando os ${V.length} vereadores.` : `Mostrando ${L.length} de ${V.length} vereadores.`;
 }
 
-/* Guia cidadão */
-const GUIA = [
-  { id:'ind', tit:'Indicação (Pedido no bairro)', desc:'É um pedido formal que o vereador envia ao Prefeito sugerindo uma melhoria na cidade, como tapar um buraco, podar árvore ou pintar faixa PARE. A Prefeitura não é obrigada a executar.', ex:'Exemplo real: Indicação nº 4985/2026 — solicita operação tapa-buraco e recapeamento na Rua do Algodão, Jardim Pérola.' },
-  { id:'req', tit:'Requerimento (Pergunta e cobrança)', desc:'É uma cobrança oficial com prazo de resposta. O vereador exige informações, documentos ou explicações da Prefeitura, do DAE ou de secretarias sobre obras, contratos e serviços.', ex:'Exemplo real: Requerimento nº 812/2026 — cobra cronograma oficial de manutenção da rede de água e esgoto no Parque Zabani.' },
-  { id:'pl', tit:'Projeto de Lei (Proposta de lei)', desc:'É a proposta que cria uma nova regra, direito ou obrigação permanente para Santa Bárbara d\'Oeste. Precisa ser votada em plenário e sancionada pelo Prefeito para virar lei.', ex:'Exemplo real: Projeto de Lei nº 98/2026 — institui a Campanha Municipal de Conscientização sobre Burnout Infantil pelo uso excessivo de telas.' },
-  { id:'moc', tit:'Moção (Homenagem ou apelo)', desc:'É uma manifestação formal da Câmara. Na maioria das vezes serve para parabenizar cidadãos, empresas e entidades (Moção de Aplauso) ou prestar condolências (Moção de Pesar).', ex:'Exemplo real: Moção nº 403/2026 — aplaude a realização da 54ª Noite de Vigília pelo Brasil na Paróquia Nossa Senhora Aparecida.' }
-];
-let guiaAtivo = 'ind';
-function renderGuia() {
-  $('gtabs').innerHTML = GUIA.map(g => `<button class="chip ${g.id === guiaAtivo ? 'on' : ''}" type="button" data-guia="${g.id}">${esc(g.tit.split(' (')[0])}</button>`).join('');
-  const cur = GUIA.find(g => g.id === guiaAtivo);
-  $('gbox').innerHTML = `<h3>${esc(cur.tit)}</h3><p>${esc(cur.desc)}</p><div class="guide-ex">${esc(cur.ex)}</div>`;
-}
-$('gtabs').addEventListener('click', e => {
-  const b = e.target.closest('[data-guia]'); if (!b) return;
-  guiaAtivo = b.dataset.guia;
-  renderGuia();
-});
-
-/* Eventos */
 $('bq').addEventListener('input', e => bairro(e.target.value));
 ['q', 'partido', 'ordem'].forEach(id => $(id).addEventListener('input', renderGrid));
 $('cats').addEventListener('click', e => { const b = e.target.closest('[data-c]'); if (b) openCat(b.dataset.c, null); });
@@ -1035,7 +999,6 @@ document.addEventListener('click', e => {
   if (g && REPS[+g.dataset.g]) openRep(REPS[+g.dataset.g]);
 });
 
-/* Carregamento automático do dados_camara.json + fallback para arquivo local */
 $('jsonFile').addEventListener('change', e => {
   const file = e.target.files && e.target.files[0];
   if (!file) return;
@@ -1053,9 +1016,8 @@ $('jsonFile').addEventListener('change', e => {
 });
 
 async function iniciar() {
-  renderGuia();
   processarDados(DADOS);
-  carregarFotosOficiaisCamara();
+  sincronizarFotosPortal();
 
   if (location.protocol === 'file:') {
     $('localBar').classList.add('on');

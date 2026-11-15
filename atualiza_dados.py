@@ -17,6 +17,7 @@ from requests.adapters import HTTPAdapter
 from urllib3.util.retry import Retry
 
 BASE_SISCAM = "https://santabarbara.siscam.com.br"
+BASE_PORTAL = "https://www.camarasantabarbara.sp.gov.br"
 
 HEADERS = {
     "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/128.0.0.0 Safari/537.36",
@@ -24,7 +25,6 @@ HEADERS = {
     "Accept-Language": "pt-BR,pt;q=0.9,en;q=0.8",
 }
 
-# Mapeia nome parlamentar -> apelidos e nomes civis que aparecem nas Atas oficiais
 APELIDOS_VEREADORES = {
     "Alex Dantas": ["alex dantas", "alexandro dantas"],
     "Arnaldo Alves": ["arnaldo alves"],
@@ -94,9 +94,9 @@ def identificar_vereadores(texto_autoria: str) -> list:
 
 
 def extrair_nomes_chamada_ata(texto_limpo: str) -> list:
-    """Extrai os nomes da chamada de presença mesmo quando o nome civil difere do apelido."""
+    """Extrai os nomes da chamada de presença em DOCX e PDF."""
     m_pres = re.search(
-        r"PRESENTES os seguintes vereadores[:\s]+(.*?)(?:\.\s*(?:Havendo|Verificada|Não havendo|Ausente)|Havendo n[úu]mero legal)",
+        r"P\s*R\s*E\s*S\s*E\s*N\s*T\s*E\s*S\s+os\s+seguintes\s+vereadores[:\s]+(.*?)(?:\.\s*(?:Havendo|Verificada|Não havendo|Ausente)|Havendo n[úu]mero legal)",
         texto_limpo,
         re.I,
     )
@@ -104,16 +104,13 @@ def extrair_nomes_chamada_ata(texto_limpo: str) -> list:
         return []
 
     bloco = m_pres.group(1)
-    # Remove títulos como "Vereador", "Vereadora", "Sr.", "Sra."
     bloco = re.sub(r"\b(?:os\s+senhores\s+|as\s+senhoras\s+|vereadores?\s+|sr\.?ª?\s*)", "", bloco, flags=re.I)
-    # Quebra por vírgula ou " e "
     partes = re.split(r",|\s+e\s+", bloco)
     nomes_limpos = []
     for p in partes:
         p_clean = re.sub(r"\s+", " ", p).strip(" .;-:")
         if len(p_clean) < 4:
             continue
-        # Tenta converter para o nome parlamentar padrão; se não bater apelido, mantém o nome civil oficial
         mapeados = identificar_vereadores(p_clean)
         nome_final = mapeados[0] if mapeados else p_clean
         if nome_final not in nomes_limpos:
@@ -141,12 +138,16 @@ def classificar_proposta(tipo: str, ementa: str) -> str:
     return "outros"
 
 
-def coletar_todas_proposituras(session: requests.Session, ano: int = 2026, max_paginas: int = 300) -> list:
+def coletar_todas_proposituras(session: requests.Session, ano: int = 2026, max_paginas: int = 350) -> list:
+    """Coleta proposituras na Pesquisa Avançada e encerra ao sair do ano alvo."""
     propostas = []
     ids_vistos = set()
 
     for pagina in range(1, max_paginas + 1):
-        url = f"{BASE_SISCAM}/Documentos/IndiceCronologico/74/8?pagina={pagina}"
+        url = (
+            f"{BASE_SISCAM}/Documentos/Pesquisa"
+            f"?Pesquisa=Avancada&id=74&pagina={pagina}&Modulo=8&Ano={ano}"
+        )
         print(f"   Lendo página {pagina} de proposituras ({ano})...")
         resp = get_com_retry(session, url, timeout=90)
 
@@ -206,13 +207,11 @@ def coletar_todas_proposituras(session: requests.Session, ano: int = 2026, max_p
         if novos_na_pagina == 0:
             break
 
-        # Como o Índice Cronológico é ordenado do mais recente ao mais antigo,
-        # se uma página inteira não tem mais itens de 2026, chegamos em 2025.
         if itens_ano_na_pagina == 0:
-            print(f"   Alcançado fim dos registros de {ano} na página {pagina}.")
+            print(f"   Fim dos registros de {ano} alcançado na página {pagina}.")
             break
 
-        time.sleep(0.4)
+        time.sleep(0.35)
 
     return propostas
 
@@ -254,13 +253,14 @@ def coletar_sessoes_e_atas(session: requests.Session, ano: int = 2026) -> list:
     urls_sessoes = []
 
     for pagina in range(1, 15):
-        url_lista = f"{BASE_SISCAM}/sessoes?pagina={pagina}" if pagina > 1 else f"{BASE_SISCAM}/sessoes"
+        url_lista = f"{BASE_SISCAM}/sessoes?page={pagina}" if pagina > 1 else f"{BASE_SISCAM}/sessoes"
         resp = get_com_retry(session, url_lista, timeout=90)
         soup = BeautifulSoup(resp.text, "html.parser")
         linhas = soup.select("table tbody tr")
         if not linhas:
             break
 
+        novos_na_pagina = 0
         achou_ano = False
         for tr in linhas:
             cols = [td.get_text(" ", strip=True) for td in tr.find_all("td")]
@@ -272,14 +272,15 @@ def coletar_sessoes_e_atas(session: requests.Session, ano: int = 2026) -> list:
                 achou_ano = True
                 url_abs = urljoin(BASE_SISCAM, link_tag["href"])
                 if not any(u["url_sessao"] == url_abs for u in urls_sessoes):
+                    novos_na_pagina += 1
                     urls_sessoes.append({
                         "sessao": cols[0],
                         "data": cols[1] if len(cols) > 1 else "",
                         "url_sessao": url_abs,
                     })
-        if not achou_ano:
+        if not achou_ano or novos_na_pagina == 0:
             break
-        time.sleep(0.4)
+        time.sleep(0.35)
 
     print(f"   Encontradas {len(urls_sessoes)} sessões de {ano}. Lendo atas...")
 
@@ -333,9 +334,48 @@ def coletar_sessoes_e_atas(session: requests.Session, ano: int = 2026) -> list:
             print(f"   Sem ata anexada ainda: {item['sessao']}")
 
         sessoes_extraidas.append(registro)
-        time.sleep(0.4)
+        time.sleep(0.35)
 
     return sessoes_extraidas
+
+
+def baixar_fotos_vereadores(session: requests.Session, pasta_script: Path) -> dict:
+    """Baixa as fotos oficiais dos vereadores de camarasantabarbara.sp.gov.br para fotos/."""
+    pasta_fotos = pasta_script / "fotos"
+    pasta_fotos.mkdir(exist_ok=True)
+    mapa_fotos = {}
+
+    try:
+        resp = get_com_retry(session, f"{BASE_PORTAL}/vereador", timeout=60)
+        soup = BeautifulSoup(resp.text, "html.parser")
+
+        for a in soup.select("a[href*='/Vereador/Listar/']"):
+            m = re.search(r"/Vereador/Listar/(\d+)", a.get("href", ""), re.I)
+            if not m:
+                continue
+            vid = m.group(1)
+            if vid in mapa_fotos:
+                continue
+
+            bloco = a.find_parent(["div", "li", "article"]) or a
+            img = bloco.find("img")
+            if not img or not img.get("src"):
+                continue
+
+            src = urljoin(BASE_PORTAL, img["src"])
+            destino = pasta_fotos / f"{vid}.jpg"
+            try:
+                img_resp = session.get(src, headers=HEADERS, timeout=30)
+                if img_resp.ok and len(img_resp.content) > 1000:
+                    destino.write_bytes(img_resp.content)
+                    mapa_fotos[vid] = f"fotos/{vid}.jpg"
+            except Exception:
+                pass
+    except Exception as e:
+        print(f"   [Aviso] Não foi possível baixar fotos do portal agora: {e}")
+
+    print(f"   Fotos oficiais salvas localmente: {len(mapa_fotos)}")
+    return mapa_fotos
 
 
 def validar_coleta(novo: dict, caminho_atual: Path) -> tuple[bool, str]:
@@ -386,6 +426,9 @@ def main():
 
         print("2. Coletando sessões e atas de 2026 (DOCX e PDF)...")
         sessoes = coletar_sessoes_e_atas(session, ano=2026)
+
+        print("3. Baixando fotos oficiais dos vereadores...")
+        fotos = baixar_fotos_vereadores(session, pasta_script)
     except Exception as e:
         print(f"\n[BLOQUEADO] Erro durante a coleta na Câmara: {e}")
         print("Mantendo a última versão boa de dados_camara.json.")
@@ -396,6 +439,7 @@ def main():
         "fonte_oficial": BASE_SISCAM,
         "total_propostas": len(propostas),
         "total_sessoes": len(sessoes),
+        "fotos": fotos,
         "propostas": propostas,
         "sessoes": sessoes,
     }
