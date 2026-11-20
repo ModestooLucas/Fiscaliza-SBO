@@ -1,7 +1,7 @@
 {
-  "gerado_em": "2026-11-19T13:39:17.689386-03:00",
+  "gerado_em": "2026-11-20T13:08:26.387619-03:00",
   "fonte_oficial": "https://santabarbara.siscam.com.br",
-  "total_propostas": 5402,
+  "total_propostas": 5406,
   "total_sessoes": 10,
   "fotos": {
     "39": "fotos/39.jpg",
@@ -25,6 +25,281 @@
     "108": "fotos/108.jpg"
   },
   "propostas": [
+    {
+      "vereador": "Paulo Monaro",
+      "autoria_original": "PAULO MONARO",
+      "titulo": "Indicação Nº 5470/2026",
+      "tipo": "Indicação",
+      "data": "19/11/2026",
+      "ementa": "“Sugere ao Poder Executivo Municipal a execução de serviços de tapa-buracos na Rua Profeta Ezequiel, na altura do número 345, no Jardim Laudissi.”",
+      "situacao": "TRAMITANDO",
+      "grupo": "bairros",
+      "fonte_url": "https://santabarbara.siscam.com.br/Documentos/Documento/227460"
+    },
+    {
+      "vereador": "Paulo Monaro",
+      "autoria_original": "PAULO MONARO",
+      "titulo": "Indicação Nº 5469/2026",
+      "tipo": "Indicação",
+      "data": "19/11/2026",
+      "ementa": "“Sugere ao Poder Executivo Municipal a realização de serviços de poda de árvore e/ou corte de galhos que se encontram sobre sepulturas no Cemitério da Paz, especialmente sobre a sepultura de número 3561, neste município.”",
+      "situacao": "TRAMITANDO",
+      "grupo": "bairros",
+      "fonte_url": "https://santabarbara.siscam.com.br/Documentos/Documento/227457"
+    },
+    {
+      "vereador": "Paulo Monaro",
+      "autoria_original": "PAULO MONARO",
+      "titulo": "Indicação Nº 5468/2026",
+      "tipo": "Indicação",
+      "data": "19/11/2026",
+      "ementa": "“Sugere ao Poder Executivo Municipal a execução de serviços de tapa-buracos nas vias públicas do bairro Parque Eldorado, em Santa Bárbara d’Oeste.”",
+      "situacao": "TRAMITANDO",
+      "grupo": "bairros",
+      "fonte_url": "https://santabarbara.siscam.com.br/Documentos/Documento/227451"
+    },
+    {
+      "vereador": "Rony Tavares",
+      "autoria_original": "RONY TAVARES",
+      "titulo": "Indicação Nº 5467/2026",
+      "tipo": "Indicação",
+      "data": "19/11/2026",
+      "ementa": "Indica ao Poder Executivo Municipal o recapeamento asfáltico da Avenida Mogi Guaçu, no trecho do Jardim Barão.",
+      "situacao": "TRAMITANDO",
+      "grupo": "bairros",
+      "fonte_url": "https://santabarbara.siscam.com.br/Documentos/Documento/227400"
+    },
+    {
+      "vereador": "Rony Tavares",
+      "autoria_original": "RONY TAVARES",
+      "titulo": "Indicação Nº 5466/2026",
+      "tipo": "Indicação",
+      "data": "19/11/2026",
+      "ementa": "Indica ao Poder Executivo Municipal a realização de recapeamento asfáltico em toda a extensão da Rua São José do Rio Pardo, no Jardim Barão, neste município.",
+      "situacao": "TRAMITANDO",
+      "grupo": "bairros",
+      "fonte_url": "https://santabarbara.siscam.com.br/Documentos/Documento/227397"
+    },
+    {
+      "vereador": "Rony Tavares",
+      "autoria_original": "RONY TAVARES",
+      "titulo": "Indicação Nº 5465/2026",
+      "tipo": "Indicação",
+      "data": "19/11/2026",
+      "ementa": "Indica ao Poder Executivo Municipal a realização de recapeamento asfáltico em toda a extensão da Avenida Barretos, no Jardim Barão, neste município.",
+      "situacao": "TRAMITANDO",
+      "grupo": "bairros",
+      "fonte_url": "https://santabarbara.siscam.com.br/Documentos/Documento/227394"
+    },
+    {
+      "vereador": "Rony Tavares",
+      "autoria_original": "RONY TAVARES",
+      "titulo": "Indicação Nº 5464/2026",
+      "tipo": "Indicação",
+      "data": "19/11/2026",
+      "ementa": "Indica ao Poder Executivo Municipal a realização de recapeamento asfáltico em toda a extensão da Rua Itirapina, no Jardim Barão, neste município.",
+      "situacao": "TRAMITANDO",
+      "grupo": "bairros",
+      "fonte_url": "https://santabarbara.siscam.com.br/Documentos/Documento/227391"
+    },
+    {
+      "vereador": "Rony Tavares",
+      "autoria_original": "RONY TAVARES",
+      "titulo": "Indicação Nº 5463/2026",
+      "tipo": "Indicação",
+      "data": "19/11/2026",
+      "ementa": "Indica ao Poder Executivo Municipal a realização de recapeamento asfáltico em toda a extensão da Rua Santo Antônio da Posse, no Jardim Barão, neste município.",
+      "situacao": "TRAMITANDO",
+      "grupo": "bairros",
+      "fonte_url": "https://santabarbara.siscam.com.br/Documentos/Documento/227388"
+    },
+    {
+      "vereador": "Rony Tavares",
+      "autoria_original": "RONY TAVARES",
+      "titulo": "Indicação Nº 5462/2026",
+      "tipo": "Indicação",
+      "data": "19/11/2026",
+      "ementa": "Indica ao Poder Executivo Municipal a realização de recapeamento asfáltico em toda a extensão da Rua Santo Antônio do Jardim, no Jardim Barão, neste município.",
+      "situacao": "TRAMITANDO",
+      "grupo": "bairros",
+      "fonte_url": "https://santabarbara.siscam.com.br/Documentos/Documento/227385"
+    },
+    {
+      "vereador": "Rony Tavares",
+      "autoria_original": "RONY TAVARES",
+      "titulo": "Indicação Nº 5461/2026",
+      "tipo": "Indicação",
+      "data": "19/11/2026",
+      "ementa": "Indica ao Poder Executivo Municipal a realização de recapeamento asfáltico em toda a extensão da Rua São João da Boa Vista, no Jardim Barão, neste município.",
+      "situacao": "TRAMITANDO",
+      "grupo": "bairros",
+      "fonte_url": "https://santabarbara.siscam.com.br/Documentos/Documento/227382"
+    },
+    {
+      "vereador": "Rony Tavares",
+      "autoria_original": "RONY TAVARES",
+      "titulo": "Indicação Nº 5460/2026",
+      "tipo": "Indicação",
+      "data": "19/11/2026",
+      "ementa": "Indica ao Poder Executivo Municipal a realização de recapeamento asfáltico em toda a extensão da Rua São Sebastião da Grama, no Jardim Barão, neste município.",
+      "situacao": "TRAMITANDO",
+      "grupo": "bairros",
+      "fonte_url": "https://santabarbara.siscam.com.br/Documentos/Documento/227379"
+    },
+    {
+      "vereador": "Rony Tavares",
+      "autoria_original": "RONY TAVARES",
+      "titulo": "Indicação Nº 5459/2026",
+      "tipo": "Indicação",
+      "data": "19/11/2026",
+      "ementa": "Indica ao Poder Executivo Municipal a realização de recapeamento asfáltico em toda a extensão da Rua Serra Negra, neste município.",
+      "situacao": "TRAMITANDO",
+      "grupo": "bairros",
+      "fonte_url": "https://santabarbara.siscam.com.br/Documentos/Documento/227376"
+    },
+    {
+      "vereador": "Rony Tavares",
+      "autoria_original": "RONY TAVARES",
+      "titulo": "Indicação Nº 5458/2026",
+      "tipo": "Indicação",
+      "data": "19/11/2026",
+      "ementa": "Indica ao Poder Executivo Municipal a realização de recapeamento asfáltico em toda a extensão da Rua Vinhedo, no Jardim Barão, neste município.",
+      "situacao": "TRAMITANDO",
+      "grupo": "bairros",
+      "fonte_url": "https://santabarbara.siscam.com.br/Documentos/Documento/227373"
+    },
+    {
+      "vereador": "Tikinho TK",
+      "autoria_original": "TIKINHO TK",
+      "titulo": "Indicação Nº 5457/2026",
+      "tipo": "Indicação",
+      "data": "19/11/2026",
+      "ementa": "Indica ao Poder Executivo Municipal a realização do serviço de recapeamento na Rua Turquesa Bairro São Fernando.",
+      "situacao": "TRAMITANDO",
+      "grupo": "bairros",
+      "fonte_url": "https://santabarbara.siscam.com.br/Documentos/Documento/227352"
+    },
+    {
+      "vereador": "Tikinho TK",
+      "autoria_original": "TIKINHO TK",
+      "titulo": "Indicação Nº 5456/2026",
+      "tipo": "Indicação",
+      "data": "19/11/2026",
+      "ementa": "Indica ao Poder Executivo Municipal que proceda com a roçagem e limpeza de mato, na Área de Bem-Estar e Lazer Joarez Paulino da Silva - \"Juá Lanche\" na Rua Jorge Júlio Nº 256  bairro Jd Cedros.",
+      "situacao": "TRAMITANDO",
+      "grupo": "bairros",
+      "fonte_url": "https://santabarbara.siscam.com.br/Documentos/Documento/227343"
+    },
+    {
+      "vereador": "Esther Moraes",
+      "autoria_original": "ESTHER MORAES",
+      "titulo": "Indicação Nº 5455/2026",
+      "tipo": "Indicação",
+      "data": "19/11/2026",
+      "ementa": "Indica ao Poder Executivo Municipal a realizar novamente o serviço de “tapa buraco” na Rua Gen. Euríco Gáspar Dutra, defronte ao número 333 e também em área verde próximo a Rua Araras, no bairro Jardim Carolina.",
+      "situacao": "TRAMITANDO",
+      "grupo": "bairros",
+      "fonte_url": "https://santabarbara.siscam.com.br/Documentos/Documento/227340"
+    },
+    {
+      "vereador": "Gustavo Bagnoli",
+      "autoria_original": "GUSTAVO BAGNOLI",
+      "titulo": "Indicação Nº 5454/2026",
+      "tipo": "Indicação",
+      "data": "19/11/2026",
+      "ementa": "Indica ao Poder Executivo Municipal que seja realizada o serviço de tapa buraco localizado a Rua do Ferro próximo ao número 55 – Jardim Amélia.",
+      "situacao": "TRAMITANDO",
+      "grupo": "bairros",
+      "fonte_url": "https://santabarbara.siscam.com.br/Documentos/Documento/227337"
+    },
+    {
+      "vereador": "Gustavo Bagnoli",
+      "autoria_original": "GUSTAVO BAGNOLI",
+      "titulo": "Indicação Nº 5453/2026",
+      "tipo": "Indicação",
+      "data": "19/11/2026",
+      "ementa": "Indica ao Poder Executivo Municipal que seja realizada o serviço de tapa buraco localizado a Rua do Linho próximo ao número 216  – Jardim Pérola.",
+      "situacao": "TRAMITANDO",
+      "grupo": "bairros",
+      "fonte_url": "https://santabarbara.siscam.com.br/Documentos/Documento/227331"
+    },
+    {
+      "vereador": "Gustavo Bagnoli",
+      "autoria_original": "GUSTAVO BAGNOLI",
+      "titulo": "Indicação Nº 5452/2026",
+      "tipo": "Indicação",
+      "data": "19/11/2026",
+      "ementa": "Indica ao Poder Executivo Municipal que seja realizada o serviço de tapa buraco localizado a Rua do Manganês próximo ao número 252 – Jardim Amélia.",
+      "situacao": "TRAMITANDO",
+      "grupo": "bairros",
+      "fonte_url": "https://santabarbara.siscam.com.br/Documentos/Documento/227328"
+    },
+    {
+      "vereador": "Gustavo Bagnoli",
+      "autoria_original": "GUSTAVO BAGNOLI",
+      "titulo": "Indicação Nº 5451/2026",
+      "tipo": "Indicação",
+      "data": "19/11/2026",
+      "ementa": "Indica ao Poder Executivo Municipal que seja realizada o serviço de tapa buraco localizado a Rua do Níquel próximo ao número 171 – Jardim Mollon.",
+      "situacao": "TRAMITANDO",
+      "grupo": "bairros",
+      "fonte_url": "https://santabarbara.siscam.com.br/Documentos/Documento/227322"
+    },
+    {
+      "vereador": "Esther Moraes",
+      "autoria_original": "ESTHER MORAES",
+      "titulo": "Indicação Nº 5450/2026",
+      "tipo": "Indicação",
+      "data": "19/11/2026",
+      "ementa": "Indica ao Poder Executivo Municipal a realizar a operação “tapa buraco” na Rua Francisco Manoel da Silva, próximo ao número 62 no bairro Jardim Batagin.",
+      "situacao": "TRAMITANDO",
+      "grupo": "bairros",
+      "fonte_url": "https://santabarbara.siscam.com.br/Documentos/Documento/227319"
+    },
+    {
+      "vereador": "Gustavo Bagnoli",
+      "autoria_original": "GUSTAVO BAGNOLI",
+      "titulo": "Indicação Nº 5449/2026",
+      "tipo": "Indicação",
+      "data": "19/11/2026",
+      "ementa": "Indica ao Poder Executivo Municipal que seja realizada o serviço de tapa buraco localizado a Rua do Níquel próximo ao número 193 – Jardim Mollon.",
+      "situacao": "TRAMITANDO",
+      "grupo": "bairros",
+      "fonte_url": "https://santabarbara.siscam.com.br/Documentos/Documento/227313"
+    },
+    {
+      "vereador": "Felipe Corá",
+      "autoria_original": "FELIPE CORÁ",
+      "titulo": "Indicação Nº 5448/2026",
+      "tipo": "Indicação",
+      "data": "19/11/2026",
+      "ementa": "Indica ao Poder Executivo Municipal a operação tapa buracos na Rua dos Cariris, 857 - São Francisco",
+      "situacao": "TRAMITANDO",
+      "grupo": "bairros",
+      "fonte_url": "https://santabarbara.siscam.com.br/Documentos/Documento/227256"
+    },
+    {
+      "vereador": "Felipe Corá",
+      "autoria_original": "FELIPE CORÁ",
+      "titulo": "Indicação Nº 5447/2026",
+      "tipo": "Indicação",
+      "data": "19/11/2026",
+      "ementa": "Indica ao Poder Executivo Municipal providências para remoção de árvore com risco de queda, na Rua do Manganês, 843 - Mollon",
+      "situacao": "TRAMITANDO",
+      "grupo": "bairros",
+      "fonte_url": "https://santabarbara.siscam.com.br/Documentos/Documento/227253"
+    },
+    {
+      "vereador": "Felipe Corá",
+      "autoria_original": "FELIPE CORÁ",
+      "titulo": "Indicação Nº 5446/2026",
+      "tipo": "Indicação",
+      "data": "19/11/2026",
+      "ementa": "Indica ao Poder Executivo Municipal a desobstrução de lombofaixa com caminhão hidrojato na Rua Limeira, 729 - São Fernando",
+      "situacao": "TRAMITANDO",
+      "grupo": "bairros",
+      "fonte_url": "https://santabarbara.siscam.com.br/Documentos/Documento/227250"
+    },
     {
       "vereador": "Tikinho TK",
       "autoria_original": "TIKINHO TK",
@@ -411,6 +686,39 @@
       "fonte_url": "https://santabarbara.siscam.com.br/Documentos/Documento/227054"
     },
     {
+      "vereador": "Paulo Monaro",
+      "autoria_original": "PAULO MONARO",
+      "titulo": "Requerimento Nº 813/2026",
+      "tipo": "Requerimento",
+      "data": "19/11/2026",
+      "ementa": "“Requer informações e providências quanto à realização de recapeamento asfáltico na Rua Alexandre Fleming, no bairro Colina, bem como nas demais vias dos bairros Colina, Grego, Vila Brasil e Residencial Furlan.”",
+      "situacao": "TRAMITANDO",
+      "grupo": "cobrancas",
+      "fonte_url": "https://santabarbara.siscam.com.br/Documentos/Documento/227412"
+    },
+    {
+      "vereador": "Carlos Fontes",
+      "autoria_original": "CARLOS FONTES",
+      "titulo": "Requerimento Nº 812/2026",
+      "tipo": "Requerimento",
+      "data": "19/11/2026",
+      "ementa": "Requer ao Poder Executivo Municipal providências urgentes quanto à erosão que vem abrindo uma cratera junto à boca de lobo da Rua Peregrino de Oliveira Lino, defronte ao nº 521, no bairro Vila Linópolis, nas proximidades do Centro POP, com risco de afundamento da via e da calçada.",
+      "situacao": "TRAMITANDO",
+      "grupo": "cobrancas",
+      "fonte_url": "https://santabarbara.siscam.com.br/Documentos/Documento/227346"
+    },
+    {
+      "vereador": "Felipe Corá",
+      "autoria_original": "FELIPE CORÁ",
+      "titulo": "Requerimento Nº 811/2026",
+      "tipo": "Requerimento",
+      "data": "19/11/2026",
+      "ementa": "Requer do Poder Público Municipal estudos para instalação de guaritas pelos próprios moradores do Bairro Jardim Itapuã",
+      "situacao": "TRAMITANDO",
+      "grupo": "cobrancas",
+      "fonte_url": "https://santabarbara.siscam.com.br/Documentos/Documento/227259"
+    },
+    {
       "vereador": "Tikinho TK",
       "autoria_original": "TIKINHO TK",
       "titulo": "Requerimento Nº 810/2026",
@@ -508,6 +816,28 @@
       "situacao": "TRAMITANDO",
       "grupo": "cobrancas",
       "fonte_url": "https://santabarbara.siscam.com.br/Documentos/Documento/227070"
+    },
+    {
+      "vereador": "Rony Tavares",
+      "autoria_original": "RONY TAVARES",
+      "titulo": "Moção Nº 441/2026",
+      "tipo": "Moção",
+      "data": "19/11/2026",
+      "ementa": "Manifesta aplauso ao Mestre LAURO NASCIMENTO DIAS, o “LAURÃO”, e à ACADEMIA LAURÃO MUAY THAI, pela trajetória dedicada ao esporte e pelo relevante trabalho de formação esportiva e humana de crianças, jovens e adultos no município de Santa Bárbara d’Oeste.",
+      "situacao": "TRAMITANDO",
+      "grupo": "homenagens",
+      "fonte_url": "https://santabarbara.siscam.com.br/Documentos/Documento/227370"
+    },
+    {
+      "vereador": "Esther Moraes",
+      "autoria_original": "ESTHER MORAES",
+      "titulo": "Moção Nº 440/2026",
+      "tipo": "Moção",
+      "data": "19/11/2026",
+      "ementa": "Manifesta aplauso à equipe Technodessa, formada por alunos da Escola SESI de Nova Odessa, pela idealização e apresentação de projeto inovador voltado à preservação das abelhas nativas sem ferrão e à conscientização ambiental.”",
+      "situacao": "TRAMITANDO",
+      "grupo": "homenagens",
+      "fonte_url": "https://santabarbara.siscam.com.br/Documentos/Documento/227263"
     },
     {
       "vereador": "Marcelo Cury",
@@ -2100,7 +2430,7 @@
       "tipo": "Moção",
       "data": "18/11/2026",
       "ementa": "Manifesta aplauso à empresa Fuzetto, fabricante de produtos de limpeza, pelo relevante trabalho desenvolvido, pelos serviços prestados ao município de Santa Bárbara d’Oeste, pelo compromisso com causas de interesse da comunidade e por sua ligação com esta cidade.",
-      "situacao": "APRESENTADO",
+      "situacao": "TRAMITANDO",
       "grupo": "homenagens",
       "fonte_url": "https://santabarbara.siscam.com.br/Documentos/Documento/226989"
     },
@@ -59160,295 +59490,18 @@
       "situacao": "TRAMITANDO",
       "grupo": "bairros",
       "fonte_url": "https://santabarbara.siscam.com.br/Documentos/Documento/211608"
-    },
-    {
-      "vereador": "Kifú",
-      "autoria_original": "KIFU",
-      "titulo": "Indicação Nº 1275/2026",
-      "tipo": "Indicação",
-      "data": "10/03/2026",
-      "ementa": "Indica ao Poder Executivo Municipal a realização de análise técnica para instalação de redutor de velocidade (lombada) na Rua Dr. Sebastião de Paula Coelho, nº 203, após a rotatória, no lado oposto à academia, Bairro Laudissi neste município.",
-      "situacao": "TRAMITANDO",
-      "grupo": "bairros",
-      "fonte_url": "https://santabarbara.siscam.com.br/Documentos/Documento/211607"
-    },
-    {
-      "vereador": "Alex Dantas",
-      "autoria_original": "ALEX DANTAS",
-      "titulo": "Indicação Nº 1274/2026",
-      "tipo": "Indicação",
-      "data": "10/03/2026",
-      "ementa": "Indica ao Poder Executivo Municipal a limpeza de entulhos em área pública localizada na Rua Ribeirão Preto, defronte ao nº 929, no bairro Cidade Nova.",
-      "situacao": "TRAMITANDO",
-      "grupo": "bairros",
-      "fonte_url": "https://santabarbara.siscam.com.br/Documentos/Documento/211602"
-    },
-    {
-      "vereador": "Felipe Corá",
-      "autoria_original": "FELIPE CORÁ",
-      "titulo": "Moção Nº 178/2026",
-      "tipo": "Moção",
-      "data": "10/03/2026",
-      "ementa": "Manifesta aplauso ao ator barbarense Leandro Pontes pela conquista de papel no filme “Dark Horse’, produção biográfica que retrata a trajetória do ex Presidente Jair Messias  Bolsonaro.",
-      "situacao": "TRAMITANDO",
-      "grupo": "homenagens",
-      "fonte_url": "https://santabarbara.siscam.com.br/Documentos/Documento/211674"
-    },
-    {
-      "vereador": "Arnaldo Alves",
-      "autoria_original": "ARNALDO ALVES",
-      "titulo": "Moção Nº 177/2026",
-      "tipo": "Moção",
-      "data": "10/03/2026",
-      "ementa": "Manifesta aplauso à Companhia Arabesque Studio de Dança, seu corpo de balé e sua professora coreógrafa pelas conquistas obtidas em competições internacionais realizadas no Chile e Argentina.",
-      "situacao": "TRAMITANDO",
-      "grupo": "homenagens",
-      "fonte_url": "https://santabarbara.siscam.com.br/Documentos/Documento/211665"
-    },
-    {
-      "vereador": "Kifú",
-      "autoria_original": "KIFU",
-      "titulo": "Moção Nº 176/2026",
-      "tipo": "Moção",
-      "data": "10/03/2026",
-      "ementa": "Manifesta apelo à Companhia de Desenvolvimento Habitacional e Urbano do Estado de São Paulo (CDHU) para a implantação de um escritório ou posto de atendimento no município de Santa Bárbara d'Oeste, visando atender os moradores dos empreendimentos habitacionais da companhia, em especial do Residencial Araçari, localizado no bairro Roberto Romano.",
-      "situacao": "TRAMITANDO",
-      "grupo": "outros",
-      "fonte_url": "https://santabarbara.siscam.com.br/Documentos/Documento/211613"
-    },
-    {
-      "vereador": "Kifú",
-      "autoria_original": "KIFU",
-      "titulo": "Requerimento Nº 157/2026",
-      "tipo": "Requerimento",
-      "data": "10/03/2026",
-      "ementa": "Requer informações ao Poder Executivo Municipal acerca da titularidade, destinação e manutenção do imóvel localizado na Rua Armando Sales de Oliveira, 149, em nosso município.",
-      "situacao": "TRAMITANDO",
-      "grupo": "cobrancas",
-      "fonte_url": "https://santabarbara.siscam.com.br/Documentos/Documento/211667"
-    },
-    {
-      "vereador": "Carlos Fontes",
-      "autoria_original": "CARLOS FONTES",
-      "titulo": "Requerimento Nº 156/2026",
-      "tipo": "Requerimento",
-      "data": "10/03/2026",
-      "ementa": "Requer informações acerca do mutirão de 4.500 exames e cirurgias anunciado pela Prefeitura Municipal de Santa Bárbara d’Oeste para o mês de março.",
-      "situacao": "TRAMITANDO",
-      "grupo": "cobrancas",
-      "fonte_url": "https://santabarbara.siscam.com.br/Documentos/Documento/211621"
-    },
-    {
-      "vereador": "Carlos Fontes",
-      "autoria_original": "CARLOS FONTES",
-      "titulo": "Projeto de Lei Nº 33/2026",
-      "tipo": "Legislativo",
-      "data": "10/03/2026",
-      "ementa": "Institui o Fórum Municipal de Mães Atípicas no Município de Santa Bárbara d’Oeste e dá outras providências.",
-      "situacao": "TRAMITANDO",
-      "grupo": "outros",
-      "fonte_url": "https://santabarbara.siscam.com.br/Documentos/Documento/211599"
-    },
-    {
-      "vereador": "Wilson da Engenharia",
-      "autoria_original": "WILSON DA ENGENHARIA",
-      "titulo": "Indicação Nº 1273/2026",
-      "tipo": "Indicação",
-      "data": "09/03/2026",
-      "ementa": "Indica ao Poder Executivo Municipal a instalação de postes na área pública entre as ruas: João Benedito de Oliveira, rua Alagoas, rua Brasília e rua Arthur Amaral.",
-      "situacao": "TRAMITANDO",
-      "grupo": "bairros",
-      "fonte_url": "https://santabarbara.siscam.com.br/Documentos/Documento/211585"
-    },
-    {
-      "vereador": "Wilson da Engenharia",
-      "autoria_original": "WILSON DA ENGENHARIA",
-      "titulo": "Indicação Nº 1272/2026",
-      "tipo": "Indicação",
-      "data": "09/03/2026",
-      "ementa": "Indica ao Poder Executivo Municipal a manutenção e conserto da vala na rua Otaviano Trombi, em frente ao número 44, no bairro Planalto do sol ll.",
-      "situacao": "TRAMITANDO",
-      "grupo": "bairros",
-      "fonte_url": "https://santabarbara.siscam.com.br/Documentos/Documento/211579"
-    },
-    {
-      "vereador": "Gustavo Bagnoli",
-      "autoria_original": "GUSTAVO BAGNOLI",
-      "titulo": "Indicação Nº 1271/2026",
-      "tipo": "Indicação",
-      "data": "09/03/2026",
-      "ementa": "Indica ao Prefeito Rafael Piovezan que seja realizada a manutenção da iluminação e zeladoria na Praça José Belani, Jardim Santa Luzia.",
-      "situacao": "TRAMITANDO",
-      "grupo": "bairros",
-      "fonte_url": "https://santabarbara.siscam.com.br/Documentos/Documento/211543"
-    },
-    {
-      "vereador": "Gustavo Bagnoli",
-      "autoria_original": "GUSTAVO BAGNOLI",
-      "titulo": "Indicação Nº 1270/2026",
-      "tipo": "Indicação",
-      "data": "09/03/2026",
-      "ementa": "Indica ao Prefeito Rafael Piovezan que seja realizada a capinação e limpeza de área pública na Rua Dom Pedro II, Parque Olaria.",
-      "situacao": "TRAMITANDO",
-      "grupo": "bairros",
-      "fonte_url": "https://santabarbara.siscam.com.br/Documentos/Documento/211542"
-    },
-    {
-      "vereador": "Gustavo Bagnoli",
-      "autoria_original": "GUSTAVO BAGNOLI",
-      "titulo": "Indicação Nº 1269/2026",
-      "tipo": "Indicação",
-      "data": "09/03/2026",
-      "ementa": "Indica ao Prefeito Rafael Piovezan que seja realizada a instalação de braços de iluminação na Estrada Ernesto de Cillo, trecho após o viaduto da SP-304.",
-      "situacao": "TRAMITANDO",
-      "grupo": "bairros",
-      "fonte_url": "https://santabarbara.siscam.com.br/Documentos/Documento/211541"
-    },
-    {
-      "vereador": "Gustavo Bagnoli",
-      "autoria_original": "GUSTAVO BAGNOLI",
-      "titulo": "Indicação Nº 1268/2026",
-      "tipo": "Indicação",
-      "data": "09/03/2026",
-      "ementa": "Indica ao Prefeito Rafael Piovezan que seja realizada a manutenção de guias e operação tapa-buracos na Rua Frederico Amadeu Covolan, Distrito Industrial.",
-      "situacao": "TRAMITANDO",
-      "grupo": "bairros",
-      "fonte_url": "https://santabarbara.siscam.com.br/Documentos/Documento/211540"
-    },
-    {
-      "vereador": "Gustavo Bagnoli",
-      "autoria_original": "GUSTAVO BAGNOLI",
-      "titulo": "Indicação Nº 1267/2026",
-      "tipo": "Indicação",
-      "data": "09/03/2026",
-      "ementa": "Indica ao Prefeito Rafael Piovezan que seja realizada a poda de árvores na Avenida Pérola Byington, nº 246, Vila Romi.",
-      "situacao": "TRAMITANDO",
-      "grupo": "bairros",
-      "fonte_url": "https://santabarbara.siscam.com.br/Documentos/Documento/211539"
-    },
-    {
-      "vereador": "Gustavo Bagnoli",
-      "autoria_original": "GUSTAVO BAGNOLI",
-      "titulo": "Indicação Nº 1266/2026",
-      "tipo": "Indicação",
-      "data": "09/03/2026",
-      "ementa": "Indica ao Prefeito Rafael Piovezan que seja realizada manutenção de estrada rural na Rua Alécio Biondi, Recreio Alvorada.",
-      "situacao": "TRAMITANDO",
-      "grupo": "bairros",
-      "fonte_url": "https://santabarbara.siscam.com.br/Documentos/Documento/211537"
-    },
-    {
-      "vereador": "Marcelo Cury",
-      "autoria_original": "MARCELO CURY",
-      "titulo": "Indicação Nº 1265/2026",
-      "tipo": "Indicação",
-      "data": "09/03/2026",
-      "ementa": "Indica ao Poder Executivo Municipal redutor de velocidade (lombada) à rua Cristóvão Colombo próxima a E.E Juvelina, neste Município.",
-      "situacao": "TRAMITANDO",
-      "grupo": "bairros",
-      "fonte_url": "https://santabarbara.siscam.com.br/Documentos/Documento/211532"
-    },
-    {
-      "vereador": "Marcelo Cury",
-      "autoria_original": "MARCELO CURY",
-      "titulo": "Indicação Nº 1264/2026",
-      "tipo": "Indicação",
-      "data": "09/03/2026",
-      "ementa": "Indica ao Poder Executivo Municipal a colocação de placas de alerta de ''Área Escolar'' próximo a E.E Juvelina, neste Município.",
-      "situacao": "TRAMITANDO",
-      "grupo": "bairros",
-      "fonte_url": "https://santabarbara.siscam.com.br/Documentos/Documento/211531"
-    },
-    {
-      "vereador": "Marcelo Cury",
-      "autoria_original": "MARCELO CURY",
-      "titulo": "Indicação Nº 1263/2026",
-      "tipo": "Indicação",
-      "data": "09/03/2026",
-      "ementa": "Indica ao Poder Executivo Municipal faixa contínua amarela na rua Cristóvão Colombo, bairro Sartori, neste Município.",
-      "situacao": "TRAMITANDO",
-      "grupo": "bairros",
-      "fonte_url": "https://santabarbara.siscam.com.br/Documentos/Documento/211529"
-    },
-    {
-      "vereador": "Alex Dantas",
-      "autoria_original": "ALEX DANTAS",
-      "titulo": "Indicação Nº 1262/2026",
-      "tipo": "Indicação",
-      "data": "09/03/2026",
-      "ementa": "Indica ao Poder Executivo Municipal operação tapa-buracos na Rua Portugal, defronte ao nº 1419, no bairro Jardim Europa.",
-      "situacao": "TRAMITANDO",
-      "grupo": "bairros",
-      "fonte_url": "https://santabarbara.siscam.com.br/Documentos/Documento/211516"
-    },
-    {
-      "vereador": "Alex Dantas",
-      "autoria_original": "ALEX DANTAS",
-      "titulo": "Indicação Nº 1261/2026",
-      "tipo": "Indicação",
-      "data": "09/03/2026",
-      "ementa": "Indica ao Poder Executivo Municipal operação tapa-buracos na Rua General Osório, defronte ao nº 770, no bairro Centro.",
-      "situacao": "TRAMITANDO",
-      "grupo": "bairros",
-      "fonte_url": "https://santabarbara.siscam.com.br/Documentos/Documento/211515"
-    },
-    {
-      "vereador": "Alex Dantas",
-      "autoria_original": "ALEX DANTAS",
-      "titulo": "Indicação Nº 1260/2026",
-      "tipo": "Indicação",
-      "data": "09/03/2026",
-      "ementa": "Indica ao Poder Executivo Municipal operação ‘tapa-buracos” na Avenida de Cillo, defronte ao nº 342, no bairro Centro.",
-      "situacao": "TRAMITANDO",
-      "grupo": "bairros",
-      "fonte_url": "https://santabarbara.siscam.com.br/Documentos/Documento/211514"
-    },
-    {
-      "vereador": "Alex Dantas",
-      "autoria_original": "ALEX DANTAS",
-      "titulo": "Indicação Nº 1259/2026",
-      "tipo": "Indicação",
-      "data": "09/03/2026",
-      "ementa": "Indica ao Poder Executivo Municipal a troca de lâmpada queimada em poste localizado na Avenida Tiradentes, defronte ao nº 48, no bairro Vila Mac Night.",
-      "situacao": "TRAMITANDO",
-      "grupo": "bairros",
-      "fonte_url": "https://santabarbara.siscam.com.br/Documentos/Documento/211513"
-    },
-    {
-      "vereador": "Alex Dantas",
-      "autoria_original": "ALEX DANTAS",
-      "titulo": "Indicação Nº 1258/2026",
-      "tipo": "Indicação",
-      "data": "09/03/2026",
-      "ementa": "Indica ao Poder Executivo Municipal a troca de lâmpada queimada em poste localizado na Rua Maceió, defronte ao nº 1104, no bairro Planalto do Sol.",
-      "situacao": "TRAMITANDO",
-      "grupo": "bairros",
-      "fonte_url": "https://santabarbara.siscam.com.br/Documentos/Documento/211512"
-    },
-    {
-      "vereador": "Alex Dantas",
-      "autoria_original": "ALEX DANTAS",
-      "titulo": "Indicação Nº 1257/2026",
-      "tipo": "Indicação",
-      "data": "09/03/2026",
-      "ementa": "Indica ao Poder Executivo Municipal a troca de lâmpada queimada em poste localizado na Rua Maceió, defronte ao nº 1113, no bairro Planalto do Sol.",
-      "situacao": "TRAMITANDO",
-      "grupo": "bairros",
-      "fonte_url": "https://santabarbara.siscam.com.br/Documentos/Documento/211511"
-    },
-    {
-      "vereador": "Alex Dantas",
-      "autoria_original": "ALEX DANTAS",
-      "titulo": "Indicação Nº 1256/2026",
-      "tipo": "Indicação",
-      "data": "09/03/2026",
-      "ementa": "Indica ao Poder Executivo Municipal a troca de lâmpada queimada em poste localizado na Rua Maceió, defronte ao nº 1099, no bairro Planalto do Sol.",
-      "situacao": "TRAMITANDO",
-      "grupo": "bairros",
-      "fonte_url": "https://santabarbara.siscam.com.br/Documentos/Documento/211510"
     }
   ],
   "sessoes": [
+    {
+      "sessao": "43ª Sessão Ordinária de 2026",
+      "data": "24/11/2026",
+      "url_sessao": "https://santabarbara.siscam.com.br/Sessoes/Sessao/935",
+      "url_ata": "https://santabarbara.siscam.com.br/arquivo?Id=363038",
+      "formato_ata": "pdf",
+      "presentes": [],
+      "votacoes_nominais": []
+    },
     {
       "sessao": "42ª Sessão Ordinária de 2026",
       "data": "17/11/2026",
@@ -59651,15 +59704,6 @@
       "data": "30/09/2026",
       "url_sessao": "https://santabarbara.siscam.com.br/Sessoes/Sessao/921",
       "url_ata": "https://santabarbara.siscam.com.br/arquivo?Id=353722",
-      "formato_ata": "pdf",
-      "presentes": [],
-      "votacoes_nominais": []
-    },
-    {
-      "sessao": "35ª Sessão Ordinária de 2026",
-      "data": "29/09/2026",
-      "url_sessao": "https://santabarbara.siscam.com.br/Sessoes/Sessao/920",
-      "url_ata": "https://santabarbara.siscam.com.br/arquivo?Id=353645",
       "formato_ata": "pdf",
       "presentes": [],
       "votacoes_nominais": []
